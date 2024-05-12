@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -7,5 +8,26 @@ import { Component } from '@angular/core';
   ]
 })
 export class HomePageComponent {
+  public menu = { label: 'Menú', icon: 'menu' }
 
+  public sidebarItems = [
+    { label: 'Admin', icon: 'admin_panel_settings', url: '/admin' },
+    { label: 'Peliculas', icon: 'movie', url: '/peliculas' },
+    { label: 'Control usuarios', icon: 'person', url: '/user-management' },
+    /* { label: 'Login', icon: 'login', url: '/auth' } */
+  ]
+
+  constructor(
+    private router: Router,
+
+  ) { }
+
+  /**
+   * Método para realizar la acción de cierre de sesión.
+   * Utiliza el servicio SharedService para realizar el logout.
+   * @returns {void}
+   */
+  logout(){
+    //this.sharedService.doLogout()
+  }
 }
