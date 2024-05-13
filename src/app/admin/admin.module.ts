@@ -10,6 +10,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { AddObjectComponent } from './components/add-object/add-object.component';
 import { DeleteObjectComponent } from './components/delete-object/delete-object.component';
+import { EditObjectComponent } from './components/edit-object/edit-object.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { DeleteObjectComponent } from './components/delete-object/delete-object.
     HomePageComponent,
     ListObjectPageComponent,
     AddObjectComponent,
-    DeleteObjectComponent
+    DeleteObjectComponent,
+    EditObjectComponent
   ],
   imports: [
     CommonModule,
