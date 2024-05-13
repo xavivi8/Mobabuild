@@ -8,12 +8,16 @@ import { ListObjectPageComponent } from './pages/list-object-page/list-object-pa
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
+import { AddObjectComponent } from './components/add-object/add-object.component';
+import { DeleteObjectComponent } from './components/delete-object/delete-object.component';
 
 
 @NgModule({
   declarations: [
     HomePageComponent,
-    ListObjectPageComponent
+    ListObjectPageComponent,
+    AddObjectComponent,
+    DeleteObjectComponent
   ],
   imports: [
     CommonModule,
