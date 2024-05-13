@@ -14,8 +14,7 @@ import { ObjectD } from 'src/app/shared/interfaces/object';
 @Component({
   selector: 'app-list-object-page',
   templateUrl: './list-object-page.component.html',
-  styles: [
-  ]
+  styleUrls: ['./list-object-page.component.css']
 })
 export class ListObjectPageComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
