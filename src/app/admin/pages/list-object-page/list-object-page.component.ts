@@ -10,6 +10,7 @@ import { Permises } from 'src/app/shared/interfaces/api-response';
 import { firstValueFrom } from 'rxjs';
 import { ObjectService } from '../../services/object.service';
 import { ObjectD } from 'src/app/shared/interfaces/object';
+import { DeleteObjectComponent } from '../../components/delete-object/delete-object.component';
 
 @Component({
   selector: 'app-list-object-page',
@@ -84,4 +85,27 @@ export class ListObjectPageComponent implements OnInit {
 
   }
 
+  async deleteObject(objectd: ObjectD) {
+    const dialogRef = this.dialog.open(DeleteObjectComponent, {
+      data: objectd,
+      scrollStrategy: this.overlay.scrollStrategies.noop()
+    });
+
+    // Esperar hasta que se cierre el diálogo y obtener la respuesta
+    dialogRef.afterClosed().subscribe(async (result) => {
+      if (result && result.ok) {
+        // Si la eliminación fue exitosa, recargar los datos
+        await this.getAllObjects();
+      }
+    });
+  }
+
+
+  /**
+   * Recarga la página actual.
+   * @returns {void}
+   */
+  reloadPage(): void {
+    location.reload();
+  }
 }

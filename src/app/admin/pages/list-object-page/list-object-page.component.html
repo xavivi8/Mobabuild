@@ -35,13 +35,13 @@
               </mat-icon>
             </button>
           </th>
-          <td mat-cell *matCellDef="let usuario">
+          <td mat-cell *matCellDef="let object">
             <button id="editUsuario" mat-icon-button >
               <mat-icon>
                 mode_edit
               </mat-icon>
             </button>
-            <button id="deleteUsuario" mat-icon-button >
+            <button id="deleteUsuario" mat-icon-button (click)="deleteObject(object)">
               <mat-icon>
                 delete
               </mat-icon>
