@@ -26,6 +26,8 @@ export class DeleteObjectComponent implements OnInit{
   async deleteObject() {
     try {
       const success = await this.objectService.deleteObjectById(this.objectd.id).toPromise();
+      debugger
+
       if (success) {
         this.snackBar.open('El objeto se eliminó correctamente.', CLOSE, { duration: 5000 });
         this.dialogRef.close({ ok: true, data: 'ok' });
