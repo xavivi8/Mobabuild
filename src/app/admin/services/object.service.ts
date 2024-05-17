@@ -10,6 +10,8 @@ import { ObjectD } from 'src/app/shared/interfaces/object';
 })
 export class ObjectService {
 
+  //Credciales para el acceso a la API: , { withCredentials: true } por si hace falta
+
   private urlMobabuild: string = `${URL_API}/object`;
   objectds: ObjectD[] = [];
 
@@ -37,11 +39,7 @@ export class ObjectService {
 
 
   deleteObjectById(id: number): Observable<boolean> {
-    return this.httpClient.delete<any>(`${this.urlMobabuild}/deleteById/${id}`).pipe(
-      map(response => {
-        // Verificar si la respuesta es "ok" para devolver true, de lo contrario devolver false
-        return response === "ok";
-      }),
+    return this.httpClient.get<boolean>(`${this.urlMobabuild}/deleteById/${id}`).pipe(
       catchError(error => {
         console.error('Error al eliminar el objeto:', error);
         return of(false);
