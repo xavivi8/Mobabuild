@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const username = 'usuarioReadWrite@gmail.com'; // Reemplaza con tu nombre de usuario
-    const password = 'UsuarioReadWritePass1'; // Reemplaza con tu contraseña
+    const username = 'usuarioReadWrite@gmail.com';
+    const password = 'UsuarioReadWritePass1';
     const authHeader = `Basic ${btoa(`${username}:${password}`)}`;
 
     const authReq = req.clone({
