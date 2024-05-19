@@ -19,7 +19,7 @@ import { EditObjectComponent } from './components/edit-object/edit-object.compon
     ListObjectPageComponent,
     AddObjectComponent,
     DeleteObjectComponent,
-    EditObjectComponent
+    EditObjectComponent,
   ],
   imports: [
     CommonModule,
