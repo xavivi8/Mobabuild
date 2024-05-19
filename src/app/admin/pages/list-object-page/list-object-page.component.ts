@@ -11,6 +11,8 @@ import { firstValueFrom } from 'rxjs';
 import { ObjectService } from '../../services/object.service';
 import { ObjectD } from 'src/app/shared/interfaces/object';
 import { DeleteObjectComponent } from '../../components/delete-object/delete-object.component';
+import { AddObjectComponent } from '../../components/add-object/add-object.component';
+import { EditObjectComponent } from '../../components/edit-object/edit-object.component';
 
 @Component({
   selector: 'app-list-object-page',
@@ -94,6 +96,38 @@ export class ListObjectPageComponent implements OnInit {
     // Esperar hasta que se cierre el diálogo y obtener la respuesta
     dialogRef.afterClosed().subscribe(async (result) => {
       if (result && result.ok) {
+        // Si la eliminación fue exitosa, recargar los datos
+        await this.getAllObjects();
+      }
+    });
+  }
+
+  async addObject() {
+    const dialogRef = this.dialog.open(AddObjectComponent, {
+      scrollStrategy: this.overlay.scrollStrategies.noop()
+    });
+
+    dialogRef.afterClosed().subscribe(async (result) => {
+      if (result && result.ok) {
+
+        const newObject = result.data;
+        if (newObject) {
+          // Si se recibió un objeto válido
+          this.dataSource.data.push(newObject); // Agregar el objeto a los datos de la tabla
+          this.dataSource._updateChangeSubscription(); // Actualizar la vista de la tabla
+        }
+      }
+    });
+  }
+
+  async editObject(objectd: ObjectD) {
+    const dialogRef = this.dialog.open(EditObjectComponent, {
+      data: objectd,
+      scrollStrategy: this.overlay.scrollStrategies.noop()
+    });
+
+    dialogRef.afterClosed().subscribe(async (result) => {
+      if (result && result === 1) {
         // Si la eliminación fue exitosa, recargar los datos
         await this.getAllObjects();
       }
