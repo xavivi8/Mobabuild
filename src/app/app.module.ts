@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ObjectService } from './admin/services/object.service';
 import { AuthInterceptor } from './shared/interceptors/auth.service';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AuthInterceptor } from './shared/interceptors/auth.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
   ],
   providers: [
     ObjectService,
