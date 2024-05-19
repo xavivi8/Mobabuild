@@ -13,7 +13,8 @@ import { CLOSE } from 'src/app/shared/interfaces/messages';
 })
 export class DeleteObjectComponent implements OnInit{
 
-  constructor(public dialogRef: MatDialogRef<DeleteObjectComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<DeleteObjectComponent>,
     @Inject(MAT_DIALOG_DATA) public objectd: ObjectD,
     private objectService: ObjectService,
     private snackBar: MatSnackBar,
