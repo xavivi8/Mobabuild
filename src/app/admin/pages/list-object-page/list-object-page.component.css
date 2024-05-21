@@ -9,3 +9,8 @@
   width: 90%; /* Ancho deseado para la tarjeta */
   max-width: 600px; /* Ancho máximo para la tarjeta */
 }
+
+.horizontal-list {
+  display: flex;
+  list-style-type: none;
+}

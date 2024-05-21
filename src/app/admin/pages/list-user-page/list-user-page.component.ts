@@ -9,6 +9,7 @@ import { UserService } from '../../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Overlay } from '@angular/cdk/overlay';
 import { firstValueFrom } from 'rxjs';
+import { AddUserComponent } from '../../components/add-user/add-user.component';
 
 @Component({
   selector: 'app-list-user-page',
@@ -82,6 +83,16 @@ export class ListUserPageComponent implements OnInit {
       this.filterValues.useName = value;
       this.dataSource.filter = JSON.stringify(this.filterValues);
     })
+  }
+
+  async addUser() {
+    const dialogRef = this.dialog.open(AddUserComponent, {
+      scrollStrategy: this.overlay.scrollStrategies.noop()
+    });
+
+    dialogRef.afterClosed().subscribe(async (result) => {
+
+    });
   }
 
 
