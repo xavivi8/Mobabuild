@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddObjectComponent } from './components/add-object/add-object.component';
 import { DeleteObjectComponent } from './components/delete-object/delete-object.component';
 import { EditObjectComponent } from './components/edit-object/edit-object.component';
+import { ListUserPageComponent } from './pages/list-user-page/list-user-page.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { EditObjectComponent } from './components/edit-object/edit-object.compon
     AddObjectComponent,
     DeleteObjectComponent,
     EditObjectComponent,
+    ListUserPageComponent,
+    AddUserComponent,
   ],
   imports: [
     CommonModule,
