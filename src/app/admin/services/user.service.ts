@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { User } from "src/app/shared/interfaces/user";
+import { AddUserRequest, User } from "src/app/shared/interfaces/user";
 import { URL_API } from "src/environments/environments";
 
 @Injectable({
@@ -32,7 +32,7 @@ export class UserService {
     });
   }
 
-  addUserWithoutImage(email: string, userName: string, pass: string, authorityNames: string[]): Observable<User> {
+  addUserWithoutImage(addUserRequest: AddUserRequest): Observable<User> {
     /*return this.httpClient.get<User>(`${this.urlMobabuild}/add`, {
       params: {
         email: email,
@@ -40,15 +40,9 @@ export class UserService {
         pass: pass
       }
     });*/
-    let params = new HttpParams()
-      .set('email', email)
-      .set('userName', userName)
-      .set('pass', pass);
+    console.log(addUserRequest);
 
-    for (const authority of authorityNames) {
-      params = params.append('authorityNames', authority);
-    }
 
-    return this.httpClient.post<User>(`${this.urlMobabuild}/add`, null, { params: params });
+    return this.httpClient.post<User>(`${this.urlMobabuild}/add`, addUserRequest);
   }
 }
