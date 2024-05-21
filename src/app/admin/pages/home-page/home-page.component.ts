@@ -19,7 +19,7 @@ export class HomePageComponent {
 
   public adminMenuItems = [
     { label: 'Object', icon: 'keep', url: './object' },
-    { label: 'Runa', icon: 'hive', url: './rune' },
+    { label: 'User', icon: 'hive', url: './user' },
     { label: 'Spell', icon: 'keep', url: './object' },
     { label: 'Runa111', icon: 'hive', url: './rune' },
     { label: 'Object111', icon: 'keep', url: './object' },
