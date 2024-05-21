@@ -21,3 +21,11 @@ export interface User {
   favoriteBuild: FavoriteBuild;
   authorities: Authority[];
 }
+
+export interface AddUserRequest {
+  email: string;
+  userName: string;
+  pass: string;
+  authorityNames: string[];
+}
+
