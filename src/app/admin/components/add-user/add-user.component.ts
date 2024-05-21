@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../../services/user.service';
 import { firstValueFrom } from 'rxjs';
 import { CLOSE } from 'src/app/shared/interfaces/messages';
+import { AddUserRequest, AuthorityName } from 'src/app/shared/interfaces/user';
 
 @Component({
   selector: 'app-add-user',
@@ -13,6 +14,13 @@ import { CLOSE } from 'src/app/shared/interfaces/messages';
 })
 export class AddUserComponent implements OnInit {
   userForm: FormGroup = new FormGroup({});
+  authorityOptions = [
+    { value: [AuthorityName.ADMIN], viewValue: 'Admin' },
+    { value: [AuthorityName.READ], viewValue: 'Read' },
+    { value: [AuthorityName.WRITE], viewValue: 'Write' },
+    { value: [AuthorityName.READ, AuthorityName.WRITE], viewValue: 'Read & Write' },
+  ];
+  hidePass: boolean = true;
 
   constructor(
     public dialogRef: MatDialogRef<AddUserComponent>,
@@ -34,7 +42,13 @@ export class AddUserComponent implements OnInit {
     try {
       if (this.userForm.valid) {
         const user = this.userForm.value;
-        const RESPONSE = await firstValueFrom(this.userService.addUserWithoutImage(user.email, user.user_name, user.pass, [user.authority]));
+        const addUserRequest: AddUserRequest = {
+          email: user.email,
+          userName: user.user_name,
+          pass: user.pass,
+          authorityNames: user.authority
+        }
+        const RESPONSE = await firstValueFrom(this.userService.addUserWithoutImage(addUserRequest));
         if (RESPONSE) {
           this.snackBar.open('El usuario se añadio correctamente.', CLOSE, { duration: 5000 });
           this.dialogRef.close({ ok: true, data: RESPONSE });
@@ -47,6 +61,10 @@ export class AddUserComponent implements OnInit {
       this.snackBar.open('Ocurrio un error al añadir el usuario.', CLOSE, { duration: 5000 });
     }
   };
+
+  togglePasswordVisibility(): void {
+    this.hidePass = !this.hidePass;
+  }
 
   onNoClick(): void {
     this.dialogRef.close({ ok: false });
