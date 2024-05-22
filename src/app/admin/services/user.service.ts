@@ -42,7 +42,8 @@ export class UserService {
     });*/
     console.log(addUserRequest);
 
+    console.log(JSON.stringify(addUserRequest));
 
-    return this.httpClient.post<User>(`${this.urlMobabuild}/add`, addUserRequest);
+    return this.httpClient.post<User>(`${this.urlMobabuild}/add`, JSON.stringify(addUserRequest));
   }
 }
