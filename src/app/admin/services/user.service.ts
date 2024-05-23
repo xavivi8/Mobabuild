@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { AddUserRequest, User } from "src/app/shared/interfaces/user";
@@ -11,10 +11,22 @@ export class UserService {
 
   private urlMobabuild: string = `${URL_API}/user`;
 
+  private username = 'usuarioReadWrite@gmail.com';
+  private password = 'UsuarioReadWritePass1';
+  private authHeader = `Basic ${btoa(`${this.username}:${this.password}`)}`;
+
+  private authHeaderWithJson = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.authHeader
+    }),
+    withCredentials: true
+  };
+
   constructor(private httpClient: HttpClient) { }
 
   findAll(): Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.urlMobabuild}/findAll`);
+    return this.httpClient.get<User[]>(`${this.urlMobabuild}/findAll`, this.authHeaderWithJson);
   }
 
   findById(id: number): Observable<User> {
@@ -44,6 +56,11 @@ export class UserService {
 
     console.log(JSON.stringify(addUserRequest));
 
-    return this.httpClient.post<User>(`${this.urlMobabuild}/add`, JSON.stringify(addUserRequest));
+    return this.httpClient.post<User>(`${this.urlMobabuild}/add`, JSON.stringify(addUserRequest), this.authHeaderWithJson);
+
+    /*return this.httpClient.post('http://localhost:8080/api/user/add', JSON.stringify(addUserRequest), this.authHeaderWithJson)
+      .subscribe(response => {
+        console.log(response);
+      });*/
   }
 }
