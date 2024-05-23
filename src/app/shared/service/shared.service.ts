@@ -1,22 +1,20 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 @Injectable({ providedIn: 'root' })
 export class SharedService {
-  username = 'usuarioReadWrite@gmail.com';
-  password = 'UsuarioReadWritePass1';
-  authUserPass = `Basic ${btoa(`${this.username}:${this.password}`)}`;
+  private username = 'usuarioReadWrite@gmail.com';
+  private password = 'UsuarioReadWritePass1';
+  private authHeader = `Basic ${btoa(`${this.username}:${this.password}`)}`;
 
-  authHeaderWithJson = {
-    headers: {
+  private authHeaderWithJson = {
+    headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: this.authUserPass
-    }
+      'Authorization': this.authHeader
+    }),
+    withCredentials: true
   };
 
-  authHeader = {
-    Authorization: this.authUserPass
-  }
 
   constructor(
     private http: HttpClient,
