@@ -13,6 +13,7 @@ import { DeleteObjectComponent } from './components/delete-object/delete-object.
 import { EditObjectComponent } from './components/edit-object/edit-object.component';
 import { ListUserPageComponent } from './pages/list-user-page/list-user-page.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
     EditObjectComponent,
     ListUserPageComponent,
     AddUserComponent,
+    EditUserComponent,
   ],
   imports: [
     CommonModule,
