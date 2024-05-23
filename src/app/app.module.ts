@@ -20,14 +20,14 @@ import { MaterialModule } from './material/material.module';
     HttpClientModule,
     MaterialModule,
   ],
-  providers: [
+  /*providers: [
     ObjectService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
     }
-  ],
+  ],*/
   bootstrap: [AppComponent]
 })
 export class AppModule { }
