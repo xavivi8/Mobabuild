@@ -89,9 +89,19 @@ export class ListUserPageComponent implements OnInit {
     const dialogRef = this.dialog.open(AddUserComponent, {
       scrollStrategy: this.overlay.scrollStrategies.noop()
     });
-
-    dialogRef.afterClosed().subscribe(async (result) => {
-
+    debugger
+    dialogRef.afterClosed().subscribe(async (result: User) => {
+      if (result) {
+        // Comprueba que la respuesta es del tipo User
+        if (result as User) {
+          // Añade el nuevo usuario a la lista y actualiza la tabla
+          this.dataSource.data.push(result);
+          this.dataSource.data = [...this.dataSource.data]; // Trigger change detection
+          this.getAllUsers();
+        } else {
+          console.error('La respuesta no es del tipo User', result);
+        }
+      }
     });
   }
 
