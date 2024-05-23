@@ -15,10 +15,21 @@ export class ObjectService {
   private urlMobabuild: string = `${URL_API}/object`;
   objectds: ObjectD[] = [];
 
+  private username = 'usuarioReadWrite@gmail.com';
+  private password = 'UsuarioReadWritePass1';
+  private authHeader = `Basic ${btoa(`${this.username}:${this.password}`)}`;
+
+  private authHeaderWithJson = {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: this.authHeader
+    }
+  };
+
   constructor(private httpClient: HttpClient) { }
 
   getAllObjects(): Observable<ObjectD[]> {
-    return this.httpClient.get<ObjectD[]>(`${this.urlMobabuild}/findAll`);
+    return this.httpClient.get<ObjectD[]>(`${this.urlMobabuild}/findAll`, this.authHeaderWithJson);
   }
 
   logFirstObject(): void {
@@ -34,13 +45,13 @@ export class ObjectService {
   }
 
   getObjectById(id: number): Observable<ObjectD> {
-    return this.httpClient.get<ObjectD>(`${this.urlMobabuild}/findById/${id}`)
+    return this.httpClient.get<ObjectD>(`${this.urlMobabuild}/findById/${id}`, this.authHeaderWithJson)
   }
 
 
   deleteObjectById(id: number): Observable<boolean> {
     debugger
-    return this.httpClient.get<boolean>(`${this.urlMobabuild}/deleteById/${id}`).pipe(
+    return this.httpClient.get<boolean>(`${this.urlMobabuild}/deleteById/${id}`, this.authHeaderWithJson).pipe(
       catchError(error => {
         console.error('Error al eliminar el objeto:', error);
         return of(false);
@@ -50,7 +61,7 @@ export class ObjectService {
 
 
   setObject(name: string): Observable<number> {
-    return this.httpClient.get<number>(`${this.urlMobabuild}/setObject/${name}`)
+    return this.httpClient.get<number>(`${this.urlMobabuild}/setObject/${name}`, this.authHeaderWithJson)
   }
 
   editObject(objectD: ObjectD): Observable<boolean> {
