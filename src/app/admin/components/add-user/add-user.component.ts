@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../../services/user.service';
 import { firstValueFrom } from 'rxjs';
 import { CLOSE } from 'src/app/shared/interfaces/messages';
-import { AddUserRequest, AuthorityName } from 'src/app/shared/interfaces/user';
+import { AddUserRequest, AuthorityName, User } from 'src/app/shared/interfaces/user';
 
 @Component({
   selector: 'app-add-user',
@@ -48,8 +48,9 @@ export class AddUserComponent implements OnInit {
           pass: user.pass,
           authorityNames: user.authority
         }
+
         const RESPONSE = await firstValueFrom(this.userService.addUserWithoutImage(addUserRequest));
-        if (RESPONSE) {
+        if (RESPONSE && RESPONSE as User) {
           this.snackBar.open('El usuario se añadio correctamente.', CLOSE, { duration: 5000 });
           this.dialogRef.close({ ok: true, data: RESPONSE });
         } else {
