@@ -33,34 +33,15 @@ export class UserService {
     return this.httpClient.get<User>(`${this.urlMobabuild}/find/${id}`);
   }
 
-  updateUser(id: number, email: string, userName: string, pass: string): Observable<User> {
-    return this.httpClient.get<User>(`${this.urlMobabuild}/update`, {
-      params: {
-        id: id.toString(),
-        email: email,
-        userName: userName,
-        pass: pass
-      }
-    });
+  updateUser(user: User): Observable<User> {
+    return this.httpClient.post<User>(`${this.urlMobabuild}/update`, JSON.stringify(user), this.authHeaderWithJson );
   }
 
   addUserWithoutImage(addUserRequest: AddUserRequest): Observable<User> {
-    /*return this.httpClient.get<User>(`${this.urlMobabuild}/add`, {
-      params: {
-        email: email,
-        userName: userName,
-        pass: pass
-      }
-    });*/
     console.log(addUserRequest);
 
     console.log(JSON.stringify(addUserRequest));
 
     return this.httpClient.post<User>(`${this.urlMobabuild}/add`, JSON.stringify(addUserRequest), this.authHeaderWithJson);
-
-    /*return this.httpClient.post('http://localhost:8080/api/user/add', JSON.stringify(addUserRequest), this.authHeaderWithJson)
-      .subscribe(response => {
-        console.log(response);
-      });*/
   }
 }
