@@ -17,6 +17,15 @@ export class EditUserComponent implements OnInit{
   userForm: FormGroup = new FormGroup({});
   authorityOptions: Authority[] = []
 
+  /**
+   * @xavivi8
+   * @description inicializa el componente
+   * @param {MatDialogRef<EditUserComponent>} dialogRef
+   * @param {UserService} userService
+   * @param {AuthorityService} authoritySercice
+   * @param {MatSnackBar} snackBar
+   * @param {User} user
+   */
   constructor(
     public dialogRef: MatDialogRef<EditUserComponent>,
     private userService: UserService,
@@ -25,6 +34,10 @@ export class EditUserComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) public user: User,
   ) { }
 
+  /**
+   * @xavivi8
+   * @description inicializa el formulario
+   */
   ngOnInit(): void {
     this,this.getAllAuthority();
     this.userForm = new FormGroup({
@@ -41,12 +54,20 @@ export class EditUserComponent implements OnInit{
 
   }
 
+  /**
+   * @xavivi8
+   * @description obtiene todas las autoridades
+   */
   getAllAuthority(){
     this.authoritySercice.findAll().subscribe((authority) => {
       this.authorityOptions = authority
     })
   }
 
+  /**
+   * @xavivi8
+   * @description actualiza el usuario
+   */
   async confirmEdit() {
     try {
       if (this.userForm.valid) {
@@ -65,6 +86,10 @@ export class EditUserComponent implements OnInit{
     }
   }
 
+  /**
+   * @xavivi8
+   * @description cierra el dialog
+   */
   onNoClick(): void {
     this.dialogRef.close({ ok: false });
 
