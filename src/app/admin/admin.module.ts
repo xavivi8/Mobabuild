@@ -16,6 +16,8 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
 import { ListChampionPageComponent } from './pages/list-champion-page/list-champion-page.component';
+import { AddChampionComponent } from './components/add-champion/add-champion.component';
+import { EditChampionComponent } from './components/edit-champion/edit-champion.component';
 
 
 @NgModule({
@@ -30,6 +32,8 @@ import { ListChampionPageComponent } from './pages/list-champion-page/list-champ
     EditUserComponent,
     DeleteUserComponent,
     ListChampionPageComponent,
+    AddChampionComponent,
+    EditChampionComponent,
   ],
   imports: [
     CommonModule,
