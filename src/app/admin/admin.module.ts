@@ -21,6 +21,9 @@ import { EditChampionComponent } from './components/edit-champion/edit-champion.
 import { DeleteChampionComponent } from './components/delete-champion/delete-champion.component';
 import { ListRunePageComponent } from './pages/list-rune-page/list-rune-page.component';
 import { ListSpellPageComponent } from './pages/list-spell-page/list-spell-page.component';
+import { DeleteRuneComponent } from './components/delete-rune/delete-rune.component';
+import { EditRuneComponent } from './components/edit-rune/edit-rune.component';
+import { AddRuneComponent } from './components/add-rune/add-rune.component';
 
 
 @NgModule({
@@ -40,6 +43,9 @@ import { ListSpellPageComponent } from './pages/list-spell-page/list-spell-page.
     DeleteChampionComponent,
     ListRunePageComponent,
     ListSpellPageComponent,
+    DeleteRuneComponent,
+    EditRuneComponent,
+    AddRuneComponent,
   ],
   imports: [
     CommonModule,
