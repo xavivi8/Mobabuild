@@ -26,9 +26,9 @@ export class EditRuneComponent implements OnInit{
       id: new FormControl(this.rune.id, [Validators.required]),
       name: new FormControl(this.rune.name, [Validators.required]),
       rowType: new FormControl(this.rune.rowType, [Validators.required]),
-      groupName: new FormControl(this.rune.groupName, [Validators.required]),
+      group_name: new FormControl(this.rune.group_name, [Validators.required]),
       description: new FormControl(this.rune.description, [Validators.required]),
-      longDescription: new FormControl(this.rune.longDescription, [Validators.required]),
+      long_description: new FormControl(this.rune.long_description, [Validators.required]),
       image: new FormControl(this.rune.image),
     });
   }
