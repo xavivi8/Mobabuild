@@ -37,11 +37,11 @@ export class ListChampionPageComponent implements OnInit {
   /**
    * @xavivi8
    * @description crea el constructor
-   * @param dialog
-   * @param championService
-   * @param overlay
-   * @param router
-   * @param matPaginatorIntl
+   * @param {MatDialog} dialog
+   * @param {ChampionService} championService
+   * @param {Overlay} overlay
+   * @param {Router} router
+   * @param {MatPaginatorIntl} matPaginatorIntl
    */
   constructor(
     public dialog: MatDialog,
