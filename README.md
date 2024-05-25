@@ -37,7 +37,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Apuntes
   1. Crear proyecto en la versión 16 ```npx @angular/cli@16 new nombreProyecto```
   2. Crear módulo con routing ```ng g m nombreModulo --routing```
-  3. Crear componentes con solo el ts component y el html ```ng g c nombreComponente --inline-style --skip-tests```
+  3. Crear componentes con solo el ts component y el html ```ng g c nombreComponente --skip-tests --inline-style```
 
 ### Material
   1. Añadir material con el comando ```ng add @angular/material```
