@@ -16,15 +16,30 @@ export class ObjectService {
   private urlMobabuild: string = `${URL_API}/object`;
   objectds: ObjectD[] = [];
 
+  /**
+   * @xavivi8
+   * @description constructor
+   * @param {SharedService} sharedService
+   * @param {HttpClient} httpClient
+   */
   constructor(
     private sharedService: SharedService,
     private httpClient: HttpClient
   ) { }
 
+  /**
+   * @xavivi8
+   * @description obtiene todos los objetos
+   * @returns {Observable<ObjectD[]>}
+   */
   getAllObjects(): Observable<ObjectD[]> {
     return this.httpClient.get<ObjectD[]>(`${this.urlMobabuild}/findAll`, this.sharedService.getAuthHeaderWithJson());
   }
 
+  /**
+   * @xavivi8
+   * @description obtiene el primer objeto
+   */
   logFirstObject(): void {
     this.getAllObjects().subscribe(objects => {
       if (objects.length > 0) {
@@ -37,11 +52,22 @@ export class ObjectService {
     });
   }
 
+  /**
+   * @xavivi8
+   * @description obtiene un objeto por el id
+   * @param {number} id
+   * @returns {Observable<ObjectD>}
+   */
   getObjectById(id: number): Observable<ObjectD> {
     return this.httpClient.get<ObjectD>(`${this.urlMobabuild}/findById/${id}`, this.sharedService.getAuthHeaderWithJson())
   }
 
-
+  /**
+   * @xavivi8
+   * @description elimina un objeto
+   * @param {number} id
+   * @returns {Observable<boolean>}
+   */
   deleteObjectById(id: number): Observable<boolean> {
     debugger
     return this.httpClient.get<boolean>(`${this.urlMobabuild}/deleteById/${id}`, this.sharedService.getAuthHeaderWithJson()).pipe(
@@ -52,11 +78,22 @@ export class ObjectService {
     );
   }
 
-
+  /**
+   * @xavivi8
+   * @description crea un objeto
+   * @param {string} name
+   * @returns {Observable<number>}
+   */
   setObject(name: string): Observable<number> {
     return this.httpClient.get<number>(`${this.urlMobabuild}/setObject/${name}`, this.sharedService.getAuthHeaderWithJson())
   }
 
+  /**
+   * @xavivi8
+   * @description edita un objeto
+   * @param {ObjectD} objectD
+   * @returns {Observable<boolean>}
+   */
   editObject(objectD: ObjectD): Observable<boolean> {
     const url = `${this.urlMobabuild}/updateObjectById/${objectD.id}/${objectD.name}`;
     return this.httpClient.get<string>(url, { ...this.sharedService.getAuthHeaderWithJson(), observe: 'response' }).pipe(
