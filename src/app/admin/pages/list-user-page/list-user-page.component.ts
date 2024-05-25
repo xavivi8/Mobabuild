@@ -32,6 +32,15 @@ export class ListUserPageComponent implements OnInit {
   displayedColumns: string[] = [];
   private filterValues = { id: 0, email: '', useName: '', authorities: ''};
 
+  /**
+   * @xavivi8
+   * @description crea el constructor
+   * @param {MatDialog} dialog
+   * @param {UserService} userService
+   * @param {Overlay} overlay
+   * @param {Router} router
+   * @param {MatPaginatorIntl} matPaginatorIntl
+   */
   constructor(
     public dialog: MatDialog,
     private userService: UserService,
@@ -40,10 +49,18 @@ export class ListUserPageComponent implements OnInit {
     private matPaginatorIntl: MatPaginatorIntl
   ) { }
 
+  /**
+   * @xavivi8
+   * @description inicializa el componente
+   */
   ngOnInit(): void {
     this.getAllUsers();
   }
 
+  /**
+   * @xavivi8
+   * @description obtiene todos los usuarios
+   */
   async getAllUsers() {
     const RESPONSE =  await firstValueFrom(this.userService.findAll());
     console.log(RESPONSE);
@@ -62,6 +79,11 @@ export class ListUserPageComponent implements OnInit {
     }
   }
 
+  /**
+   * @xavivi8
+   * @description crea el filtro de busqueda
+   * @returns {(user: any, filter: string) => boolean}
+   */
   createFilter(): (user: any, filter: string) => boolean {
     const filterFunction = (user: any, filter: string): boolean => {
       const searchTerms = JSON.parse(filter);
@@ -72,6 +94,10 @@ export class ListUserPageComponent implements OnInit {
     return filterFunction;
   }
 
+  /**
+   * @xavivi8
+   * @description crea el filtro de busqueda
+   */
   onChanges(): void {
     this.idFilter.valueChanges.subscribe((value) => {
       this.filterValues.id = value;
@@ -87,6 +113,10 @@ export class ListUserPageComponent implements OnInit {
     })
   }
 
+  /**
+   * @xavivi8
+   * @description abre el modal para añadir un usuario
+   */
   async addUser() {
     const dialogRef = this.dialog.open(AddUserComponent, {
       scrollStrategy: this.overlay.scrollStrategies.noop()
@@ -106,6 +136,11 @@ export class ListUserPageComponent implements OnInit {
     });
   }
 
+  /**
+   * @xavivi8
+   * @description abre el modal para editar un usuario
+   * @param {User} user
+   */
   async editUser(user: User) {
     const dialogRef = this.dialog.open(EditUserComponent, {
       data: user,

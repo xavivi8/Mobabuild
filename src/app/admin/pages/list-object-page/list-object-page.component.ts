@@ -87,6 +87,11 @@ export class ListObjectPageComponent implements OnInit {
 
   }
 
+  /**
+   * @xavivi8
+   * @description Eliminar un objeto
+   * @param {ObjectD} objectd
+   */
   async deleteObject(objectd: ObjectD) {
     const dialogRef = this.dialog.open(DeleteObjectComponent, {
       data: objectd,
@@ -102,6 +107,10 @@ export class ListObjectPageComponent implements OnInit {
     });
   }
 
+  /**
+   * @xavivi8
+   * @description Agregar un nuevo objeto
+   */
   async addObject() {
     const dialogRef = this.dialog.open(AddObjectComponent, {
       scrollStrategy: this.overlay.scrollStrategies.noop()
