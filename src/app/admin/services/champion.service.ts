@@ -51,7 +51,7 @@ export class ChampionService {
    * @returns {Observable<boolean>}
    */
   deleteChampion(champion: Champions): Observable<boolean> {
-    return this.httpClient.delete<string>(`${this.urlMobabuild}/delete/${champion.id}`, { ...this.sharedService.getAuthHeaderWithJson(), observe: 'response' }).pipe(
+    return this.httpClient.delete<string>(`${this.urlMobabuild}/deleteById/${champion.id}`, { ...this.sharedService.getAuthHeaderWithJson(), observe: 'response' }).pipe(
       map(response => {
         if (response.status === 200) {
           console.log('User deleted successfully');
@@ -66,6 +66,10 @@ export class ChampionService {
         return of(false); // Devuelve false en caso de error
       })
     );
+  }
+
+  editChampion(champion: Champions): Observable<Champions> {
+    return this.httpClient.put<Champions>(`${this.urlMobabuild}/update`, JSON.stringify(champion), this.sharedService.getAuthHeaderWithJson());
   }
 
 }
