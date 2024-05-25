@@ -21,9 +21,9 @@ export class HomePageComponent {
     { label: 'Object', icon: 'keep', url: './object' },
     { label: 'User', icon: 'hive', url: './user' },
     { label: 'Champions', icon: 'keep', url: './champion' },
-    { label: 'Runa111', icon: 'hive', url: './rune' },
-    { label: 'Object111', icon: 'keep', url: './object' },
-    { label: 'Runa111', icon: 'hive', url: './rune' },
+    { label: 'Runas', icon: 'hive', url: './rune' },
+    { label: 'Object111', icon: 'keep', url: './w' },
+    { label: 'Runa111', icon: 'hive', url: './w' },
   ]
 
   public displayedAdminMenuItems: { label: string; icon: string; url: string }[] = [];
