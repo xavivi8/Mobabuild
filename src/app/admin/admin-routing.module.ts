@@ -4,6 +4,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ListObjectPageComponent } from './pages/list-object-page/list-object-page.component';
 import { ListUserPageComponent } from './pages/list-user-page/list-user-page.component';
 import { ListChampionPageComponent } from './pages/list-champion-page/list-champion-page.component';
+import { ListRunePageComponent } from './pages/list-rune-page/list-rune-page.component';
 
 const routes: Routes = [
 
@@ -12,7 +13,8 @@ const routes: Routes = [
     children: [
       { path: 'object', component: ListObjectPageComponent },
       { path: 'user', component: ListUserPageComponent },
-      { path: 'champion', component: ListChampionPageComponent }
+      { path: 'champion', component: ListChampionPageComponent },
+      { path: 'rune', component: ListRunePageComponent }
     ]
   }
 
