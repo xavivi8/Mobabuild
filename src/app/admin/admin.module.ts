@@ -15,6 +15,7 @@ import { ListUserPageComponent } from './pages/list-user-page/list-user-page.com
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
+import { ListChampionPageComponent } from './pages/list-champion-page/list-champion-page.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { DeleteUserComponent } from './components/delete-user/delete-user.compon
     AddUserComponent,
     EditUserComponent,
     DeleteUserComponent,
+    ListChampionPageComponent,
   ],
   imports: [
     CommonModule,
