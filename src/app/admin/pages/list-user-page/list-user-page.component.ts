@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Overlay } from '@angular/cdk/overlay';
 import { firstValueFrom } from 'rxjs';
 import { AddUserComponent } from '../../components/add-user/add-user.component';
+import { EditUserComponent } from '../../components/edit-user/edit-user.component';
 
 @Component({
   selector: 'app-list-user-page',
@@ -89,7 +90,6 @@ export class ListUserPageComponent implements OnInit {
     const dialogRef = this.dialog.open(AddUserComponent, {
       scrollStrategy: this.overlay.scrollStrategies.noop()
     });
-    debugger
     dialogRef.afterClosed().subscribe(async (result: User) => {
       if (result) {
         // Comprueba que la respuesta es del tipo User
@@ -101,6 +101,20 @@ export class ListUserPageComponent implements OnInit {
         } else {
           console.error('La respuesta no es del tipo User', result);
         }
+      }
+    });
+  }
+
+  async editUser(user: User) {
+    const dialogRef = this.dialog.open(EditUserComponent, {
+      data: user,
+      scrollStrategy: this.overlay.scrollStrategies.noop()
+    });
+
+    dialogRef.afterClosed().subscribe(async (result) => {
+      if (result) {
+        // Si la eliminación fue exitosa, recargar los datos
+        await this.getAllUsers();
       }
     });
   }

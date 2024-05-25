@@ -47,7 +47,7 @@
             </button>
           </th>
           <td mat-cell *matCellDef="let object">
-            <button id="editObject" mat-icon-button>
+            <button id="editObject" mat-icon-button (click)="editUser(object)">
               <mat-icon>
                 mode_edit
               </mat-icon>
