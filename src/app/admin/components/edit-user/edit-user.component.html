@@ -1,1 +1,42 @@
-<p>edit-user works!</p>
+<div class="container">
+  <mat-card class="card">
+    <!-- Cabecera -->
+    <mat-card-header style="margin: 0 auto;">
+      <mat-card-title style="color: aliceblue;">Editar usuario</mat-card-title>
+    </mat-card-header>
+    <!-- Cuerpo -->
+    <mat-card-content style="margin: 0 auto;">
+      <form class="mat-dialog-content" [formGroup]="userForm">
+
+        <div class="form">
+          <mat-form-field color="accent">
+            <input matInput placeholder="Nombre del usuario" formControlName="user_name" name="user_name" required>
+          </mat-form-field>
+        </div>
+
+        <div class="form">
+          <mat-form-field color="accent">
+            <input matInput placeholder="Email" formControlName="email" name="email" type="email" required>
+          </mat-form-field>
+        </div>
+
+        <div class="form">
+          <mat-form-field color="accent">
+            <mat-label>Autoridad</mat-label>
+            <mat-select formControlName="authorities" name="authorities" required multiple>
+              <mat-option *ngFor="let authority of authorityOptions" [value]="authority">
+                {{ authority.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-card-content>
+
+    <!-- Acciones -->
+    <mat-card-actions style="margin: 0 auto;">
+      <button id="onSubmit" mat-button type="submit" [disabled]="!userForm.valid" (click)="confirmEdit()">Guardar</button>
+      <button id="onNoClick" mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -33,8 +33,12 @@ export class EditUserComponent implements OnInit{
       user_name: new FormControl(this.user.user_name, [Validators.required]),
       pass: new FormControl(this.user.pass, [Validators.required]),
       image: new FormControl(this.user.image),
-      authority: new FormControl(this.user.authorities, [Validators.required]),
+      favoriteBuild: new FormControl(this.user.favoriteBuild),
+      builds: new FormControl(this.user.builds),
+      authorities: new FormControl(this.user.authorities.map(auth => auth.name), [Validators.required]),
     })
+
+
   }
 
   getAllAuthority(){
@@ -46,7 +50,6 @@ export class EditUserComponent implements OnInit{
   async confirmEdit() {
     try {
       if (this.userForm.valid) {
-        debugger
         const newUser = this.userForm.value;
         const RESPONSE = await firstValueFrom(this.userService.updateUser(newUser));
         if (RESPONSE && RESPONSE as User) {
