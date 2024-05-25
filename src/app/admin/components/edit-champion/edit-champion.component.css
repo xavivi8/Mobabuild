@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.card {
+  margin: 0 auto;
+  width: auto; /* Opcional: Esto permite que el ancho del mat-card se ajuste automáticamente al contenido */
+  color: white;
+}
