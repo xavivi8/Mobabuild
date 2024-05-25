@@ -42,7 +42,6 @@ export class DeleteChampionComponent implements OnInit{
   async deleteChampion() {
     try {
       const success = await this.ChampionService.deleteChampion(this.champion).toPromise();
-      debugger
 
       if (success) {
         this.snackBar.open('El objeto se eliminó correctamente.', CLOSE, { duration: 5000 });
