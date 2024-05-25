@@ -4,6 +4,7 @@ import { URL_API } from 'src/environments/environments';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { ObjectD } from 'src/app/shared/interfaces/object';
+import { SharedService } from 'src/app/shared/service/shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,21 +16,13 @@ export class ObjectService {
   private urlMobabuild: string = `${URL_API}/object`;
   objectds: ObjectD[] = [];
 
-  private username = 'usuarioReadWrite@gmail.com';
-  private password = 'UsuarioReadWritePass1';
-  private authHeader = `Basic ${btoa(`${this.username}:${this.password}`)}`;
-
-  private authHeaderWithJson = {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: this.authHeader
-    }
-  };
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private sharedService: SharedService,
+    private httpClient: HttpClient
+  ) { }
 
   getAllObjects(): Observable<ObjectD[]> {
-    return this.httpClient.get<ObjectD[]>(`${this.urlMobabuild}/findAll`, this.authHeaderWithJson);
+    return this.httpClient.get<ObjectD[]>(`${this.urlMobabuild}/findAll`, this.sharedService.getAuthHeaderWithJson());
   }
 
   logFirstObject(): void {
@@ -45,13 +38,13 @@ export class ObjectService {
   }
 
   getObjectById(id: number): Observable<ObjectD> {
-    return this.httpClient.get<ObjectD>(`${this.urlMobabuild}/findById/${id}`, this.authHeaderWithJson)
+    return this.httpClient.get<ObjectD>(`${this.urlMobabuild}/findById/${id}`, this.sharedService.getAuthHeaderWithJson())
   }
 
 
   deleteObjectById(id: number): Observable<boolean> {
     debugger
-    return this.httpClient.get<boolean>(`${this.urlMobabuild}/deleteById/${id}`, this.authHeaderWithJson).pipe(
+    return this.httpClient.get<boolean>(`${this.urlMobabuild}/deleteById/${id}`, this.sharedService.getAuthHeaderWithJson()).pipe(
       catchError(error => {
         console.error('Error al eliminar el objeto:', error);
         return of(false);
@@ -61,13 +54,12 @@ export class ObjectService {
 
 
   setObject(name: string): Observable<number> {
-    return this.httpClient.get<number>(`${this.urlMobabuild}/setObject/${name}`, this.authHeaderWithJson)
+    return this.httpClient.get<number>(`${this.urlMobabuild}/setObject/${name}`, this.sharedService.getAuthHeaderWithJson())
   }
 
   editObject(objectD: ObjectD): Observable<boolean> {
     const url = `${this.urlMobabuild}/updateObjectById/${objectD.id}/${objectD.name}`;
-    //debugger
-    return this.httpClient.get<string>(url, { observe: 'response' }).pipe(
+    return this.httpClient.get<string>(url, { ...this.sharedService.getAuthHeaderWithJson(), observe: 'response' }).pipe(
       map(response => {
         if (response.status === 200) {
           console.log('Object updated successfully');
