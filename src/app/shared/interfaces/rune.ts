@@ -15,8 +15,8 @@ export interface Rune {
   id: number;
   name: string;
   rowType: string;
-  groupName: string;
+  group_name: string;
   description: string;
-  longDescription: string;
+  long_description: string;
   image: ArrayBuffer;
 }
