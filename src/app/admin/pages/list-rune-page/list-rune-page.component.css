@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Esto asegurará que la tarjeta esté centrada verticalmente en la pantalla */
+}
+
+.custom-card {
+  width: 90%; /* Ancho deseado para la tarjeta */
+  max-width: 600px; /* Ancho máximo para la tarjeta */
+}
+
+.horizontal-list {
+  display: flex;
+  list-style-type: none;
+}
+
+.horizontal-list li {
+  margin-right: 10px; /* Ajusta el espaciado entre elementos */
+}
