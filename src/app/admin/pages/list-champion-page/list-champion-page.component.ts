@@ -10,6 +10,8 @@ import { Champions } from 'src/app/shared/interfaces/champions';
 import { ChampionService } from '../../services/champion.service';
 import { firstValueFrom } from 'rxjs';
 import { AddChampionComponent } from '../../components/add-champion/add-champion.component';
+import { DeleteChampionComponent } from '../../components/delete-champion/delete-champion.component';
+import { EditChampionComponent } from '../../components/edit-champion/edit-champion.component';
 
 @Component({
   selector: 'app-list-champion-page',
@@ -32,6 +34,15 @@ export class ListChampionPageComponent implements OnInit {
   displayedColumns: string[] = [];
   private filterValues = { id: 0, name: ''};
 
+  /**
+   * @xavivi8
+   * @description crea el constructor
+   * @param dialog
+   * @param championService
+   * @param overlay
+   * @param router
+   * @param matPaginatorIntl
+   */
   constructor(
     public dialog: MatDialog,
     private championService: ChampionService,
@@ -118,6 +129,45 @@ export class ListChampionPageComponent implements OnInit {
         } else {
           console.error('La respuesta no es del tipo Champions', result);
         }
+      }
+    });
+  }
+
+  /**
+   * @xavivi8
+   * @description abre el dialogo para eliminar un campeon
+   * @param {Champions} champion
+   */
+  async deleteChampion(champion: Champions) {
+    const dialogRef = this.dialog.open(DeleteChampionComponent, {
+      data: champion,
+      scrollStrategy: this.overlay.scrollStrategies.noop()
+    });
+
+    // Esperar hasta que se cierre el diálogo y obtener la respuesta
+    dialogRef.afterClosed().subscribe(async (result) => {
+      if (result && result.ok) {
+        // Si la eliminación fue exitosa, recargar los datos
+        await this.getAllChampions();
+      }
+    });
+  }
+
+  /**
+   * @xavivi8
+   * @description abre el dialogo para editar un campeon
+   * @param {Champions} champion
+   */
+  async editChampion(champion: Champions) {
+    const dialogRef = this.dialog.open(EditChampionComponent, {
+      data: champion,
+      scrollStrategy: this.overlay.scrollStrategies.noop()
+    });
+
+    dialogRef.afterClosed().subscribe(async (result) => {
+      if (result && result.ok) {
+        // Si la eliminación fue exitosa, recargar los datos
+        await this.getAllChampions();
       }
     });
   }
