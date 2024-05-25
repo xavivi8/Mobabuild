@@ -35,9 +35,9 @@ export class AddRuneComponent implements OnInit{
     this.runeForm = new FormGroup({
       name: new FormControl(null, [Validators.required]),
       rowType: new FormControl(null, [Validators.required]),
-      groupName: new FormControl(null, [Validators.required]),
+      group_name: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required]),
-      longDescription: new FormControl(null, [Validators.required]),
+      long_description: new FormControl(null, [Validators.required]),
       image: new FormControl(null),
     });
   }
