@@ -11,6 +11,7 @@ import { Overlay } from '@angular/cdk/overlay';
 import { firstValueFrom } from 'rxjs';
 import { AddUserComponent } from '../../components/add-user/add-user.component';
 import { EditUserComponent } from '../../components/edit-user/edit-user.component';
+import { DeleteUserComponent } from '../../components/delete-user/delete-user.component';
 
 @Component({
   selector: 'app-list-user-page',
@@ -113,6 +114,26 @@ export class ListUserPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async (result) => {
       if (result) {
+        // Si la eliminación fue exitosa, recargar los datos
+        await this.getAllUsers();
+      }
+    });
+  }
+
+  /**
+   * @xavivi8
+   * @description abre el modal para eliminar un usuario
+   * @param {User} user
+   */
+  async deleteUser(user: User) {
+    const dialogRef = this.dialog.open(DeleteUserComponent, {
+      data: user,
+      scrollStrategy: this.overlay.scrollStrategies.noop()
+    });
+
+    // Esperar hasta que se cierre el diálogo y obtener la respuesta
+    dialogRef.afterClosed().subscribe(async (result) => {
+      if (result && result.ok) {
         // Si la eliminación fue exitosa, recargar los datos
         await this.getAllUsers();
       }
