@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 import { Overlay } from '@angular/cdk/overlay';
 import { MatDialog } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
+import { AddRuneComponent } from '../../components/add-rune/add-rune.component';
+import { DeleteRuneComponent } from '../../components/delete-rune/delete-rune.component';
+import { EditRuneComponent } from '../../components/edit-rune/edit-rune.component';
 
 @Component({
   selector: 'app-list-rune-page',
@@ -25,15 +28,12 @@ export class ListRunePageComponent implements OnInit{
   idFilter = new FormControl();
   nameFilter = new FormControl();
   rowTypeFilter = new FormControl();
-  groupNameFilter = new FormControl();
-  descriptionFilter = new FormControl();
-  longDescriptionFilter = new FormControl();
-  imageFilter = new FormControl();
+  group_nameFilter = new FormControl();
 
   hasData: boolean = false;
 
   displayedColumns: string[] = [];
-  private filterValues = { id: 0, name: '', rowType: '', groupName: '', description: '', longDescription: ''};
+  private filterValues = { id: 0, name: '', rowType: '', group_name: ''};
 
   /**
    * @xavivi8
@@ -65,9 +65,10 @@ export class ListRunePageComponent implements OnInit{
    * @description coge todas las runas
    */
   async getAllRunes() {
+    debugger
     const RESPONSE =await firstValueFrom(this.runeService.findAll());
     if (RESPONSE && RESPONSE.length > 0) {
-      this.displayedColumns = ['id', 'name', 'rowType', 'groupName', 'description', 'longDescription', 'actions'];
+      this.displayedColumns = ['id', 'name', 'rowType', 'group_name', 'actions'];
       this.dataSource = new MatTableDataSource(RESPONSE);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -115,18 +116,67 @@ export class ListRunePageComponent implements OnInit{
       this.filterValues.rowType = value;
       this.dataSource.filter = JSON.stringify(this.filterValues);
     })
-    this.groupNameFilter.valueChanges.subscribe((value) => {
-      this.filterValues.groupName = value;
+    this.group_nameFilter.valueChanges.subscribe((value) => {
+      this.filterValues.group_name = value;
       this.dataSource.filter = JSON.stringify(this.filterValues);
     })
-    this.descriptionFilter.valueChanges.subscribe((value) => {
-      this.filterValues.description = value;
-      this.dataSource.filter = JSON.stringify(this.filterValues);
-    })
-    this.longDescriptionFilter.valueChanges.subscribe((value) => {
-      this.filterValues.longDescription = value;
-      this.dataSource.filter = JSON.stringify(this.filterValues);
-    })
+  }
+
+  /**
+   * @xavivi8
+   * @description abre el dialogo para añadir una runa
+   */
+  async addRune(){
+    const dialogRef = this.dialog.open(AddRuneComponent, {
+      scrollStrategy: this.overlay.scrollStrategies.noop()
+    });
+    dialogRef.afterClosed().subscribe(async (result: Rune) => {
+      if (result) {
+        if (result as Rune) {
+          this.dataSource.data.push(result);
+          this.dataSource.data = [...this.dataSource.data];
+          this.getAllRunes();
+        } else {
+          console.error('La respuesta no es del tipo Champions', result);
+        }
+      }
+    });
+  }
+
+  /**
+   * @xavivi8
+   * @description abre el dialogo para borrar una runa
+   * @param {Rune} rune
+   */
+  async deleteRune(rune: Rune) {
+    const dialogRef = this.dialog.open(DeleteRuneComponent, {
+      data: rune,
+      scrollStrategy: this.overlay.scrollStrategies.noop()
+    });
+
+    dialogRef.afterClosed().subscribe(async (result) => {
+      if (result && result.ok) {
+        await this.getAllRunes();
+      }
+    });
+  }
+
+  /**
+   * @xavivi8
+   * @description abre el dialogo para editar una runa
+   * @param {Rune} rune
+   */
+  async editRune(rune: Rune) {
+    const dialogRef = this.dialog.open(EditRuneComponent, {
+      data: rune,
+      scrollStrategy: this.overlay.scrollStrategies.noop()
+    });
+
+    dialogRef.afterClosed().subscribe(async (result) => {
+      if (result && result.ok) {
+        await this.getAllRunes();
+      }
+    });
   }
 
   /**
