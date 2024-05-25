@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, catchError, map, of } from "rxjs";
 import { AddUserRequest, User } from "src/app/shared/interfaces/user";
 import { SharedService } from "src/app/shared/service/shared.service";
 import { URL_API } from "src/environments/environments";
@@ -34,6 +34,7 @@ export class UserService {
   }
 
   /**
+   * @xavivi8
    * @description Add a new user
    * @param {AddUserRequest} addUserRequest
    * @returns {User} Observable<User>
@@ -44,5 +45,29 @@ export class UserService {
     console.log(JSON.stringify(addUserRequest));
 
     return this.httpClient.post<User>(`${this.urlMobabuild}/add`, JSON.stringify(addUserRequest), this.sharedService.getAuthHeaderWithJson());
+  }
+
+  /**
+   * @xavivi8
+   * @description delete user by id
+   * @param {number} id number
+   * @returns {Observable<boolean>}
+   */
+  deleteUserById(id: number): Observable<boolean> {
+    return this.httpClient.delete<string>(`${this.urlMobabuild}/delete/${id}`, { ...this.sharedService.getAuthHeaderWithJson(), observe: 'response' }).pipe(
+      map(response => {
+        if (response.status === 200) {
+          console.log('User deleted successfully');
+          return true;
+        } else {
+          console.log('Failed to delete user');
+          return false;
+        }
+      }),
+      catchError(error => {
+        console.error('Error deleting user:', error);
+        return of(false); // Devuelve false en caso de error
+      })
+    );
   }
 }
