@@ -5,7 +5,7 @@ import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Spell } from 'src/app/shared/interfaces/spell';
-import { SpellService } from '../../services/spell.service';
+import { SpellService } from '../../../mobabuild/service/spell.service';
 import { Overlay } from '@angular/cdk/overlay';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
