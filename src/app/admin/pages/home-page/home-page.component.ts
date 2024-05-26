@@ -22,8 +22,7 @@ export class HomePageComponent {
     { label: 'User', icon: 'hive', url: './user' },
     { label: 'Champions', icon: 'keep', url: './champion' },
     { label: 'Runas', icon: 'hive', url: './rune' },
-    { label: 'Object111', icon: 'keep', url: './w' },
-    { label: 'Runa111', icon: 'hive', url: './w' },
+    { label: 'spell', icon: 'keep', url: './spell' },
   ]
 
   public displayedAdminMenuItems: { label: string; icon: string; url: string }[] = [];
