@@ -24,6 +24,9 @@ import { ListSpellPageComponent } from './pages/list-spell-page/list-spell-page.
 import { DeleteRuneComponent } from './components/delete-rune/delete-rune.component';
 import { EditRuneComponent } from './components/edit-rune/edit-rune.component';
 import { AddRuneComponent } from './components/add-rune/add-rune.component';
+import { AddSpellComponent } from './components/add-spell/add-spell.component';
+import { DeleteSpellComponent } from './components/delete-spell/delete-spell.component';
+import { EditSpellComponent } from './components/edit-spell/edit-spell.component';
 
 
 @NgModule({
@@ -46,6 +49,9 @@ import { AddRuneComponent } from './components/add-rune/add-rune.component';
     DeleteRuneComponent,
     EditRuneComponent,
     AddRuneComponent,
+    AddSpellComponent,
+    DeleteSpellComponent,
+    EditSpellComponent,
   ],
   imports: [
     CommonModule,
