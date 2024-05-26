@@ -15,12 +15,25 @@ import { CLOSE } from 'src/app/shared/interfaces/messages';
 export class EditRuneComponent implements OnInit{
   runeForm: FormGroup = new FormGroup({});
 
+  /**
+   * @xavivi8
+   * @description inicializa el componente
+   * @param {MatDialogRef<EditRuneComponent>} dialogRef
+   * @param {RuneService} runeService
+   * @param {MatSnackBar} snackBar
+   * @param {Rune} rune
+   */
   constructor(
     public dialogRef: MatDialogRef<EditRuneComponent>,
     private runeService: RuneService,
     private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public rune: Rune,
   ) { }
+
+  /**
+   * @xavivi8
+   * @description inicializa el formulario
+   */
   ngOnInit(): void {
     this.runeForm = new FormGroup({
       id: new FormControl(this.rune.id, [Validators.required]),
@@ -33,6 +46,10 @@ export class EditRuneComponent implements OnInit{
     });
   }
 
+  /**
+   * @xavivi8
+   * @description actualiza el objeto
+   */
   async confirmEdit() {
     try {
       if (this.runeForm.valid) {
