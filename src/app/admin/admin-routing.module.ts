@@ -5,6 +5,7 @@ import { ListObjectPageComponent } from './pages/list-object-page/list-object-pa
 import { ListUserPageComponent } from './pages/list-user-page/list-user-page.component';
 import { ListChampionPageComponent } from './pages/list-champion-page/list-champion-page.component';
 import { ListRunePageComponent } from './pages/list-rune-page/list-rune-page.component';
+import { ListSpellPageComponent } from './pages/list-spell-page/list-spell-page.component';
 
 const routes: Routes = [
 
@@ -14,7 +15,8 @@ const routes: Routes = [
       { path: 'object', component: ListObjectPageComponent },
       { path: 'user', component: ListUserPageComponent },
       { path: 'champion', component: ListChampionPageComponent },
-      { path: 'rune', component: ListRunePageComponent }
+      { path: 'rune', component: ListRunePageComponent },
+      { path: 'spell', component: ListSpellPageComponent },
     ]
   }
 
