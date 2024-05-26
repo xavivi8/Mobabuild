@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -6,6 +7,30 @@ import { Component } from '@angular/core';
   styles: [
   ]
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit{
+  public menu = { label: 'Menú', icon: 'menu' }
 
+  public sidebarItems = [
+    { label: 'Admin', icon: 'admin_panel_settings', url: '/admin' },
+    { label: 'Mobabuild', icon: 'movie', url: '/mobabuild' },
+    /* { label: 'Login', icon: 'login', url: '/auth' } */
+  ]
+
+  constructor(
+    private router: Router,
+
+  ) { }
+
+  ngOnInit(): void {
+
+  }
+
+  /**
+   * Método para realizar la acción de cierre de sesión.
+   * Utiliza el servicio SharedService para realizar el logout.
+   * @returns {void}
+   */
+  logout(){
+    //this.sharedService.doLogout()
+  }
 }
