@@ -1,0 +1,80 @@
+<form [formGroup]="buildForm" (ngSubmit)="onSubmit()">
+  <!-- Build Form -->
+  <div>
+    <label for="buildName">Build Name</label>
+    <input id="buildName" formControlName="buildName">
+  </div>
+  <div>
+    <label for="champions">Champions</label>
+    <select id="champions" formControlName="champions">
+      <option *ngFor="let champion of champions" [value]="champion.id">{{ champion.name }}</option>
+    </select>
+  </div>
+
+  <!-- Spell Set Form -->
+  <div formGroupName="spellSetForm">
+    <div>
+      <label for="spellName">Spell Name</label>
+      <input id="spellName" formControlName="name">
+    </div>
+    <div>
+      <label for="spell">Spell</label>
+      <select id="spell" formControlName="spell">
+        <option *ngFor="let spell of spells" [value]="spell.id">{{ spell.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Object Set Form -->
+  <div formGroupName="objectSetForm">
+    <div>
+      <label for="objectName">Object Name</label>
+      <input id="objectName" formControlName="name">
+    </div>
+    <div>
+      <label for="objects">Objects</label>
+      <select id="objects" formControlName="objects">
+        <option *ngFor="let object of object" [value]="object.id">{{ object.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Rune Set Form -->
+  <div formGroupName="runeSetForm">
+    <div>
+      <label for="runeName">Rune Name</label>
+      <input id="runeName" formControlName="name">
+    </div>
+    <div>
+      <label for="mainRune">Main Rune</label>
+      <select id="mainRune" formControlName="mainRune">
+        <option *ngFor="let rune of rune" [value]="rune.id">{{ rune.name }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="mainSubRune">Main Sub Rune</label>
+      <select id="mainSubRune" formControlName="mainSubRune">
+        <option *ngFor="let rune of rune" [value]="rune.id">{{ rune.name }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="secondaryRune">Secondary Rune</label>
+      <select id="secondaryRune" formControlName="secondaryRune">
+        <option *ngFor="let rune of rune" [value]="rune.id">{{ rune.name }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="secondarySubRune">Secondary Sub Rune</label>
+      <select id="secondarySubRune" formControlName="secondarySubRune">
+        <option *ngFor="let rune of rune" [value]="rune.id">{{ rune.name }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="additionalAdvantages">Additional Advantages</label>
+      <input id="additionalAdvantages" formControlName="additionalAdvantages">
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit">Save Build</button>
+</form>
