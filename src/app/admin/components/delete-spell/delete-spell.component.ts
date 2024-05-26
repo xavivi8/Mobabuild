@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Spell } from 'src/app/shared/interfaces/spell';
-import { SpellService } from '../../services/spell.service';
+import { SpellService } from '../../../mobabuild/service/spell.service';
 import { CLOSE } from 'src/app/shared/interfaces/messages';
 
 @Component({
