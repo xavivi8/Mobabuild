@@ -1,7 +1,5 @@
 <mat-sidenav-container fullscreen>
-
   <mat-sidenav #sidenav mode="push" [ngStyle]="{width: '250px'}">
-
     <mat-toolbar color="warn">
       <span>{{menu.label}}</span>
       <span class="spacer"></span>
@@ -9,36 +7,29 @@
         <mat-icon>{{menu.icon}}</mat-icon>
       </button>
     </mat-toolbar>
-
     <mat-nav-list *ngFor="let boton of sidebarItems">
-
-      <mat-list-item (click)="sidenav.toggle()" routerLink={{boton.url}}>
+      <mat-list-item (click)="sidenav.toggle()" [routerLink]="boton.url">
         <mat-icon>{{boton.icon}}</mat-icon>
         {{boton.label}}
       </mat-list-item>
-
     </mat-nav-list>
   </mat-sidenav>
-
   <mat-toolbar color="primary">
-
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>{{menu.icon}}</mat-icon>
     </button>
     <span class="spacer"></span>
-      <button mat-button> Añadir build
-        <mat-icon>add</mat-icon>
-      </button>
+    <button mat-button routerLink="./add_build"> Añadir build
+      <mat-icon>add</mat-icon>
+    </button>
     <span class="spacer"></span>
     <button mat-button (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>
   </mat-toolbar>
-
   <div class="container p-2">
     <router-outlet></router-outlet>
   </div>
-
   <!-- Footer -->
   <mat-toolbar class="footer" color="primary" style="margin-top: 65%;">
     <p>© Francisco Javier Martín-Lunas Escobar</p>
@@ -50,4 +41,3 @@
     <a mat-button href="https://github.com/xavivi8" target="_blank">GitHub</a>
   </mat-toolbar>
 </mat-sidenav-container>
-

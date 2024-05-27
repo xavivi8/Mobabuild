@@ -12,8 +12,7 @@ export class HomePageComponent {
 
   public sidebarItems = [
     { label: 'Admin', icon: 'admin_panel_settings', url: '/admin' },
-    { label: 'Peliculas', icon: 'movie', url: '/peliculas' },
-    { label: 'Control usuarios', icon: 'person', url: '/user-management' },
+    { label: 'Mobabuild', icon: 'movie', url: '/mobabuild' },
     /* { label: 'Login', icon: 'login', url: '/auth' } */
   ]
 
