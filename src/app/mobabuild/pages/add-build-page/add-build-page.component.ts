@@ -6,15 +6,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../../service/user.service';
 import { User } from 'src/app/shared/interfaces/user';
 import { firstValueFrom } from 'rxjs';
-import { Spell } from 'src/app/shared/interfaces/spell';
-import { Rune } from 'src/app/shared/interfaces/rune';
-import { ObjectD } from 'src/app/shared/interfaces/object';
+import { Spell, SpellSet } from 'src/app/shared/interfaces/spell';
+import { Rune, RuneSet } from 'src/app/shared/interfaces/rune';
+import { ObjectD, ObjectSet } from 'src/app/shared/interfaces/object';
 import { SpellService } from '../../service/spell.service';
 import { Champions } from 'src/app/shared/interfaces/champions';
 import { ChampionService } from '../../service/champion.service';
 import { RuneService } from '../../service/rune.service';
 import { ObjectService } from '../../service/object.service';
 import { CLOSE } from 'src/app/shared/interfaces/messages';
+import { Build } from 'src/app/shared/interfaces/build';
 
 @Component({
   selector: 'app-add-build-page',
@@ -74,11 +75,13 @@ export class AddBuildPageComponent implements OnInit{
     });
 
     this.spellSetForm = new FormGroup({
+      id: new FormControl(null),
       name: new FormControl(null, [Validators.required]),
       spells: new FormControl(null, [Validators.required]),
     });
 
     this.objectSetForm = new FormGroup({
+      id: new FormControl(null),
       name: new FormControl(null, [Validators.required]),
       objects: new FormControl(null, [Validators.required]),
     });
@@ -319,15 +322,47 @@ export class AddBuildPageComponent implements OnInit{
   }
 
   onSubmit(): void {
-    console.log(this.spells);
-    debugger
     console.log(this.buildForm.value);
     console.log(this.spellSetForm.value);
+    console.log(this.objectSetForm.value);
+    console.log(this.runeSetForm.value);
 
     if(this.buildFormValid() && this.spellSetFormValid() && this.objectSetFormValid() && this.runeSetFormValid()) {
-      this.snackBar.open('Bien', CLOSE, {
-        duration: 3000
-      });
+      const newRuneSet: RuneSet = {
+        id: null,
+        name: this.runeSetForm.value.name,
+        mainRune: this.runeSetForm.value.mainRune.id,
+        mainSubRune: this.runeSetForm.value.mainSubRune.id,
+        secondaryRune: this.runeSetForm.value.secondaryRune1.id+','+this.runeSetForm.value.secondaryRune2.id+','+this.runeSetForm.value.secondaryRune3.id+','+this.runeSetForm.value.secondaryRune4.id,
+        secondarySubRune: this.runeSetForm.value.secondarySubRune1.id+','+this.runeSetForm.value.secondarySubRune2.id+','+this.runeSetForm.value.secondarySubRune3.id,
+        additionalAdvantages: this.runeSetForm.value.additionalAdvantages1.id+','+this.runeSetForm.value.additionalAdvantages2.id+','+this.runeSetForm.value.additionalAdvantages3.id,
+        build: null,
+      };
+      console.log(newRuneSet);
+
+
+      if (this.spellSetForm.value as SpellSet && this.objectSetForm.value as ObjectSet && newRuneSet as RuneSet) {
+        const newBuild: Build = {
+          id: null,
+          buildName: this.buildForm.value.buildName,
+          user: this.buildForm.value.user,
+          champions: this.buildForm.value.champions,
+          spellSets: [this.spellSetForm.value.spells],
+          objectSet: [this.objectSetForm.value.objects],
+          runeSet: [newRuneSet]
+        };
+
+        if (newBuild as unknown as Build) {
+          console.log(newBuild);
+
+          this.snackBar.open('Bien', CLOSE, {
+            duration: 3000
+          });
+        }
+
+
+      }
+
     }
 
   }
