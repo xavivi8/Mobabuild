@@ -19,7 +19,6 @@ import { EditRuneComponent } from '../../components/edit-rune/edit-rune.componen
   styleUrls: ['./list-rune-page.component.css']
 })
 export class ListRunePageComponent implements OnInit{
-
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort = new MatSort();
 
@@ -69,16 +68,12 @@ export class ListRunePageComponent implements OnInit{
     const RESPONSE =await firstValueFrom(this.runeService.findAll());
     if (RESPONSE && RESPONSE.length > 0) {
       this.displayedColumns = ['id', 'name', 'rowType', 'group_name', 'actions'];
-      this.dataSource = new MatTableDataSource(RESPONSE);
+      this.dataSource = new MatTableDataSource(RESPONSE as Rune[]);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.dataSource.filterPredicate = this.createFilter();
       this.onChanges();
-      this.hasData = true;
-    } else {
-      this.hasData = false;
     }
-
   }
 
   /**
@@ -92,9 +87,7 @@ export class ListRunePageComponent implements OnInit{
       return rune.id.toString().indexOf(searchTerms.id) !== -1
         && rune.name.toString().toLowerCase().indexOf(searchTerms.name) !== -1
         && rune.rowType.toString().indexOf(searchTerms.rowType) !== -1
-        && rune.groupName.toString().indexOf(searchTerms.groupName) !== -1
-        && rune.description.toString().indexOf(searchTerms.description) !== -1
-        && rune.longDescription.toString().indexOf(searchTerms.longDescription) !== -1
+        && rune.group_name.toString().indexOf(searchTerms.group_name) !== -1
     }
     return filterFunction;
   }
