@@ -39,7 +39,6 @@ export class EditSpellComponent implements OnInit{
       description: new FormControl(this.spell.description, [Validators.required]),
       cooldown: new FormControl(this.spell.cooldown, [Validators.required]),
       image: new FormControl(this.spell.image),
-      spellSets: new FormControl(this.spell.spellSets),
     })
   }
 
