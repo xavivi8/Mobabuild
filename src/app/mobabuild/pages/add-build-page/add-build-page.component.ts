@@ -322,6 +322,7 @@ export class AddBuildPageComponent implements OnInit{
   }
 
   onSubmit(): void {
+    debugger
     console.log(this.buildForm.value);
     console.log(this.spellSetForm.value);
     console.log(this.objectSetForm.value);
@@ -331,30 +332,51 @@ export class AddBuildPageComponent implements OnInit{
       const newRuneSet: RuneSet = {
         id: null,
         name: this.runeSetForm.value.name,
-        mainRune: this.runeSetForm.value.mainRune.id,
-        mainSubRune: this.runeSetForm.value.mainSubRune.id,
-        secondaryRune: this.runeSetForm.value.secondaryRune1.id+','+this.runeSetForm.value.secondaryRune2.id+','+this.runeSetForm.value.secondaryRune3.id+','+this.runeSetForm.value.secondaryRune4.id,
-        secondarySubRune: this.runeSetForm.value.secondarySubRune1.id+','+this.runeSetForm.value.secondarySubRune2.id+','+this.runeSetForm.value.secondarySubRune3.id,
-        additionalAdvantages: this.runeSetForm.value.additionalAdvantages1.id+','+this.runeSetForm.value.additionalAdvantages2.id+','+this.runeSetForm.value.additionalAdvantages3.id,
+        main_rune: this.runeSetForm.value.mainRune.id,
+        main_sub_rune: this.runeSetForm.value.mainSubRune.id,
+        secondary_rune: this.runeSetForm.value.secondaryRune1.id+','+this.runeSetForm.value.secondaryRune2.id+','+this.runeSetForm.value.secondaryRune3.id+','+this.runeSetForm.value.secondaryRune4.id,
+        secondary_sub_rune: this.runeSetForm.value.secondarySubRune1.id+','+this.runeSetForm.value.secondarySubRune2.id+','+this.runeSetForm.value.secondarySubRune3.id,
+        additional_advantages: this.runeSetForm.value.additionalAdvantages1.id+','+this.runeSetForm.value.additionalAdvantages2.id+','+this.runeSetForm.value.additionalAdvantages3.id,
         build: null,
       };
       console.log(newRuneSet);
 
+      const newSpellSet: SpellSet = {
+        id: null,
+        name: this.spellSetForm.value.name,
+        spells: this.spellSetForm.value.spells,
+        build: null,
+      }
 
-      if (this.spellSetForm.value as SpellSet && this.objectSetForm.value as ObjectSet && newRuneSet as RuneSet) {
+      const newObjectSet: ObjectSet = {
+        id: null,
+        name: this.objectSetForm.value.name,
+        objects: this.objectSetForm.value.objects,
+        build: null,
+      }
+
+
+      if (newSpellSet as SpellSet && newObjectSet as ObjectSet && newRuneSet as RuneSet) {
         const newBuild: Build = {
           id: null,
           buildName: this.buildForm.value.buildName,
           user: this.buildForm.value.user,
           champions: this.buildForm.value.champions,
-          spellSets: [this.spellSetForm.value.spells],
-          objectSet: [this.objectSetForm.value.objects],
+          spellSets: [newSpellSet],
+          objectSet: [newObjectSet],
           runeSet: [newRuneSet]
         };
 
         if (newBuild as unknown as Build) {
           console.log(newBuild);
-
+          this.buildService.create(newBuild).subscribe({
+            next: (build) => {
+              console.log(build);
+            },
+            error: (error) => {
+              console.error('Error creating build', error);
+            }
+          })
           this.snackBar.open('Bien', CLOSE, {
             duration: 3000
           });
