@@ -1,9 +1,9 @@
 import { Build } from "./build";
 
 export interface ObjectSet {
-  id: number;
+  id: number | null;
   name: string;
-  build: Build;
+  build: Build | null;
   objects: Object[];
 }
 

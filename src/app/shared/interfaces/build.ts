@@ -4,7 +4,7 @@ import { SpellSet } from "./spell";
 import { User } from "./user";
 
 export interface Build {
-  id: number;
+  id: number | null;
   buildName: string;
   user: User;
   champions: Champions;

@@ -1,9 +1,9 @@
 import { Build } from "./build";
 
 export interface SpellSet {
-  id: number;
+  id: number | null;
   name: string;
-  build: Build;
+  build: Build | null;
   spells: Spell[];
 }
 

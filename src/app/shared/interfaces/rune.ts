@@ -1,14 +1,14 @@
 import { Build } from "./build";
 
 export interface RuneSet {
-  id: number;
+  id: number | null;
   name: string;
   mainRune: string;
   mainSubRune: string;
   secondaryRune: string;
   secondarySubRune: string;
   additionalAdvantages: string;
-  build: Build;
+  build: Build | null;
 }
 
 export interface Rune {
