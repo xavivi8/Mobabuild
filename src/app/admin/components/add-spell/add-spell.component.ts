@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { SpellService } from '../../../mobabuild/service/spell.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firstValueFrom } from 'rxjs';
 import { CLOSE } from 'src/app/shared/interfaces/messages';
+import { SpellService } from '../../services/spell.service';
 
 @Component({
   selector: 'app-add-spell',
