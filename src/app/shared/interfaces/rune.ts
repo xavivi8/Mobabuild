@@ -3,11 +3,11 @@ import { Build } from "./build";
 export interface RuneSet {
   id: number | null;
   name: string;
-  mainRune: string;
-  mainSubRune: string;
-  secondaryRune: string;
-  secondarySubRune: string;
-  additionalAdvantages: string;
+  main_rune: string;
+  main_sub_rune: string;
+  secondary_rune: string;
+  secondary_sub_rune: string;
+  additional_advantages: string;
   build: Build | null;
 }
 
