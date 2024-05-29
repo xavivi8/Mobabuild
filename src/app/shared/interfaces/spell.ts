@@ -15,4 +15,5 @@ export interface Spell {
   description: string;
   cooldown: string;
   image: ArrayBuffer;
+  //spellSets: SpellSet[];
 }
