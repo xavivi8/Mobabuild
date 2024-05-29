@@ -1,0 +1,40 @@
+.build-card {
+  margin-top: 10px;
+  max-height: 150px;
+
+  flex-direction: row;
+
+}
+
+.build-card .image {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.build-card .image img {
+  max-height: 150px;
+  max-width: 100%; /* Asegura que la imagen no exceda el ancho de su contenedor */
+}
+
+.build-card .text {
+  flex: 2;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.build-card .text .mat-card-header {
+  display: flex;
+  align-self: flex-start; /* Alinea el encabezado de la tarjeta hacia arriba */
+}
+
+.mat-card-footer {
+  display: flex;
+  align-self: flex-end; /* Alinea el pie de la tarjeta hacia abajo */
+}
+
+
