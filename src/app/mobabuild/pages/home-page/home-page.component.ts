@@ -12,7 +12,7 @@ export class HomePageComponent implements OnInit{
 
   public sidebarItems = [
     { label: 'Admin', icon: 'admin_panel_settings', url: '/admin' },
-    { label: 'Mobabuild', icon: 'movie', url: '/mobabuild' },
+    { label: 'Mobabuild', icon: 'movie', url: '/mobabuild/search_build' },
     /* { label: 'Login', icon: 'login', url: '/auth' } */
   ]
 
@@ -22,7 +22,7 @@ export class HomePageComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-
+    this.router.navigate(['/mobabuild/search_build']);
   }
 
   /**
