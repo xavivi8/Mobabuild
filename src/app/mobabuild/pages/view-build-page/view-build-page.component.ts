@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Build } from 'src/app/shared/interfaces/build';
 import { BuildService } from '../../service/build.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-view-build-page',
@@ -18,6 +19,13 @@ export class ViewBuildPageComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.pipe()
+    this.activatedRoute.params.pipe(
+      switchMap(({ id }) => this.buildService.findById(id))
+    ).subscribe((build) => {
+      if(!this.build) return this.router.navigate(['/mobabuild/search_build'])
+
+      this.build = build
+      return;
+    })
   }
 }
