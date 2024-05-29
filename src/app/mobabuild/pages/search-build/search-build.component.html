@@ -1,1 +1,49 @@
-<p>search-build works!</p>
+<div class="flex flex-column p-2">
+  <mat-form-field>
+    <mat-label>Buscar Build</mat-label>
+    <input type="text" matInput [formControl]="searchInput" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let name of filteredChampions | async" [value]="name">
+        {{ name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="searchBuild()">Buscar</button>
+</div>
+
+<mat-card class="card-container" *ngIf="build.length > 0">
+
+  <mat-card-content>
+
+    <mat-card class="build-card" *ngFor="let item of dataSource.data">
+      <div class="image">
+        <img src="/assets/no-image.jpg" alt="No Image">
+      </div>
+      <div class="text">
+        <!-- Cabecera de la build -->
+        <mat-card-header>
+          <mat-card-title>{{ item.buildName }}</mat-card-title>
+        </mat-card-header>
+        <!-- Contenido de la build -->
+        <mat-card-content>
+          <p></p>
+        </mat-card-content>
+        <!-- Pie de la build -->
+        <mat-card-header>
+          <mat-card-subtitle>By {{ item.user.user_name }}</mat-card-subtitle>
+        </mat-card-header>
+      </div>
+    </mat-card>
+
+  </mat-card-content>
+
+  <mat-card-footer>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" [pageSize]="10" [length]="dataSource.data.length"
+      showFirstLastButtons></mat-paginator>
+  </mat-card-footer>
+
+</mat-card>
+
+<div *ngIf="build.length === 0">
+  <p>No se encontraron resultados</p>
+</div>
