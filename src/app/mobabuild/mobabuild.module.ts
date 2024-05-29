@@ -8,6 +8,9 @@ import { SearchBuildComponent } from './pages/search-build/search-build.componen
 import { DeleteBuildComponent } from './components/delete-build/delete-build.component';
 import { AddBuildPageComponent } from './pages/add-build-page/add-build-page.component';
 import { EditBuildPageComponent } from './pages/edit-build-page/edit-build-page.component';
+import { SearchBuildCardComponent } from './components/search-build-card/search-build-card.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { ViewBuildPageComponent } from './pages/view-build-page/view-build-page.component';
 
 
 @NgModule({
@@ -17,11 +20,14 @@ import { EditBuildPageComponent } from './pages/edit-build-page/edit-build-page.
     DeleteBuildComponent,
     AddBuildPageComponent,
     EditBuildPageComponent,
+    SearchBuildCardComponent,
+    ViewBuildPageComponent,
   ],
   imports: [
     CommonModule,
     MobabuildRoutingModule,
-    MaterialModule
+    MaterialModule,
+    MatPaginatorModule
   ]
 })
 export class MobabuildModule { }
