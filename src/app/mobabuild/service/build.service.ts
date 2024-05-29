@@ -25,6 +25,10 @@ export class BuildService {
     return this.httpClient.post<Build[]>(`${this.urlMobabuild}/findByChampion`, JSON.stringify(champion), this.sharedService.getAuthHeaderWithJson());
   }
 
+  findById(id: number): Observable<Build> {
+    return this.httpClient.get<Build>(`${this.urlMobabuild}/findById/${id}`, this.sharedService.getAuthHeaderWithJson());
+  }
+
   create(build: Build): Observable<Build> {
     return this.httpClient.post<Build>(`${this.urlMobabuild}/create`, JSON.stringify(build), this.sharedService.getAuthHeaderWithJson());
   }
