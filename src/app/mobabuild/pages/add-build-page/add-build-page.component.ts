@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../../service/user.service';
 import { User } from 'src/app/shared/interfaces/user';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, tap } from 'rxjs';
 import { Spell, SpellSet } from 'src/app/shared/interfaces/spell';
 import { Rune, RuneSet } from 'src/app/shared/interfaces/rune';
 import { ObjectD, ObjectSet } from 'src/app/shared/interfaces/object';
@@ -341,12 +341,18 @@ export class AddBuildPageComponent implements OnInit{
       };
       console.log(newRuneSet);
 
+      console.log(this.spellSetForm.value.spells);
+
+
       const newSpellSet: SpellSet = {
         id: null,
         name: this.spellSetForm.value.name,
         spells: this.spellSetForm.value.spells,
         build: null,
       }
+
+      console.log(newSpellSet);
+
 
       const newObjectSet: ObjectSet = {
         id: null,
@@ -369,19 +375,21 @@ export class AddBuildPageComponent implements OnInit{
 
         if (newBuild as unknown as Build) {
           console.log(newBuild);
-          this.buildService.create(newBuild).subscribe({
-            next: (build) => {
+          this.buildService.create(newBuild).pipe(
+            tap((build) => {
               console.log(build);
-            },
+              // Aquí rediriges a la URL deseada después de que se complete la creación
+              this.router.navigate(['/mobabuild/search_build']);
+            })
+          ).subscribe({
             error: (error) => {
               console.error('Error creating build', error);
             }
-          })
+          });
           this.snackBar.open('Bien', CLOSE, {
             duration: 3000
           });
         }
-
 
       }
 
