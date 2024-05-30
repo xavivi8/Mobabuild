@@ -3,6 +3,10 @@ import { Build } from 'src/app/shared/interfaces/build';
 import { BuildService } from '../../service/build.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
+import { Champions } from 'src/app/shared/interfaces/champions';
+import { SpellSet } from 'src/app/shared/interfaces/spell';
+import { ObjectSet } from 'src/app/shared/interfaces/object';
+import { RuneSet } from 'src/app/shared/interfaces/rune';
 
 @Component({
   selector: 'app-view-build-page',
@@ -11,6 +15,10 @@ import { switchMap } from 'rxjs';
 })
 export class ViewBuildPageComponent implements OnInit{
   public build!: Build;
+  public champion!: Champions;
+  public spellSet: SpellSet[] = [];
+  public objectSet: ObjectSet[] = [];
+  public ruenSet: RuneSet[] = [];
 
   constructor(
     private buildService: BuildService,
@@ -25,7 +33,16 @@ export class ViewBuildPageComponent implements OnInit{
       if(!this.build) return this.router.navigate(['/mobabuild/search_build'])
 
       this.build = build
+      this.getData(this.build);
       return;
     })
+
+  }
+
+  getData(build: Build) {
+    this.champion = build.champions
+    this.spellSet = build.spellSets
+    this.objectSet = build.objectSet
+    this.ruenSet = build.runeSet
   }
 }

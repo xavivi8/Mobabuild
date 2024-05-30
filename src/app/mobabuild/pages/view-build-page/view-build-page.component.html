@@ -1,1 +1,31 @@
-<p>view-build-page works!</p>
+<div *ngIf="build" style="display: flex; margin: 0 auto;">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ build.buildName }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card class="objetos arriba">
+        <mat-card-header>
+          <mat-card-subtitle>{{ build.objectSet.length }}</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+      <div class="abajo">
+        <mat-card class="runas">
+
+        </mat-card>
+        <mat-card class="hechizos">
+
+        </mat-card>
+      </div>
+
+
+    </mat-card-content>
+
+    <mat-card-actions>
+
+    </mat-card-actions>
+    <mat-card-footer>
+      <mat-card-title>By {{ build.user.user_name }}</mat-card-title>
+    </mat-card-footer>
+  </mat-card>
+</div>
