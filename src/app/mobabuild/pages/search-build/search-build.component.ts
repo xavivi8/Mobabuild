@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-build',
@@ -26,6 +27,7 @@ export class SearchBuildComponent implements OnInit {
 
   constructor(
     private buildService: BuildService,
+    private router: Router,
     private championService: ChampionService,
   ) { }
 
@@ -78,5 +80,9 @@ export class SearchBuildComponent implements OnInit {
     return this.champions
       .map(champion => champion.name)
       .filter(name => name.toLowerCase().includes(filterValue));
+  }
+
+  goViewBuild(id: number) {
+    this.router.navigate([`/mobabuild/view_build/${id}`]);
   }
 }
