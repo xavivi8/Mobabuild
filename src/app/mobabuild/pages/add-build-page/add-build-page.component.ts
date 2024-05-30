@@ -28,6 +28,9 @@ export class AddBuildPageComponent implements OnInit{
   objectSetForm: FormGroup = new FormGroup({});
   runeSetForm: FormGroup = new FormGroup({});
 
+  objectSet: ObjectSet[] = [];
+  spellSet: SpellSet[] = [];
+  runeSet: RuneSet[] = [];
 
   spells: Spell[] = [];
   runes: Rune[] = [];
@@ -118,6 +121,174 @@ export class AddBuildPageComponent implements OnInit{
     this.getAllSpells();
     this.getAllRune();
     this.getAllObjects();
+  }
+
+  onSubmit(): void {
+    debugger
+    console.log(this.buildForm.value);
+    console.log(this.spellSetForm.value);
+    console.log(this.objectSetForm.value);
+    console.log(this.runeSetForm.value);
+
+    if(this.buildFormValid() && this.spellSetFormValid() && this.objectSetFormValid() && this.runeSetFormValid()) {
+      this.addRuneSet();
+      this.addSpellSet();
+      this.addObjectSet();
+
+
+      if (this.spellSet.length > 0 && this.objectSet.length > 0 && this.runeSet.length > 0) {
+        const newBuild: Build = {
+          id: null,
+          buildName: this.buildForm.value.buildName,
+          user: this.buildForm.value.user,
+          champions: this.buildForm.value.champions,
+          spellSets: this.spellSet,
+          objectSet: this.objectSet,
+          runeSet: this.runeSet
+        };
+
+        if (newBuild as unknown as Build) {
+          console.log(newBuild);
+          this.buildService.create(newBuild).pipe(
+            tap((build) => {
+              console.log(build);
+              // Aquí rediriges a la URL deseada después de que se complete la creación
+              this.router.navigate(['/mobabuild/search_build']);
+            })
+          ).subscribe({
+            error: (error) => {
+              console.error('Error creating build', error);
+            }
+          });
+          this.snackBar.open('Bien', CLOSE, {
+            duration: 3000
+          });
+        }
+
+      }
+
+    }
+
+  }
+
+  buildFormValid(): boolean {
+    if (!this.buildForm.valid) {
+      console.error('Form is not valid');
+      this.snackBar.open('La build no puede estar vacia.', CLOSE, {
+        duration: 3000
+      });
+    }
+    return this.buildForm.valid;
+  }
+
+  spellSetFormValid(): boolean {
+    if (this.spellSetForm.valid) {
+      const selectedSpells: Spell[] = this.spellSetForm.value.spells;
+      console.log(selectedSpells);
+
+      if (selectedSpells.length > 2) {
+        console.error('Solo se pueden seleccionar hasta 2 hechizos.');
+        this.snackBar.open('Solo se pueden seleccionar hasta 2 hechizos.', CLOSE, {
+          duration: 3000
+        });
+        return false;
+      }
+    } else {
+      this.snackBar.open('El conjunto de hechizos no puede estar vacios.', CLOSE, {duration: 3000});
+      return false;
+    }
+    return this.spellSetForm.valid;
+
+  }
+
+  objectSetFormValid(): boolean {
+    if (!this.objectSetForm.valid) {
+      console.error('Form is not valid');
+      this.snackBar.open('El conjunto de objetos no puede estar vacia.', CLOSE, {
+        duration: 3000
+      });
+    }
+    return this.objectSetForm.valid;
+  }
+
+  runeSetFormValid(): boolean {
+    if (!this.runeSetForm.valid) {
+      console.error('Form is not valid');
+      this.snackBar.open('Las runas no pueden estar vacias.', CLOSE, {
+        duration: 3000
+      });
+    }
+    return this.runeSetForm.valid;
+  }
+
+  addObjectSet(){
+    if(this.objectSetForm.valid){
+      const addObjectSet: ObjectSet = {
+        id: null,
+        name: this.objectSetForm.value.name,
+        objects: this.objectSetForm.value.objects,
+        build: null,
+      }
+
+      this.objectSet.push(addObjectSet);
+
+      this.objectSetForm.reset({
+        id: null,
+        name: null,
+        objects: null
+      });
+    }
+  }
+
+  addSpellSet() {
+    if (this.spellSetForm.valid) {
+      const addSpellSet: SpellSet = {
+        id: null,
+        name: this.spellSetForm.value.name,
+        spells: this.spellSetForm.value.spells,
+        build: null,
+      }
+
+      this.spellSet.push(addSpellSet);
+      this.spellSetForm.reset({
+        id: null,
+        name: null,
+        spells: null
+      });
+    }
+  }
+
+  addRuneSet() {
+    if (this.runeSetForm.valid) {
+      const addRuneSet: RuneSet = {
+        id: null,
+        name: this.runeSetForm.value.name,
+        main_rune: this.runeSetForm.value.mainRune.id,
+        main_sub_rune: this.runeSetForm.value.mainSubRune.id,
+        secondary_rune: this.runeSetForm.value.secondaryRune1.id+','+this.runeSetForm.value.secondaryRune2.id+','+this.runeSetForm.value.secondaryRune3.id+','+this.runeSetForm.value.secondaryRune4.id,
+        secondary_sub_rune: this.runeSetForm.value.secondarySubRune1.id+','+this.runeSetForm.value.secondarySubRune2.id+','+this.runeSetForm.value.secondarySubRune3.id,
+        additional_advantages: this.runeSetForm.value.additionalAdvantages1.id+','+this.runeSetForm.value.additionalAdvantages2.id+','+this.runeSetForm.value.additionalAdvantages3.id,
+        build: null,
+      };
+
+      this.runeSet.push(addRuneSet);
+      this.runeSetForm.reset({
+        id: null,
+        name: null,
+        mainRune: null,
+        mainSubRune: null,
+        secondaryRune1: null,
+        secondaryRune2: null,
+        secondaryRune3: null,
+        secondaryRune4: null,
+        secondarySubRune1: null,
+        secondarySubRune2: null,
+        secondarySubRune3: null,
+        additionalAdvantages1: null,
+        additionalAdvantages2: null,
+        additionalAdvantages3: null
+      });
+    }
   }
 
   filterMainRunes() {
@@ -320,131 +491,4 @@ export class AddBuildPageComponent implements OnInit{
       }
     });
   }
-
-  onSubmit(): void {
-    debugger
-    console.log(this.buildForm.value);
-    console.log(this.spellSetForm.value);
-    console.log(this.objectSetForm.value);
-    console.log(this.runeSetForm.value);
-
-    if(this.buildFormValid() && this.spellSetFormValid() && this.objectSetFormValid() && this.runeSetFormValid()) {
-      const newRuneSet: RuneSet = {
-        id: null,
-        name: this.runeSetForm.value.name,
-        main_rune: this.runeSetForm.value.mainRune.id,
-        main_sub_rune: this.runeSetForm.value.mainSubRune.id,
-        secondary_rune: this.runeSetForm.value.secondaryRune1.id+','+this.runeSetForm.value.secondaryRune2.id+','+this.runeSetForm.value.secondaryRune3.id+','+this.runeSetForm.value.secondaryRune4.id,
-        secondary_sub_rune: this.runeSetForm.value.secondarySubRune1.id+','+this.runeSetForm.value.secondarySubRune2.id+','+this.runeSetForm.value.secondarySubRune3.id,
-        additional_advantages: this.runeSetForm.value.additionalAdvantages1.id+','+this.runeSetForm.value.additionalAdvantages2.id+','+this.runeSetForm.value.additionalAdvantages3.id,
-        build: null,
-      };
-      console.log(newRuneSet);
-
-      console.log(this.spellSetForm.value.spells);
-
-
-      const newSpellSet: SpellSet = {
-        id: null,
-        name: this.spellSetForm.value.name,
-        spells: this.spellSetForm.value.spells,
-        build: null,
-      }
-
-      console.log(newSpellSet);
-
-
-      const newObjectSet: ObjectSet = {
-        id: null,
-        name: this.objectSetForm.value.name,
-        objects: this.objectSetForm.value.objects,
-        build: null,
-      }
-
-
-      if (newSpellSet as SpellSet && newObjectSet as ObjectSet && newRuneSet as RuneSet) {
-        const newBuild: Build = {
-          id: null,
-          buildName: this.buildForm.value.buildName,
-          user: this.buildForm.value.user,
-          champions: this.buildForm.value.champions,
-          spellSets: [newSpellSet],
-          objectSet: [newObjectSet],
-          runeSet: [newRuneSet]
-        };
-
-        if (newBuild as unknown as Build) {
-          console.log(newBuild);
-          this.buildService.create(newBuild).pipe(
-            tap((build) => {
-              console.log(build);
-              // Aquí rediriges a la URL deseada después de que se complete la creación
-              this.router.navigate(['/mobabuild/search_build']);
-            })
-          ).subscribe({
-            error: (error) => {
-              console.error('Error creating build', error);
-            }
-          });
-          this.snackBar.open('Bien', CLOSE, {
-            duration: 3000
-          });
-        }
-
-      }
-
-    }
-
-  }
-
-  buildFormValid(): boolean {
-    if (!this.buildForm.valid) {
-      console.error('Form is not valid');
-      this.snackBar.open('La build no puede estar vacia.', CLOSE, {
-        duration: 3000
-      });
-    }
-    return this.buildForm.valid;
-  }
-
-  spellSetFormValid(): boolean {
-    if (this.spellSetForm.valid) {
-      const selectedSpells: Spell[] = this.spellSetForm.value.spells;
-      console.log(selectedSpells);
-
-      if (selectedSpells.length > 2) {
-        console.error('Solo se pueden seleccionar hasta 2 hechizos.');
-        this.snackBar.open('Solo se pueden seleccionar hasta 2 hechizos.', CLOSE, {
-          duration: 3000
-        });
-        return false;
-      }
-    } else {
-      this.snackBar.open('El conjunto de hechizos no puede estar vacios.', CLOSE, {duration: 3000});
-      return false;
-    }
-    return this.spellSetForm.valid;
-
-  }
-
-  objectSetFormValid(): boolean {
-    if (!this.objectSetForm.valid) {
-      console.error('Form is not valid');
-      this.snackBar.open('El conjunto de objetos no puede estar vacia.', CLOSE, {
-        duration: 3000
-      });
-    }
-    return this.objectSetForm.valid;
-  }
-
-  runeSetFormValid(): boolean {
-    if (!this.runeSetForm.valid) {
-      console.error('Form is not valid');
-      this.snackBar.open('Las runas no pueden estar vacias.', CLOSE, {
-        duration: 3000
-      });
-    }
-    return this.runeSetForm.valid;
-  }
-
 }
