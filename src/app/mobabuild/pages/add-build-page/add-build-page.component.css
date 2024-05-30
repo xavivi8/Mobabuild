@@ -1,6 +1,4 @@
 .container {
-  display: flex;
-  justify-content: center;
   align-items: center;
   height: 100vh; /* Esto es opcional, es para centrar verticalmente en la página */
 }
@@ -9,3 +7,59 @@
   margin: 0 auto;
   width: auto; /* Opcional: Esto permite que el ancho del mat-card se ajuste automáticamente al contenido */
 }
+
+.contenedor-tarjetas{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 16px
+}
+
+.buildForm{
+  flex: 1;
+}
+
+.spellSetForm{
+  flex: 1;
+}
+
+.objectSetForm{
+  flex: 1;
+}
+
+/* CSS */
+.arriba_runa {
+  margin-bottom: 20px;
+}
+
+.abajo_runa {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.colum {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rune-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rune-image {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  height: 40px; /* Adjust the height to match the input field */
+  width: auto;
+}
+
+.actions-center {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+

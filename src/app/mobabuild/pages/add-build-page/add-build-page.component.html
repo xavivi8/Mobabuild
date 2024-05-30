@@ -1,231 +1,261 @@
 <mat-card class="container">
   <mat-card-content>
-    <!-- Card spellSetForm  -->
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Añadir Nueva Build</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <form [formGroup]="buildForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <mat-form-field appearance="fill">
-              <mat-label>Nombre de la Build</mat-label>
-              <input matInput formControlName="buildName" placeholder="Nombre de la Build">
-              <mat-error *ngIf="buildForm.get('buildName')?.hasError('required')">Este campo es obligatorio</mat-error>
-            </mat-form-field>
-          </div>
+    <diV class="contenedor-tarjetas">
+      <!-- Card build  -->
+      <mat-card class="buildForm">
+        <mat-card-header class="actions-center">
+          <mat-card-title>Añadir Nueva Build</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="actions-center">
+          <form [formGroup]="buildForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Nombre de la Build</mat-label>
+                <input matInput formControlName="buildName" placeholder="Nombre de la Build">
+                <mat-error *ngIf="buildForm.get('buildName')?.hasError('required')">Este campo es
+                  obligatorio</mat-error>
+              </mat-form-field>
+            </div>
 
-          <div class="form-group">
-            <mat-form-field appearance="fill">
-              <mat-label>Campeón</mat-label>
-              <mat-select formControlName="champions">
-                <mat-option *ngFor="let champion of champions" [value]="champion">
-                  {{ champion.name }}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="buildForm.get('champions')?.hasError('required')">Este campo es obligatorio</mat-error>
-            </mat-form-field>
-          </div>
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Campeón</mat-label>
+                <mat-select formControlName="champions">
+                  <mat-option *ngFor="let champion of champions" [value]="champion">
+                    {{ champion.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="buildForm.get('champions')?.hasError('required')">Este campo es
+                  obligatorio</mat-error>
+              </mat-form-field>
+            </div>
 
-        </form>
-      </mat-card-content>
-    </mat-card>
+          </form>
+        </mat-card-content>
+      </mat-card>
 
-    <!-- Card spellSetForm  -->
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Añadir Hechizos</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <form [formGroup]="spellSetForm">
-          <div class="form-group">
-            <mat-form-field appearance="fill">
-              <mat-label>Nombre del Hechizo</mat-label>
-              <input matInput formControlName="name" placeholder="Nombre del Hechizo">
-              <mat-error *ngIf="spellSetForm.get('name')?.hasError('required')">Este campo es obligatorio</mat-error>
-            </mat-form-field>
-          </div>
+      <!-- Card spellSetForm  -->
+      <mat-card class="spellSetForm">
+        <mat-card-header class="actions-center">
+          <mat-card-title>Añadir Hechizos</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="actions-center">
+          <form [formGroup]="spellSetForm">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Nombre del Hechizo</mat-label>
+                <input matInput formControlName="name" placeholder="Nombre del Hechizo">
+                <mat-error *ngIf="spellSetForm.get('name')?.hasError('required')">Este campo es obligatorio</mat-error>
+              </mat-form-field>
+            </div>
 
-          <div class="form-group">
-            <mat-form-field appearance="fill">
-              <mat-label>Hechizo</mat-label>
-              <mat-select formControlName="spells" multiple>
-                <mat-option *ngFor="let spell of spells" [value]="spell">
-                  {{ spell.name }}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="spellSetForm.get('spell')?.hasError('required')">Este campo es obligatorio</mat-error>
-            </mat-form-field>
-          </div>
-        </form>
-      </mat-card-content>
-    </mat-card>
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Hechizo</mat-label>
+                <mat-select formControlName="spells" multiple>
+                  <mat-option *ngFor="let spell of spells" [value]="spell">
+                    {{ spell.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="spellSetForm.get('spell')?.hasError('required')">Este campo es obligatorio</mat-error>
+              </mat-form-field>
+            </div>
+          </form>
+        </mat-card-content>
+        <mat-card-actions class="actions-center">
+          <button mat-raised-button color="primary">Crear otras hechizos</button>
+        </mat-card-actions>
+      </mat-card>
 
-    <!-- Card objectSetForm  -->
-    <mat-card class="objectSetForm">
-      <mat-card-header>
-        <mat-card-title>Añadir Objetos</mat-card-title>
-      </mat-card-header>
+      <!-- Card objectSetForm  -->
+      <mat-card class="objectSetForm">
+        <mat-card-header class="actions-center">
+          <mat-card-title>Añadir Objetos</mat-card-title>
+        </mat-card-header>
 
-      <mat-card-content>
-        <form [formGroup]="objectSetForm">
-          <div class="form-group">
-            <mat-form-field appearance="fill">
-              <mat-label>Nombre del conjunto de objetos</mat-label>
-              <input matInput formControlName="name" placeholder="Nombre del Objeto">
-              <mat-error *ngIf="objectSetForm.get('name')?.hasError('required')">Este campo es obligatorio</mat-error>
-            </mat-form-field>
-          </div>
+        <mat-card-content class="actions-center">
+          <form [formGroup]="objectSetForm">
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Nombre del conjunto de objetos</mat-label>
+                <input matInput formControlName="name" placeholder="Nombre del Objeto">
+                <mat-error *ngIf="objectSetForm.get('name')?.hasError('required')">Este campo es obligatorio</mat-error>
+              </mat-form-field>
+            </div>
 
-          <div class="form-group">
-            <mat-form-field appearance="fill">
-              <mat-label>Objeto</mat-label>
-              <mat-select formControlName="objects" multiple>
-                <mat-option *ngFor="let object of objects" [value]="object">
-                  {{ object.name }}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="objectSetForm.get('objects')?.hasError('required')">Este campo es
-                obligatorio</mat-error>
-            </mat-form-field>
-          </div>
-        </form>
-      </mat-card-content>
-
-    </mat-card>
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Objeto</mat-label>
+                <mat-select formControlName="objects" multiple>
+                  <mat-option *ngFor="let object of objects" [value]="object">
+                    {{ object.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="objectSetForm.get('objects')?.hasError('required')">Este campo es
+                  obligatorio</mat-error>
+              </mat-form-field>
+            </div>
+          </form>
+        </mat-card-content>
+        <mat-card-actions class="actions-center">
+          <button mat-raised-button color="primary">Crear otras objetos</button>
+        </mat-card-actions>
+      </mat-card>
+    </diV>
 
     <!-- Card runeSetForm  -->
     <mat-card class="runeSetForm">
-      <mat-card-header>
+      <mat-card-header class="actions-center">
         <mat-card-title>Formulario de Conjunto de Runas</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form [formGroup]="runeSetForm" (ngSubmit)="onSubmit()">
-          <mat-form-field>
-            <mat-label>Nombre</mat-label>
-            <input matInput formControlName="name" placeholder="Nombre">
-            <mat-error *ngIf="runeSetForm.get('name')?.invalid">El nombre es requerido</mat-error>
-          </mat-form-field>
-
-          <div class="mainRune">
+          <div class="arriba_runa actions-center">
             <mat-form-field>
-              <mat-label>Runa principal</mat-label>
-              <mat-select formControlName="mainRune" placeholder="Seleccionar" (selectionChange)="filterMainRunes()">
-                <mat-option *ngFor="let rune of rune0" [value]="rune">{{ rune?.name }}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="runeSetForm.get('mainRune')?.invalid">La runa principal es requerida</mat-error>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>Runa sub principal 1</mat-label>
-              <mat-select formControlName="secondaryRune1" placeholder="Seleccionar">
-                <mat-option *ngFor="let rune of filteredRune1" [value]="rune">{{ rune?.name }}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="runeSetForm.get('secondaryRune1')?.invalid">La runa secundaria 1 es
-                requerida</mat-error>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>Runa sub principal 2</mat-label>
-              <mat-select formControlName="secondaryRune2" placeholder="Seleccionar">
-                <mat-option *ngFor="let rune of filteredRune2" [value]="rune">{{ rune?.name }}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="runeSetForm.get('secondaryRune2')?.invalid">La runa secundaria 1 es
-                requerida</mat-error>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>Runa sub principal 3</mat-label>
-              <mat-select formControlName="secondaryRune3" placeholder="Seleccionar">
-                <mat-option *ngFor="let rune of filteredRune3" [value]="rune">{{ rune?.name }}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="runeSetForm.get('secondaryRune3')?.invalid">La runa secundaria 1 es
-                requerida</mat-error>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>Runa sub principal 4</mat-label>
-              <mat-select formControlName="secondaryRune4" placeholder="Seleccionar">
-                <mat-option *ngFor="let rune of filteredRune4" [value]="rune">{{ rune?.name }}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="runeSetForm.get('secondaryRune4')?.invalid">La runa secundaria 1 es
-                requerida</mat-error>
+              <mat-label>Nombre</mat-label>
+              <input matInput formControlName="name" placeholder="Nombre">
+              <mat-error *ngIf="runeSetForm.get('name')?.invalid">El nombre es requerido</mat-error>
             </mat-form-field>
           </div>
-
-          <div class="mainSubRune">
-            <mat-form-field>
-              <mat-label>Runa secundaria</mat-label>
-              <mat-select formControlName="mainSubRune" placeholder="Seleccionar" (selectionChange)="filterSubRunes()">
-                <mat-option *ngFor="let rune of filteredMainSubRunes" [value]="rune">{{ rune?.name }}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="runeSetForm.get('mainSubRune')?.invalid">La runa secundaria es requerida</mat-error>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>Runa sub secundaria 1</mat-label>
-              <mat-select formControlName="secondarySubRune1" placeholder="Seleccionar">
-                <mat-option *ngFor="let rune of filteredSubRune1" [value]="rune">{{ rune?.name }}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="runeSetForm.get('secondarySubRune1')?.invalid">La runa secundaria 1 es
-                requerida</mat-error>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>Runa sub secundaria 2</mat-label>
-              <mat-select formControlName="secondarySubRune2" placeholder="Seleccionar">
-                <mat-option *ngFor="let rune of filteredSubRune2" [value]="rune">{{ rune?.name }}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="runeSetForm.get('secondarySubRune2')?.invalid">La runa secundaria 2 es
-                requerida</mat-error>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>Runa sub secundaria 3</mat-label>
-              <mat-select formControlName="secondarySubRune3" placeholder="Seleccionar">
-                <mat-option *ngFor="let rune of filteredSubRune3" [value]="rune">{{ rune?.name }}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="runeSetForm.get('secondarySubRune3')?.invalid">La runa secundaria 3 es
-                requerida</mat-error>
-            </mat-form-field>
+          <div class="abajo_runa">
+            <div class="colum">
+              <div class="rune-field">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <mat-form-field>
+                  <mat-label>Runa principal</mat-label>
+                  <mat-select formControlName="mainRune" placeholder="Seleccionar" (selectionChange)="filterMainRunes()">
+                    <mat-option *ngFor="let rune of rune0" [value]="rune">{{ rune?.name }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="runeSetForm.get('mainRune')?.invalid">La runa principal es requerida</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="rune-field">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <mat-form-field>
+                  <mat-label>Runa sub principal 1</mat-label>
+                  <mat-select formControlName="secondaryRune1" placeholder="Seleccionar">
+                    <mat-option *ngFor="let rune of filteredRune1" [value]="rune">{{ rune?.name }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="runeSetForm.get('secondaryRune1')?.invalid">La runa secundaria 1 es requerida</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="rune-field">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <mat-form-field>
+                  <mat-label>Runa sub principal 2</mat-label>
+                  <mat-select formControlName="secondaryRune2" placeholder="Seleccionar">
+                    <mat-option *ngFor="let rune of filteredRune2" [value]="rune">{{ rune?.name }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="runeSetForm.get('secondaryRune2')?.invalid">La runa secundaria 2 es requerida</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="rune-field">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <mat-form-field>
+                  <mat-label>Runa sub principal 3</mat-label>
+                  <mat-select formControlName="secondaryRune3" placeholder="Seleccionar">
+                    <mat-option *ngFor="let rune of filteredRune3" [value]="rune">{{ rune?.name }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="runeSetForm.get('secondaryRune3')?.invalid">La runa secundaria 3 es requerida</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="rune-field">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <mat-form-field>
+                  <mat-label>Runa sub principal 4</mat-label>
+                  <mat-select formControlName="secondaryRune4" placeholder="Seleccionar">
+                    <mat-option *ngFor="let rune of filteredRune4" [value]="rune">{{ rune?.name }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="runeSetForm.get('secondaryRune4')?.invalid">La runa secundaria 4 es requerida</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="colum">
+              <div class="rune-field">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <mat-form-field>
+                  <mat-label>Runa secundaria</mat-label>
+                  <mat-select formControlName="mainSubRune" placeholder="Seleccionar" (selectionChange)="filterSubRunes()">
+                    <mat-option *ngFor="let rune of filteredMainSubRunes" [value]="rune">{{ rune?.name }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="runeSetForm.get('mainSubRune')?.invalid">La runa secundaria es requerida</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="rune-field">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <mat-form-field>
+                  <mat-label>Runa sub secundaria 1</mat-label>
+                  <mat-select formControlName="secondarySubRune1" placeholder="Seleccionar">
+                    <mat-option *ngFor="let rune of filteredSubRune1" [value]="rune">{{ rune?.name }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="runeSetForm.get('secondarySubRune1')?.invalid">La runa secundaria 1 es requerida</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="rune-field">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <mat-form-field>
+                  <mat-label>Runa sub secundaria 2</mat-label>
+                  <mat-select formControlName="secondarySubRune2" placeholder="Seleccionar">
+                    <mat-option *ngFor="let rune of filteredSubRune2" [value]="rune">{{ rune?.name }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="runeSetForm.get('secondarySubRune2')?.invalid">La runa secundaria 2 es requerida</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="rune-field">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <mat-form-field>
+                  <mat-label>Runa sub secundaria 3</mat-label>
+                  <mat-select formControlName="secondarySubRune3" placeholder="Seleccionar">
+                    <mat-option *ngFor="let rune of filteredSubRune3" [value]="rune">{{ rune?.name }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="runeSetForm.get('secondarySubRune3')?.invalid">La runa secundaria 3 es requerida</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="colum">
+              <div class="rune-field">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <mat-form-field>
+                  <mat-label>Ventajas adicionales 1</mat-label>
+                  <mat-select formControlName="additionalAdvantages1" placeholder="Seleccionar">
+                    <mat-option *ngFor="let rune of additionalAdvantages1" [value]="rune">{{ rune?.name }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="runeSetForm.get('additionalAdvantages1')?.invalid">La ventaja adicional 1 es requerida</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="rune-field">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <mat-form-field>
+                  <mat-label>Ventajas adicionales 2</mat-label>
+                  <mat-select formControlName="additionalAdvantages2" placeholder="Seleccionar">
+                    <mat-option *ngFor="let rune of additionalAdvantages2" [value]="rune">{{ rune?.name }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="runeSetForm.get('additionalAdvantages2')?.invalid">La ventaja adicional 2 es requerida</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="rune-field">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <mat-form-field>
+                  <mat-label>Ventajas adicionales 3</mat-label>
+                  <mat-select formControlName="additionalAdvantages3" placeholder="Seleccionar">
+                    <mat-option *ngFor="let rune of additionalAdvantages3" [value]="rune">{{ rune?.name }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="runeSetForm.get('additionalAdvantages3')?.invalid">La ventaja adicional 3 es requerida</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
           </div>
-
-          <div class="additionalAdvantages">
-            <mat-form-field>
-              <mat-label>Ventajas adicionales 1</mat-label>
-              <mat-select formControlName="additionalAdvantages1" placeholder="Seleccionar">
-                <mat-option *ngFor="let rune of additionalAdvantages1" [value]="rune">{{ rune?.name }}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="runeSetForm.get('additionalAdvantages1')?.invalid">La ventaja adicional 1 es
-                requerida</mat-error>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>Ventajas adicionales 2</mat-label>
-              <mat-select formControlName="additionalAdvantages2" placeholder="Seleccionar">
-                <mat-option *ngFor="let rune of additionalAdvantages2" [value]="rune">{{ rune?.name }}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="runeSetForm.get('additionalAdvantages2')?.invalid">La ventaja adicional 2 es
-                requerida</mat-error>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>Ventajas adicionales 3</mat-label>
-              <mat-select formControlName="additionalAdvantages3" placeholder="Seleccionar">
-                <mat-option *ngFor="let rune of additionalAdvantages3" [value]="rune">{{ rune?.name }}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="runeSetForm.get('additionalAdvantages3')?.invalid">La ventaja adicional 3 es
-                requerida</mat-error>
-            </mat-form-field>
-          </div>
-
         </form>
       </mat-card-content>
+      <mat-card-actions class="actions-center">
+        <button class="btn_rune" mat-raised-button color="primary">Crear otra runa</button>
+      </mat-card-actions>
     </mat-card>
 
 
+
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions [style]="{ 'margin-top': '20px' }">
     <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Guardar Build</button>
   </mat-card-actions>
 </mat-card>
