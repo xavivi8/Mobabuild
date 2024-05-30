@@ -30,7 +30,7 @@ export class ViewBuildPageComponent implements OnInit{
     this.activatedRoute.params.pipe(
       switchMap(({ id }) => this.buildService.findById(id))
     ).subscribe((build) => {
-      if(!this.build) return this.router.navigate(['/mobabuild/search_build'])
+      if(!build) return this.router.navigate(['/mobabuild/search_build'])
 
       this.build = build
       this.getData(this.build);
