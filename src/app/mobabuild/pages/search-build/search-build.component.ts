@@ -82,7 +82,7 @@ export class SearchBuildComponent implements OnInit {
       .filter(name => name.toLowerCase().includes(filterValue));
   }
 
-  goViewBuild(id: number) {
+  goViewBuild(id: number | null) {
     this.router.navigate([`/mobabuild/view_build/${id}`]);
   }
 }

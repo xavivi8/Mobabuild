@@ -14,26 +14,28 @@
 <mat-card class="card-container" *ngIf="build.length > 0">
 
   <mat-card-content>
+    <div *ngFor="let item of dataSource.data">
 
-    <mat-card class="build-card" *ngFor="let item of dataSource.data">
-      <div class="image">
-        <img src="/assets/no-image.jpg" alt="No Image">
-      </div>
-      <div class="text">
-        <!-- Cabecera de la build -->
-        <mat-card-header>
-          <mat-card-title>{{ item.buildName }}</mat-card-title>
-        </mat-card-header>
-        <!-- Contenido de la build -->
-        <mat-card-content>
-          <p></p>
-        </mat-card-content>
-        <!-- Pie de la build -->
-        <mat-card-header>
-          <mat-card-subtitle>By {{ item.user.user_name }}</mat-card-subtitle>
-        </mat-card-header>
-      </div>
-    </mat-card>
+      <mat-card class="build-card" (click)="goViewBuild(item.id)">
+        <div class="image">
+          <img src="/assets/no-image.jpg" alt="No Image">
+        </div>
+        <div class="text">
+          <!-- Cabecera de la build -->
+          <mat-card-header>
+            <mat-card-title>{{ item.buildName }}</mat-card-title>
+          </mat-card-header>
+          <!-- Contenido de la build -->
+          <mat-card-content>
+            <p></p>
+          </mat-card-content>
+          <!-- Pie de la build -->
+          <mat-card-header>
+            <mat-card-subtitle>By {{ item.user.user_name }}</mat-card-subtitle>
+          </mat-card-header>
+        </div>
+      </mat-card>
+    </div>
 
   </mat-card-content>
 
