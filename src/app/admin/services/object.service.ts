@@ -84,8 +84,8 @@ export class ObjectService {
    * @param {string} name
    * @returns {Observable<number>}
    */
-  setObject(name: string): Observable<number> {
-    return this.httpClient.get<number>(`${this.urlMobabuild}/setObject/${name}`, this.sharedService.getAuthHeaderWithJson())
+  setObject(object: ObjectD): Observable<ObjectD> {
+    return this.httpClient.post<ObjectD>(`${this.urlMobabuild}/create`, JSON.stringify(object) , this.sharedService.getAuthHeaderWithJson())
   }
 
   /**
@@ -94,23 +94,9 @@ export class ObjectService {
    * @param {ObjectD} objectD
    * @returns {Observable<boolean>}
    */
-  editObject(objectD: ObjectD): Observable<boolean> {
-    const url = `${this.urlMobabuild}/updateObjectById/${objectD.id}/${objectD.name}`;
-    return this.httpClient.get<string>(url, { ...this.sharedService.getAuthHeaderWithJson(), observe: 'response' }).pipe(
-      map(response => {
-        if (response.status === 200) {
-          console.log('Object updated successfully');
-          return true;
-        } else {
-          console.log('Failed to update object');
-          return false;
-        }
-      }),
-      catchError(error => {
-        console.error('Error updating object:', error);
-        return of(false); // Devuelve false en caso de error
-      })
-    );
+  editObject(objectD: ObjectD): Observable<ObjectD> {
+    const url = `${this.urlMobabuild}/update`;
+    return this.httpClient.put<ObjectD>(url, JSON.stringify(objectD), this.sharedService.getAuthHeaderWithJson())
   }
 
 

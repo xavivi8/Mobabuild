@@ -34,7 +34,7 @@ export class EditObjectComponent implements OnInit{
         debugger
         const object = this.objectForm.value;
         const RESPONSE = await firstValueFrom(this.servicioObject.editObject(object));
-        if (RESPONSE && RESPONSE === true) {
+        if (RESPONSE && RESPONSE as ObjectD) {
           this.snackBar.open('El objeto se actualizo correctamente.', CLOSE, { duration: 5000 });
           this.dialogRef.close({ ok: true, data: RESPONSE });
         } else {

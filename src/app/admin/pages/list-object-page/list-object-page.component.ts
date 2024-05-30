@@ -117,7 +117,7 @@ export class ListObjectPageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async (result) => {
-      if (result && result.ok) {
+      if (result && result as ObjectD) {
 
         const newObject = result.data;
         if (newObject) {

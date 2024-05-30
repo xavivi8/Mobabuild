@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { CLOSE } from 'src/app/shared/interfaces/messages';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ObjectD } from 'src/app/shared/interfaces/object';
 
 @Component({
   selector: 'app-add-object',
@@ -23,7 +24,10 @@ export class AddObjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.objectForm = new FormGroup({
+      id: new FormControl(null),
       name: new FormControl(null, [Validators.required]),
+      image: new FormControl(null),
+      objectSets: new FormControl(null),
     });
   }
 
@@ -32,8 +36,8 @@ export class AddObjectComponent implements OnInit {
       debugger
       if (this.objectForm.valid) {
         const object = this.objectForm.value;
-        const RESPONSE = await firstValueFrom(this.objectService.setObject(object.name));
-        if (RESPONSE && RESPONSE === 1) {
+        const RESPONSE = await firstValueFrom(this.objectService.setObject(object));
+        if (RESPONSE && RESPONSE as ObjectD) {
           this.snackBar.open('El objeto se añadio correctamente.', CLOSE, { duration: 5000 });
           this.dialogRef.close({ ok: true, data: RESPONSE });
         } else {
