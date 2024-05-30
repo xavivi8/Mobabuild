@@ -41,7 +41,7 @@ export class ChampionService {
    * @returns {Observable<Champions>}
    */
   addChampion(champion: Champions): Observable<Champions> {
-    return this.httpClient.get<Champions>(`${this.urlMobabuild}/setChampion/${champion.name}`, this.sharedService.getAuthHeaderWithJson());
+    return this.httpClient.post<Champions>(`${this.urlMobabuild}/create`, JSON.stringify(champion), this.sharedService.getAuthHeaderWithJson());
   }
 
   /**
