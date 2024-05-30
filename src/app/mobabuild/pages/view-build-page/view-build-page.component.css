@@ -1,0 +1,22 @@
+.object-container {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.object-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px; /* Espacio entre los elementos */
+}
+
+.object-image {
+  width: 100px; /* Ancho deseado de la imagen */
+  height: auto; /* Altura se ajustará automáticamente según el ancho */
+}
+
+.object-name {
+  margin-top: 5px; /* Espacio entre la imagen y el texto */
+  text-align: center; /* Alinear el texto al centro */
+}
