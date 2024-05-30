@@ -4,7 +4,7 @@ export interface ObjectSet {
   id: number | null;
   name: string;
   build: Build | null;
-  objects: Object[];
+  objects: ObjectD[];
 }
 
 export interface ObjectD {
