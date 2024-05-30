@@ -1,4 +1,5 @@
 import { Champions } from "./champions";
+import { ObjectSet } from "./object";
 import { RuneSet } from "./rune";
 import { SpellSet } from "./spell";
 import { User } from "./user";
@@ -9,7 +10,7 @@ export interface Build {
   user: User;
   champions: Champions;
   spellSets: SpellSet[];
-  objectSet: Object[];
+  objectSet: ObjectSet[];
   runeSet: RuneSet[];
 }
 
