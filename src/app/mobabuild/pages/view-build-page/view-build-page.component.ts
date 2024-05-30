@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Champions } from 'src/app/shared/interfaces/champions';
 import { SpellSet } from 'src/app/shared/interfaces/spell';
-import { ObjectSet } from 'src/app/shared/interfaces/object';
+import { ObjectD, ObjectSet } from 'src/app/shared/interfaces/object';
 import { RuneSet } from 'src/app/shared/interfaces/rune';
 
 @Component({
@@ -15,6 +15,17 @@ import { RuneSet } from 'src/app/shared/interfaces/rune';
 })
 export class ViewBuildPageComponent implements OnInit{
   public build!: Build;
+  public firstObject: ObjectSet = {
+    id: null,
+    name: '',
+    build: null,
+    objects: [],
+  }
+
+  public indexRuneSet: number = 0;
+  public indexSpellSet: number = 0;
+  public indexObjectSet: number = 0;
+
   public champion!: Champions;
   public spellSet: SpellSet[] = [];
   public objectSet: ObjectSet[] = [];
@@ -40,9 +51,11 @@ export class ViewBuildPageComponent implements OnInit{
   }
 
   getData(build: Build) {
+    debugger
     this.champion = build.champions
     this.spellSet = build.spellSets
     this.objectSet = build.objectSet
     this.ruenSet = build.runeSet
+    this.firstObject = this.objectSet[0]
   }
 }

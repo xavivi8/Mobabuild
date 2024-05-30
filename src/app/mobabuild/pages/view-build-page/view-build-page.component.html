@@ -1,4 +1,4 @@
-<div *ngIf="build" style="display: flex; margin: 0 auto;">
+<div *ngIf="build">
   <mat-card>
     <mat-card-header>
       <mat-card-title>{{ build.buildName }}</mat-card-title>
@@ -6,18 +6,21 @@
     <mat-card-content>
       <mat-card class="objetos arriba">
         <mat-card-header>
-          <mat-card-subtitle>{{ build.objectSet.length }}</mat-card-subtitle>
+          <mat-card-title>Objetos recomendados: {{ firstObject.name }}</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-          <div>
-            <img src="/assets/no-image.jpg" alt="No Image">
-            <p></p>
+        <mat-card-content class="object-container">
+          <div *ngFor="let object of firstObject.objects" class="object-item">
+            <img class="object-image" [src]="'/assets/no-image.jpg'" alt="No Image">
+            <p class="object-name">{{ object.name }}</p>
           </div>
         </mat-card-content>
       </mat-card>
+
       <div class="abajo">
         <mat-card class="runas">
-
+          <mat-card-header>
+            <mat-card-title></mat-card-title>
+          </mat-card-header>
         </mat-card>
         <mat-card class="hechizos">
 
