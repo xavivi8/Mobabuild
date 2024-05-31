@@ -124,7 +124,6 @@ export class AddBuildPageComponent implements OnInit{
   }
 
   onSubmit(): void {
-    debugger
     console.log(this.buildForm.value);
     console.log(this.spellSetForm.value);
     console.log(this.objectSetForm.value);
@@ -202,13 +201,28 @@ export class AddBuildPageComponent implements OnInit{
   }
 
   objectSetFormValid(): boolean {
-    if (!this.objectSetForm.valid) {
+    if (this.objectSetForm.valid) {
+      if( this.objectSetForm.value.objects.length > 6) {
+        console.error('Solo se pueden seleccionar hasta 6 objetos.');
+        this.snackBar.open('Solo se pueden seleccionar hasta 6 objetos.', CLOSE, {
+          duration: 3000
+        });
+        return false;
+      } else {
+        this.snackBar.open('Conjunto de objetos añadidos.', CLOSE, {
+          duration: 3000
+        });
+        return this.objectSetForm.valid;
+      }
+    } else {
+
       console.error('Form is not valid');
       this.snackBar.open('El conjunto de objetos no puede estar vacia.', CLOSE, {
         duration: 3000
       });
+      return false;
     }
-    return this.objectSetForm.valid;
+    return false;
   }
 
   runeSetFormValid(): boolean {
@@ -222,7 +236,7 @@ export class AddBuildPageComponent implements OnInit{
   }
 
   addObjectSet(){
-    if(this.objectSetForm.valid){
+    if(this.objectSetFormValid()){
       const addObjectSet: ObjectSet = {
         id: null,
         name: this.objectSetForm.value.name,
@@ -241,7 +255,7 @@ export class AddBuildPageComponent implements OnInit{
   }
 
   addSpellSet() {
-    if (this.spellSetForm.valid) {
+    if (this.spellSetFormValid()) {
       const addSpellSet: SpellSet = {
         id: null,
         name: this.spellSetForm.value.name,
@@ -259,7 +273,7 @@ export class AddBuildPageComponent implements OnInit{
   }
 
   addRuneSet() {
-    if (this.runeSetForm.valid) {
+    if (this.runeSetFormValid()) {
       const addRuneSet: RuneSet = {
         id: null,
         name: this.runeSetForm.value.name,
