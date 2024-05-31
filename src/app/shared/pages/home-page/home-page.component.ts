@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styles: [
   ]
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit{
   public menu = { label: 'Menú', icon: 'menu' }
 
   public sidebarItems = [
@@ -20,6 +20,10 @@ export class HomePageComponent {
     private router: Router,
 
   ) { }
+
+  ngOnInit(): void {
+    this.router.navigate(['/mobabuild/search_build']);
+  }
 
   /**
    * Método para realizar la acción de cierre de sesión.
