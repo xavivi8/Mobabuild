@@ -19,7 +19,10 @@
       <div class="abajo">
         <mat-card class="runas">
           <mat-card-header>
-            <mat-card-title></mat-card-title>
+            <mat-card-title>Runes: {{ usingRuneSet.name }}</mat-card-title>
+            <mat-card-actions>
+              <button mat-raised-button *ngFor="let pos of lenghtRuneSet" color="primary" (click)="useRuneSet(pos)">{{ (pos + 1) }}</button>
+            </mat-card-actions>
           </mat-card-header>
         </mat-card>
         <mat-card class="hechizos">
