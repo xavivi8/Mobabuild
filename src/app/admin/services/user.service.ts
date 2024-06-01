@@ -40,10 +40,6 @@ export class UserService {
    * @returns {User} Observable<User>
    */
   addUserWithoutImage(addUserRequest: AddUserRequest): Observable<User> {
-    console.log(addUserRequest);
-
-    console.log(JSON.stringify(addUserRequest));
-
     return this.httpClient.post<User>(`${this.urlMobabuild}/add`, JSON.stringify(addUserRequest), this.sharedService.getAuthHeaderWithJson());
   }
 
