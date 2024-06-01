@@ -26,12 +26,28 @@ export class ViewBuildPageComponent implements OnInit {
   }
 
   public lenghtRuneSet: number[] = [];
-  public lenghtSpellSet: number = 0;
-  public lenghtObjectSet: number = 0;
+  public lenghtSpellSet: number[] = [];
+  public lenghtObjectSet: number[] = [];
 
   public indexRuneSet: number = 0;
   public indexSpellSet: number = 0;
   public indexObjectSet: number = 0;
+
+  public usingSpellSet: SpellSet = {
+    id: null,
+    name: 'No hay hechizos',
+    spells: [],
+    build: null
+  };
+
+  public usingObjectSet: ObjectSet = {
+    id: null,
+    name: 'No hay objetos',
+    build: null,
+    objects: [],
+  };
+
+  public champion!: Champions;
 
   public usingRuneSet: RuneSet = {
     id: null,
@@ -43,10 +59,6 @@ export class ViewBuildPageComponent implements OnInit {
     additional_advantages: '',
     build: null
   };
-  public usingSpellSet!: SpellSet;
-  public usingObjectSet!: ObjectD;
-
-  public champion!: Champions;
 
   public mainRune: Rune = {
     id: -1,
@@ -158,6 +170,8 @@ export class ViewBuildPageComponent implements OnInit {
     image: new ArrayBuffer(0),
   };
 
+
+
   public spellSet: SpellSet[] = [];
   public objectSet: ObjectSet[] = [];
   public ruenSet: RuneSet[] = [];
@@ -188,8 +202,14 @@ export class ViewBuildPageComponent implements OnInit {
   }
   initBuild() {
     this.useRuneSet(0);
+    this.userSpellSet(0);
   }
 
+  /**
+   * @xavivi8
+   * @description obtiene los datos de la build
+   * @param {Build} build Build
+   */
   getData(build: Build) {
     this.champion = build.champions
     this.spellSet = build.spellSets
@@ -211,11 +231,19 @@ export class ViewBuildPageComponent implements OnInit {
   }
 
   takeLenghtSpellSet() {
-    this.lenghtSpellSet = this.spellSet.length
+    const lenghtSpell = this.spellSet.length
+
+    for (let i = 0; i < lenghtSpell; i++) {
+      this.lenghtSpellSet.push(i)
+    }
   }
 
   takeLenghtObjectSet() {
-    this.lenghtObjectSet = this.objectSet.length
+    const lenghtObject = this.objectSet.length
+
+    for (let i = 0; i < lenghtObject; i++) {
+      this.lenghtObjectSet.push(i)
+    }
   }
 
   useRuneSet(pos: number) {
@@ -297,7 +325,14 @@ export class ViewBuildPageComponent implements OnInit {
    * @returns {Promise<Rune>} la runa a devolver
    */
   async getRune(id: number): Promise<Rune> {
-    debugger
     return await firstValueFrom(this.runeService.findById(id));
+  }
+
+  userSpellSet(pos: number) {
+    this.usingSpellSet = this.spellSet[pos]
+  }
+
+  back() {
+    this.router.navigate(['/mobabuild/search_build']);
   }
 }
