@@ -1,0 +1,34 @@
+mat-sidenav-container, .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  width: 100%;
+  max-width: 600px;
+  width: 500px;
+  padding: 20px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+}
+
+.card-actions{
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-card-title {
+  color: aliceblue;
+  text-align: center;
+  width: 100%;
+}
+
+mat-card-content, mat-card-actions {
+  text-align: center;
+  width: 100%;
+}
