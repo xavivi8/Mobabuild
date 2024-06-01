@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { User } from "../interfaces/user";
 
 @Injectable({ providedIn: 'root' })
 export class SharedService {
@@ -39,6 +40,26 @@ export class SharedService {
       }),
       withCredentials: true
     };
+  }
+
+  isLoggedIn(): boolean {
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      try {
+        const user: User = JSON.parse(userString);
+        return !!user;
+      } catch (error) {
+        console.error('Error parsing user from localStorage', error);
+        return false;
+      }
+    }
+    return false;
+  }
+
+  doLogout() {
+    localStorage.removeItem('user');
+    localStorage.clear();
+    location.reload();
   }
 
 }
