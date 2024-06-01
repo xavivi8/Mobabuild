@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Error404PageComponent } from './shared/pages/error404-page/error404-page.component';
-import { MobabuildModule } from './mobabuild/mobabuild.module';
 
 const routes: Routes = [
   {
@@ -15,6 +14,10 @@ const routes: Routes = [
   {
     path: 'mobabuild',
     loadChildren: () => import('./mobabuild/mobabuild.module').then(m => m.MobabuildModule),
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
   },
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
   { path: '404', component: Error404PageComponent },
