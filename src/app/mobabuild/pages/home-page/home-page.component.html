@@ -18,8 +18,8 @@
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>{{menu.icon}}</mat-icon>
     </button>
-    <span class="spacer"></span>
-    <button mat-button routerLink="./add_build"> Añadir build
+    <span *ngIf="isLogedIn" class="spacer"></span>
+    <button *ngIf="isLogedIn" mat-button routerLink="./add_build"> Añadir build
       <mat-icon>add</mat-icon>
     </button>
     <span class="spacer"></span>
