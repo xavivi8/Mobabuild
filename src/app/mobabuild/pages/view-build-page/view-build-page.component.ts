@@ -256,14 +256,18 @@ export class ViewBuildPageComponent implements OnInit {
    * @description Coge los Runes de la RuneSet
    */
   async takeRunes() {
+    let listIdSubRune: number[] = this.usingRuneSet.secondary_sub_rune.split(",")
+      .map(id => parseInt(id, 10))
+      .filter(id => id !== -1);
+
     let idMainRune = parseInt(this.usingRuneSet.main_rune, 10);
     let idRune1 = parseInt(this.usingRuneSet.secondary_rune.split(",")[0], 10);
     let idRune2 = parseInt(this.usingRuneSet.secondary_rune.split(",")[1], 10);
     let idRune3 = parseInt(this.usingRuneSet.secondary_rune.split(",")[2], 10);
     let idRune4 = parseInt(this.usingRuneSet.secondary_rune.split(",")[3], 10);
     let idMainSubRune = parseInt(this.usingRuneSet.main_sub_rune, 10);
-    let idSubRune1 = parseInt(this.usingRuneSet.secondary_sub_rune.split(",")[0], 10);
-    let idSubRune2 = parseInt(this.usingRuneSet.secondary_sub_rune.split(",")[1], 10);
+    let idSubRune1 = listIdSubRune[0];
+    let idSubRune2 = listIdSubRune[1];
     let idAdditionalAdvantages1 = parseInt(this.usingRuneSet.additional_advantages.split(",")[0], 10);
     let idAdditionalAdvantages2 = parseInt(this.usingRuneSet.additional_advantages.split(",")[1], 10);
     let idAdditionalAdvantages3 = parseInt(this.usingRuneSet.additional_advantages.split(",")[2], 10);
@@ -274,43 +278,43 @@ export class ViewBuildPageComponent implements OnInit {
         this.mainRune = main;
       }
       let r1 = await this.getRune(idRune1)
-      if ( r1 as Rune) {
+      if (r1 as Rune) {
         this.rune1 = r1;
       }
       let r2 = await this.getRune(idRune2)
-      if ( r2 as Rune) {
+      if (r2 as Rune) {
         this.rune2 = r2;
       }
       let r3 = await this.getRune(idRune3)
-      if ( r3 as Rune) {
+      if (r3 as Rune) {
         this.rune3 = r3;
       }
       let r4 = await this.getRune(idRune4)
-      if ( r4 as Rune) {
+      if (r4 as Rune) {
         this.rune4 = r4;
       }
       let maunSub = await this.getRune(idMainSubRune)
-      if ( maunSub as Rune) {
+      if (maunSub as Rune) {
         this.mainSubRune = maunSub;
       }
       let s1 = await this.getRune(idSubRune1)
-      if ( s1 as Rune) {
+      if (s1 as Rune) {
         this.subRune1 = s1;
       }
       let s2 = await this.getRune(idSubRune2)
-      if ( s2 as Rune) {
+      if (s2 as Rune) {
         this.subRune2 = s2;
       }
       let a1 = await this.getRune(idAdditionalAdvantages1)
-      if ( a1 as Rune) {
+      if (a1 as Rune) {
         this.additionalAdvantages1 = a1;
       }
       let a2 = await this.getRune(idAdditionalAdvantages2)
-      if ( a2 as Rune) {
+      if (a2 as Rune) {
         this.additionalAdvantages2 = a2;
       }
       let a3 = await this.getRune(idAdditionalAdvantages3)
-      if ( a3 as Rune) {
+      if (a3 as Rune) {
         this.additionalAdvantages3 = a3;
       }
     } catch (error) {
