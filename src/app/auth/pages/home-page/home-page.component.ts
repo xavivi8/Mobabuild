@@ -21,7 +21,7 @@ export class HomePageComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    this.router.navigate(['/mobabuild/search_build']);
+    this.router.navigate(['/mobabuild/login']);
   }
 
   /**
