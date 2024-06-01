@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { User } from "../interfaces/user";
+import { AuthorityName, User } from "../interfaces/user";
 
 @Injectable({ providedIn: 'root' })
 export class SharedService {
@@ -60,6 +60,23 @@ export class SharedService {
     localStorage.removeItem('user');
     localStorage.clear();
     location.reload();
+  }
+
+  isAuthenticated(): boolean {
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      try {
+        const user: User = JSON.parse(userString);
+        if(user && user.authorities[0].name === AuthorityName.ADMIN) {
+          return true;
+        }
+        return false;
+      } catch (error) {
+        console.error('Error parsing user from localStorage', error);
+        return false;
+      }
+    }
+    return false;
   }
 
 }
