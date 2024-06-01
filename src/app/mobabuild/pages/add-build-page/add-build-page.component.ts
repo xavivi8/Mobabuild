@@ -16,13 +16,14 @@ import { RuneService } from '../../service/rune.service';
 import { ObjectService } from '../../service/object.service';
 import { CLOSE } from 'src/app/shared/interfaces/messages';
 import { Build } from 'src/app/shared/interfaces/build';
+import { SharedService } from 'src/app/shared/service/shared.service';
 
 @Component({
   selector: 'app-add-build-page',
   templateUrl: './add-build-page.component.html',
   styleUrls: ['./add-build-page.component.css']
 })
-export class AddBuildPageComponent implements OnInit{
+export class AddBuildPageComponent implements OnInit {
   buildForm: FormGroup = new FormGroup({});
   spellSetForm: FormGroup = new FormGroup({});
   objectSetForm: FormGroup = new FormGroup({});
@@ -71,6 +72,7 @@ export class AddBuildPageComponent implements OnInit{
   constructor(
     private fb: FormBuilder,
     private buildService: BuildService,
+    private sharedService: SharedService,
     private userService: UserService,
     private spellService: SpellService,
     private championService: ChampionService,
@@ -85,6 +87,9 @@ export class AddBuildPageComponent implements OnInit{
    * @description Carga los datos iniciales
    */
   async ngOnInit(): Promise<void> {
+    if(!this.sharedService.isLoggedIn()){
+      this.router.navigate(['/mobabuild/search_build']);
+    }
     this.buildForm = new FormGroup({
       buildName: new FormControl(null, [Validators.required]),
       user: new FormControl(null, [Validators.required]),
@@ -147,7 +152,7 @@ export class AddBuildPageComponent implements OnInit{
     console.log(this.objectSetForm.value);
     console.log(this.runeSetForm.value);
 
-    if(this.buildFormValid() && this.spellSetFormValid() && this.objectSetFormValid() && this.runeSetFormValid()) {
+    if (this.buildFormValid() && this.spellSetFormValid() && this.objectSetFormValid() && this.runeSetFormValid()) {
       this.addRuneSet();
       this.addSpellSet();
       this.addObjectSet();
@@ -221,7 +226,7 @@ export class AddBuildPageComponent implements OnInit{
         return false;
       }
     } else {
-      this.snackBar.open('El conjunto de hechizos no puede estar vacios.', CLOSE, {duration: 3000});
+      this.snackBar.open('El conjunto de hechizos no puede estar vacios.', CLOSE, { duration: 3000 });
       return false;
     }
     return this.spellSetForm.valid;
@@ -235,7 +240,7 @@ export class AddBuildPageComponent implements OnInit{
    */
   objectSetFormValid(): boolean {
     if (this.objectSetForm.valid) {
-      if( this.objectSetForm.value.objects.length > 6) {
+      if (this.objectSetForm.value.objects.length > 6) {
         console.error('Solo se pueden seleccionar hasta 6 objetos.');
         this.snackBar.open('Solo se pueden seleccionar hasta 6 objetos.', CLOSE, {
           duration: 3000
@@ -265,10 +270,10 @@ export class AddBuildPageComponent implements OnInit{
    */
   runeSetFormValid(): boolean {
     if (this.runeSetForm.valid) {
-      if(this.checkRunaVacia()){
+      if (this.checkRunaVacia()) {
 
         return this.runeSetForm.valid;
-      }else {
+      } else {
         this.snackBar.open('Hay que seleccionar dos runas secundarias y otra como Ninguna', CLOSE, {
           duration: 3000
         });
@@ -309,8 +314,8 @@ export class AddBuildPageComponent implements OnInit{
    * @xavivi8
    * @description Anade un conjunto de ObjectSet a un array de ObjectSet
    */
-  addObjectSet(){
-    if(this.objectSetFormValid()){
+  addObjectSet() {
+    if (this.objectSetFormValid()) {
       const addObjectSet: ObjectSet = {
         id: null,
         name: this.objectSetForm.value.name,
@@ -361,9 +366,9 @@ export class AddBuildPageComponent implements OnInit{
         name: this.runeSetForm.value.name,
         main_rune: this.runeSetForm.value.mainRune.id,
         main_sub_rune: this.runeSetForm.value.mainSubRune.id,
-        secondary_rune: this.runeSetForm.value.secondaryRune1.id+','+this.runeSetForm.value.secondaryRune2.id+','+this.runeSetForm.value.secondaryRune3.id+','+this.runeSetForm.value.secondaryRune4.id,
-        secondary_sub_rune: this.runeSetForm.value.secondarySubRune1.id+','+this.runeSetForm.value.secondarySubRune2.id+','+this.runeSetForm.value.secondarySubRune3.id,
-        additional_advantages: this.runeSetForm.value.additionalAdvantages1.id+','+this.runeSetForm.value.additionalAdvantages2.id+','+this.runeSetForm.value.additionalAdvantages3.id,
+        secondary_rune: this.runeSetForm.value.secondaryRune1.id + ',' + this.runeSetForm.value.secondaryRune2.id + ',' + this.runeSetForm.value.secondaryRune3.id + ',' + this.runeSetForm.value.secondaryRune4.id,
+        secondary_sub_rune: this.runeSetForm.value.secondarySubRune1.id + ',' + this.runeSetForm.value.secondarySubRune2.id + ',' + this.runeSetForm.value.secondarySubRune3.id,
+        additional_advantages: this.runeSetForm.value.additionalAdvantages1.id + ',' + this.runeSetForm.value.additionalAdvantages2.id + ',' + this.runeSetForm.value.additionalAdvantages3.id,
         build: null,
       };
 
@@ -387,6 +392,10 @@ export class AddBuildPageComponent implements OnInit{
     }
   }
 
+  /**
+   * @xavivi8
+   * @description Filtra las runas principales haciendo que cuando seleccione el usuario una runa principal, las demás runas princupales sean del mismo grupo y la mainSubRune haga que no puede elegir el mismo tipo de runa
+   */
   filterMainRunes() {
     this.filterMainSubRunes();
     this.filterRune1();
@@ -395,7 +404,11 @@ export class AddBuildPageComponent implements OnInit{
     this.filterRune4();
   }
 
-  filterSubRunes(){
+  /**
+   * @xavivi8
+   * @description Filtra las runas secundarias para que el usuario tenga que eleguir dos de las runas del mismo tipo y la otra marcarla como ninguno
+   */
+  filterSubRunes() {
     this.filterSubRune1();
     this.checkAndAddRunaVacia1();
     this.filterSubRune2();
@@ -412,6 +425,10 @@ export class AddBuildPageComponent implements OnInit{
     }
   }
 
+  /**
+   * @xavivi8
+   * @description filtra las runas principales 1
+   */
   filterRune1() {
     const mainRuneControl = this.runeSetForm.get('mainRune');
     if (mainRuneControl !== null && mainRuneControl.value !== null) {
@@ -420,7 +437,10 @@ export class AddBuildPageComponent implements OnInit{
     }
   }
 
-
+  /**
+   * @xavivi8
+   * @description filtra las runas principales 2
+   */
   filterRune2() {
     const mainRuneControl = this.runeSetForm.get('mainRune');
     if (mainRuneControl !== null && mainRuneControl.value !== null) {
@@ -429,6 +449,10 @@ export class AddBuildPageComponent implements OnInit{
     }
   }
 
+  /**
+   * @xavivi8
+   * @description filtra las runas principales 3
+   */
   filterRune3() {
     const mainRuneControl = this.runeSetForm.get('mainRune');
     if (mainRuneControl !== null && mainRuneControl.value !== null) {
@@ -437,6 +461,10 @@ export class AddBuildPageComponent implements OnInit{
     }
   }
 
+  /**
+   * @xavivi8
+   * @description filtra las runas principales 4
+   */
   filterRune4() {
     const mainRuneControl = this.runeSetForm.get('mainRune');
     if (mainRuneControl !== null && mainRuneControl.value !== null) {
@@ -445,6 +473,10 @@ export class AddBuildPageComponent implements OnInit{
     }
   }
 
+  /**
+   * @xavivi8
+   * @description filtra las runas secundarias 1
+   */
   filterSubRune1() {
     const mainSubRuneControl = this.runeSetForm.get('mainSubRune');
     if (mainSubRuneControl !== null && mainSubRuneControl.value !== null) {
@@ -453,6 +485,10 @@ export class AddBuildPageComponent implements OnInit{
     }
   }
 
+  /**
+   * @xavivi8
+   * @description filtra las runas secundarias 2
+   */
   filterSubRune2() {
     const mainSubRuneControl = this.runeSetForm.get('mainSubRune');
     if (mainSubRuneControl !== null && mainSubRuneControl.value !== null) {
@@ -461,6 +497,10 @@ export class AddBuildPageComponent implements OnInit{
     }
   }
 
+  /**
+   * @xavivi8
+   * @description filtra las runas secundarias 3
+   */
   filterSubRune3() {
     const mainSubRuneControl = this.runeSetForm.get('mainSubRune');
     if (mainSubRuneControl !== null && mainSubRuneControl.value !== null) {
@@ -469,6 +509,10 @@ export class AddBuildPageComponent implements OnInit{
     }
   }
 
+  /**
+   * @xavivi8
+   * @description comprueba que en las runas secundarias haya al menos una runa vacia
+   */
   checkAndAddRunaVacia1() {
     debugger
     const exists = this.filteredSubRune1.some(rune => rune.id === this.runaVacia.id);
@@ -477,6 +521,10 @@ export class AddBuildPageComponent implements OnInit{
     }
   }
 
+   /**
+   * @xavivi8
+   * @description comprueba que en las runas secundarias 2 haya al menos una runa vacia
+   */
   checkAndAddRunaVacia2() {
     const exists = this.filteredSubRune2.some(rune => rune.id === this.runaVacia.id);
     if (!exists) {
@@ -484,8 +532,9 @@ export class AddBuildPageComponent implements OnInit{
     }
   }
 
-  /**
-   *
+   /**
+   * @xavivi8
+   * @description comprueba que en las runas secundarias 3 haya al menos una runa vacia
    */
   checkAndAddRunaVacia3() {
     const exists = this.filteredSubRune3.some(rune => rune.id === this.runaVacia.id);
@@ -498,10 +547,20 @@ export class AddBuildPageComponent implements OnInit{
   /**
    * @xavivi8
    * @description coge el usuario
-   * @returns {Promise<User>} devuelve el usuario
+   * @returns {Promise<User | null>} devuelve el usuario
    */
-  async getUser(): Promise<User> {
-    return await firstValueFrom(this.userService.findById(1));
+  async getUser(): Promise<User | null> { // Cambiar el tipo de retorno a `Promise<User | null>`
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      const user: User = JSON.parse(userString);
+      try {
+        return await firstValueFrom(this.userService.findById(user.id));
+      } catch (error) {
+        console.error('Error fetching user by ID:', error);
+        return null; // Manejar el caso de error devolviendo `null`
+      }
+    }
+    return null; // Devuelve `null` si no hay usuario en `localStorage`
   }
 
   /**
