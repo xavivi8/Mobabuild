@@ -30,4 +30,8 @@ export class RuneService {
   findAll(): Observable<Rune[]> {
     return this.httpClient.get<Rune[]>(`${this.urlMobabuild}/findAll`, this.sharedService.getAuthHeaderWithJson());
   }
+
+  findById(id: number): Observable<Rune> {
+    return this.httpClient.get<Rune>(`${this.urlMobabuild}/findById/${id}`, this.sharedService.getAuthHeaderWithJson());
+  }
 }
