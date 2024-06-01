@@ -1,1 +1,37 @@
-<p>login-page works!</p>
+<div class="container">
+  <mat-card class="card">
+    <!-- Cabecera -->
+    <mat-card-header style="margin: 0 auto;">
+      <mat-card-title style="color: aliceblue;" >Login</mat-card-title>
+    </mat-card-header>
+    <!-- Cuerpo -->
+    <mat-card-content style="margin: 0 auto;">
+      <form class="mat-dialog-content" [formGroup]="userForm">
+
+        <div class="form">
+          <mat-form-field color="accent">
+            <input matInput placeholder="Email" formControlName="email" name="email" type="email" required>
+          </mat-form-field>
+        </div>
+
+        <div class="form">
+          <mat-form-field color="accent">
+            <input matInput placeholder="Contraseña" formControlName="pass" name="pass" [type]="hidePass ? 'password' : 'text'" required>
+            <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+              <mat-icon>{{ hidePass ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+      </form>
+    </mat-card-content>
+
+    <!-- Acciones -->
+    <mat-card-actions style="margin: 0 auto;">
+      <button mat-raised-button color="primary" (click)="createUser()">No tengo cuenta</button>
+      <button id="onSubmit" mat-button type="submit" [disabled]="!userForm.valid"
+        (click)="login()">Guardar</button>
+      <button mat-raised-button color="primary" (click)="cancelar()">Cancelar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
