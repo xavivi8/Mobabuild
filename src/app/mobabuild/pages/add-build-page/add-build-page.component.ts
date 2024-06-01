@@ -80,6 +80,10 @@ export class AddBuildPageComponent implements OnInit{
     private router: Router,
   ) { }
 
+  /**
+   * @xavivi8
+   * @description Carga los datos iniciales
+   */
   async ngOnInit(): Promise<void> {
     this.buildForm = new FormGroup({
       buildName: new FormControl(null, [Validators.required]),
@@ -133,6 +137,10 @@ export class AddBuildPageComponent implements OnInit{
     this.getAllObjects();
   }
 
+  /**
+   * @xavivi8
+   * @description envia el formulario y si todo esta correcto crea la build
+   */
   onSubmit(): void {
     console.log(this.buildForm.value);
     console.log(this.spellSetForm.value);
@@ -180,6 +188,11 @@ export class AddBuildPageComponent implements OnInit{
 
   }
 
+  /**
+   * @xavivi8
+   * @description Comprueba si el formulario es valido
+   * @returns {boolean} true si el formulario es valido
+   */
   buildFormValid(): boolean {
     if (!this.buildForm.valid) {
       console.error('Form is not valid');
@@ -190,6 +203,11 @@ export class AddBuildPageComponent implements OnInit{
     return this.buildForm.valid;
   }
 
+  /**
+   * @xavivi8
+   * @description Comprueba si el conjunto de hechizos es valido
+   * @returns {boolean} true si el conjunto de hechizos es valido
+   */
   spellSetFormValid(): boolean {
     if (this.spellSetForm.valid) {
       const selectedSpells: Spell[] = this.spellSetForm.value.spells;
@@ -210,6 +228,11 @@ export class AddBuildPageComponent implements OnInit{
 
   }
 
+  /**
+   * @xavivi8
+   * @description Comprueba si el conjunto de objetos es valido
+   * @returns {boolean} true si el conjunto de objetos es valido
+   */
   objectSetFormValid(): boolean {
     if (this.objectSetForm.valid) {
       if( this.objectSetForm.value.objects.length > 6) {
@@ -235,6 +258,11 @@ export class AddBuildPageComponent implements OnInit{
     return false;
   }
 
+  /**
+   * @xavivi8
+   * @description Comprueba si el conjunto de runas es valido
+   * @returns {boolean} true si el conjunto de runas es valido
+   */
   runeSetFormValid(): boolean {
     if (this.runeSetForm.valid) {
       if(this.checkRunaVacia()){
@@ -256,6 +284,11 @@ export class AddBuildPageComponent implements OnInit{
 
   }
 
+  /**
+   * @xavivi8
+   * @description Comprueba si solo hay una runa vacia, sino esta mal y devolvera false
+   * @returns {boolean} true si solo hay una runa vacia
+   */
   checkRunaVacia(): boolean {
     const secondarySubRune1 = this.runeSetForm.get('secondarySubRune1')?.value;
     const secondarySubRune2 = this.runeSetForm.get('secondarySubRune2')?.value;
@@ -272,6 +305,10 @@ export class AddBuildPageComponent implements OnInit{
     return runaVaciaCount === 1;
   }
 
+  /**
+   * @xavivi8
+   * @description Anade un conjunto de ObjectSet a un array de ObjectSet
+   */
   addObjectSet(){
     if(this.objectSetFormValid()){
       const addObjectSet: ObjectSet = {
@@ -291,6 +328,10 @@ export class AddBuildPageComponent implements OnInit{
     }
   }
 
+  /**
+   * @xavivi8
+   * @description añade un conjunto de SpellSet a un array de SpellSet
+   */
   addSpellSet() {
     if (this.spellSetFormValid()) {
       const addSpellSet: SpellSet = {
@@ -309,6 +350,10 @@ export class AddBuildPageComponent implements OnInit{
     }
   }
 
+  /**
+   * @xavivi8
+   * @description añade un objeto RunSet a un array de RunSet
+   */
   addRuneSet() {
     if (this.runeSetFormValid()) {
       const addRuneSet: RuneSet = {
@@ -439,6 +484,9 @@ export class AddBuildPageComponent implements OnInit{
     }
   }
 
+  /**
+   *
+   */
   checkAndAddRunaVacia3() {
     const exists = this.filteredSubRune3.some(rune => rune.id === this.runaVacia.id);
     if (!exists) {
@@ -447,10 +495,19 @@ export class AddBuildPageComponent implements OnInit{
   }
 
 
+  /**
+   * @xavivi8
+   * @description coge el usuario
+   * @returns {Promise<User>} devuelve el usuario
+   */
   async getUser(): Promise<User> {
     return await firstValueFrom(this.userService.findById(1));
   }
 
+  /**
+   * @xavivi8
+   * @description coge todos los objetos Spell
+   */
   getAllSpells(): void {
     this.spellService.findAll().subscribe({
       next: (spell) => {
@@ -462,6 +519,10 @@ export class AddBuildPageComponent implements OnInit{
     });
   }
 
+  /**
+   * @xavivi8
+   * @description coge todos los objetos Champion
+   */
   getAllChampions(): void {
     this.championService.findAll().subscribe({
       next: (champion) => {
@@ -473,6 +534,10 @@ export class AddBuildPageComponent implements OnInit{
     });
   }
 
+  /**
+   * @xavivi8
+   * @description filtra los objetos Rune y coger solo los que tengan el mismo group_name y rowType segun las reglas
+   */
   getAllRune(): void {
     this.runeService.findAll().subscribe({
       next: (runes) => {
@@ -492,6 +557,11 @@ export class AddBuildPageComponent implements OnInit{
     });
   }
 
+  /**
+   * @xavivi8
+   * @description filtra los objetos Rune y coger solo los que tengan el mismo group_name y name
+   * @param {Rune[]} runes
+   */
   checkGroupName(runes: Rune[]): void {
     runes.forEach(rune => {
       if (rune.name === rune.group_name) {
@@ -500,6 +570,11 @@ export class AddBuildPageComponent implements OnInit{
     });
   }
 
+  /**
+   * @xavivi8
+   * @description filtra los objetos Rune y coger solo los que sean de tipo 1
+   * @param {Rune[]} runes
+   */
   checkRowType1(runes: Rune[]): void {
     runes.forEach(rune => {
       if (rune.rowType === "1") {
@@ -507,6 +582,12 @@ export class AddBuildPageComponent implements OnInit{
       }
     });
   }
+
+  /**
+   * @xavivi8
+   * @description filtra los objetos Rune y coger solo los que sean de tipo 2
+   * @param {Rune[]} runes
+   */
   checkRowType2(runes: Rune[]): void {
     runes.forEach(rune => {
       if (rune.rowType === "2") {
@@ -514,6 +595,12 @@ export class AddBuildPageComponent implements OnInit{
       }
     });
   }
+
+  /**
+   * @xavivi8
+   * @description filtra los objetos Rune y coger solo los que sean de tipo 3
+   * @param {Rune[]} runes
+   */
   checkRowType3(runes: Rune[]): void {
     runes.forEach(rune => {
       if (rune.rowType === "3") {
@@ -521,6 +608,12 @@ export class AddBuildPageComponent implements OnInit{
       }
     });
   }
+
+  /**
+   * @xavivi8
+   * @description filtra los objetos Rune y coger solo los que sean de tipo 4
+   * @param {Rune[]} runes
+   */
   checkRowType4(runes: Rune[]): void {
     runes.forEach(rune => {
       if (rune.rowType === "4") {
@@ -530,6 +623,11 @@ export class AddBuildPageComponent implements OnInit{
     });
   }
 
+  /**
+   * @xavivi8
+   * @description filtra los objetos Rune y coger solo los que sean de tipo 1 y de la categoria "additional_advantages"
+   * @param {Rune[]} runes
+   */
   checkAdditionalAdvantages1(runes: Rune[]): void {
     runes.forEach(rune => {
       if (rune.group_name === "additional_advantages" && rune.rowType === "1") {
@@ -538,6 +636,11 @@ export class AddBuildPageComponent implements OnInit{
     });
   }
 
+  /**
+   * @xavivi8
+   * @description filtra los objetos Rune y coger solo los que sean de tipo 2 y de la categoria "additional_advantages"
+   * @param {Rune[]} runes
+   */
   checkAdditionalAdvantages2(runes: Rune[]): void {
     runes.forEach(rune => {
       if (rune.group_name === "additional_advantages" && rune.rowType === "2") {
@@ -546,6 +649,11 @@ export class AddBuildPageComponent implements OnInit{
     });
   }
 
+  /**
+   * @xavivi8
+   * @description filtra los objetos Rune y coger solo los que sean de tipo 3 y de la categoria "additional_advantages"
+   * @param {Rune[]} runes
+   */
   checkAdditionalAdvantages3(runes: Rune[]): void {
     runes.forEach(rune => {
       if (rune.group_name === "additional_advantages" && rune.rowType === "3") {
@@ -555,6 +663,10 @@ export class AddBuildPageComponent implements OnInit{
   }
 
 
+  /**
+   * @xavivi8
+   * @description obtiene todos los objetos
+   */
   getAllObjects(): void {
     this.objectService.getAllObjects().subscribe({
       next: (object) => {
