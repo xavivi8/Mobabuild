@@ -5,6 +5,7 @@ import { AddUserRequest, User } from "src/app/shared/interfaces/user";
 import { SharedService } from "src/app/shared/service/shared.service";
 import { URL_API } from "src/environments/environments";
 import { UserLogin } from "../interfaces/UserLogin";
+import { UserComand } from "../interfaces/UserComand";
 
 @Injectable({
   providedIn: 'root'
@@ -28,4 +29,8 @@ export class UserService {
     return firstValueFrom(this.httpClient.post<User>(`${this.urlMobabuild}/login`, JSON.stringify(userLogin), this.sharedService.getAuthHeaderWithJson()));
   }
 
+  create(userComand: UserComand): Observable<User> {
+    debugger
+    return this.httpClient.post<User>(`${this.urlMobabuild}/create`, JSON.stringify(userComand), this.sharedService.getAuthHeaderWithJson());
+  }
 }
