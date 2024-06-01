@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/shared/interfaces/user';
+import { SharedService } from 'src/app/shared/service/shared.service';
+import { UserService } from '../../services/user.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -9,6 +13,20 @@ import { Router } from '@angular/router';
 })
 export class HomePageComponent {
   public menu = { label: 'Menú', icon: 'menu' }
+
+
+  public isLogedIn = false
+
+  public user: User = {
+    id: 0,
+    email: '',
+    user_name: '',
+    pass: '',
+    image: null,
+    builds: [],
+    favoriteBuild: null,
+    authorities: [],
+  }
 
   public sidebarItems = [
     { label: 'Admin', icon: 'admin_panel_settings', url: '/admin' },
@@ -29,13 +47,42 @@ export class HomePageComponent {
 
   constructor(
     private router: Router,
-
+    private sharedService: SharedService,
+    private userService: UserService,
   ) {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.displayedAdminMenuItems = this.adminMenuItems.slice(0, 3);
+    this.isLogged();
+    if(!this.isAuthenticated() || !this.isLogedIn){
+      this.router.navigate(['/mobabuild/search_build']);
+    }
+    var mayUser = await this.getUser();
+
+    if (mayUser) {
+      this.user = mayUser;
+    }
+  }
+
+  /**
+   * @xavivi8
+   * @description obtiene el usuario por el id en el localStorage
+   * @returns {Promise<User | null>}
+   */
+  async getUser(): Promise<User | null> { // Cambiar el tipo de retorno a `Promise<User | null>`
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      const user: User = JSON.parse(userString);
+      try {
+        return await firstValueFrom(this.userService.findById(user.id));
+      } catch (error) {
+        console.error('Error fetching user by ID:', error);
+        return null; // Manejar el caso de error devolviendo `null`
+      }
+    }
+    return null; // Devuelve `null` si no hay usuario en `localStorage`
   }
 
   onMenuItemClick(menuItem: { label: string; icon: string; url: string }) {
@@ -53,12 +100,33 @@ export class HomePageComponent {
     }
   }
 
-  /**
+   /**
    * Método para realizar la acción de cierre de sesión.
    * Utiliza el servicio SharedService para realizar el logout.
    * @returns {void}
    */
-  logout(){
-    //this.sharedService.doLogout()
+   logout(){
+    this.sharedService.doLogout()
+  }
+
+  /**
+   * @xavivi8
+   * @description redirige al login
+   */
+  login(){
+    this.router.navigate(['/auth/login']);
+  }
+
+  /**
+   * @xavivi8
+   * @description verifica si hay un usuario
+   */
+  isLogged(){
+    this.isLogedIn = this.sharedService.isLoggedIn();
+  }
+
+  isAuthenticated() {
+    var isAuth = this.sharedService.isAuthenticated();
+    return isAuth;
   }
 }
