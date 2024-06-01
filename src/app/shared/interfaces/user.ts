@@ -18,7 +18,7 @@ export interface User {
   pass: string;
   image: ArrayBuffer | null;
   builds: Build[];
-  favoriteBuild: FavoriteBuild;
+  favoriteBuild: FavoriteBuild | null;
   authorities: Authority[];
 }
 
