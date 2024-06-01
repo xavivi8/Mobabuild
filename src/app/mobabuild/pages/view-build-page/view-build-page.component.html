@@ -18,49 +18,112 @@
 
       <div class="abajo">
         <mat-card class="runas">
-          <mat-card-header>
+          <mat-card-header class="header-rune">
             <mat-card-title>Runes: {{ usingRuneSet.name }}</mat-card-title>
-            <mat-card-actions>
-              <button mat-raised-button *ngFor="let pos of lenghtRuneSet" color="primary" (click)="useRuneSet(pos)">{{ (pos + 1) }}</button>
+            <mat-card-actions class="btn-rune">
+              <button mat-raised-button *ngFor="let pos of lenghtRuneSet" color="primary" (click)="useRuneSet(pos)">{{
+                (pos + 1) }}</button>
             </mat-card-actions>
           </mat-card-header>
-          <mat-card-content>
-            <div class="rune-column">
-              <div class="comunn">
-                <div class="main-rune">
+          <mat-card-content class="custom-card-content-rune">
+            <div class="row_runas1">
+              <div class="main-rune">
+
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <p>{{ mainRune.name }}</p>
+              </div>
+              <div class="rune">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <p>{{ rune1.name }}</p>
+              </div>
+              <div class="rune">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <p>{{ rune2.name }}</p>
+              </div>
+              <div class="rune">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <p>{{ rune3.name }}</p>
+              </div>
+              <div class="rune">
+                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <p>{{ rune4.name }}</p>
+              </div>
+            </div>
+            <div class="row_runas2">
+              <div class="arriba">
+                <div class="main-sub-rune">
+
                   <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
-                  <p>{{ mainRune.name }}</p>
+                  <p>{{ mainSubRune.name }}</p>
                 </div>
-                <div class="rune">
+                <div class="sub-rune">
                   <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
-                  <p>{{ rune1.name }}</p>
+                  <p>{{ subRune1.name }}</p>
                 </div>
-                <div class="rune">
+                <div class="sub-rune">
                   <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
-                  <p>{{ rune2.name }}</p>
+                  <p>{{ subRune2.name }}</p>
                 </div>
-                <div class="rune">
+              </div>
+              <div class="abajo">
+                <div class="additional-advantages">
                   <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
-                  <p>{{ rune3.name }}</p>
+                  <p>{{ additionalAdvantages1.name }}</p>
                 </div>
-                <div class="rune">
+                <div class="additional-advantages">
                   <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
-                  <p>{{ rune4.name }}</p>
+                  <p>{{ additionalAdvantages2.name }}</p>
+                </div>
+                <div class="additional-advantages">
+                  <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                  <p>{{ additionalAdvantages3.name }}</p>
                 </div>
               </div>
             </div>
           </mat-card-content>
         </mat-card>
-        <mat-card class="hechizos">
 
+        <mat-card class="hechizos">
+          <mat-card-header class="header-spells">
+            <mat-card-title>Spells: {{ usingSpellSet.name }}</mat-card-title>
+            <mat-card-actions class="btn-spells">
+              <button mat-raised-button *ngFor="let pos of lenghtSpellSet" color="primary"
+                (click)="userSpellSet(pos)">{{
+                (pos + 1) }}</button>
+            </mat-card-actions>
+          </mat-card-header>
+          <mat-card-content class="custom-card-content-spell">
+            <div class="row-spell">
+              <div class="spell">
+                <img src="/assets/no-image.jpg" alt="No Image" class="spell-image">
+                <p>{{ usingSpellSet.spells[0].name }}</p>
+              </div>
+              <div class="spell">
+                <img src="/assets/no-image.jpg" alt="No Image" class="spell-image">
+                <p>{{ usingSpellSet.spells[1].name }}</p>
+              </div>
+            </div>
+          </mat-card-content>
         </mat-card>
       </div>
 
-
+      <div class="objects" *ngFor="let objSet of objectSet">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{ objSet.name }}</mat-card-title>
+          </mat-card-header>
+        </mat-card>
+        <mat-card-content class="object-container">
+          <div *ngFor="let object of objSet.objects" class="object-item">
+            <img class="object-image" [src]="'/assets/no-image.jpg'" alt="No Image">
+            <p class="object-name">{{ object.name }}</p>
+          </div>
+        </mat-card-content>
+      </div>
     </mat-card-content>
 
-    <mat-card-actions>
-
+    <mat-card-actions class="btn">
+      <button mat-raised-button color="primary" (click)="back()">Volver</button>
     </mat-card-actions>
     <mat-card-footer>
       <mat-card-title>By {{ build.user.user_name }}</mat-card-title>
