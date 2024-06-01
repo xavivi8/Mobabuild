@@ -25,9 +25,11 @@
     <span class="spacer"></span>
     <button *ngIf="!isLogedIn" mat-button (click)="login()">
       <mat-icon>login</mat-icon>
+      Login
     </button>
     <button *ngIf="isLogedIn" mat-button (click)="logout()">
       <mat-icon>logout</mat-icon>
+      {{user.user_name}}
     </button>
   </mat-toolbar>
   <div class="container p-2">
