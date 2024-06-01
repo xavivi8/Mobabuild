@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/shared/service/shared.service';
 
 @Component({
   selector: 'app-home-page',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HomePageComponent implements OnInit{
   public menu = { label: 'Menú', icon: 'menu' }
+  public isLogedIn = false
 
   public sidebarItems = [
     { label: 'Admin', icon: 'admin_panel_settings', url: '/admin' },
@@ -18,11 +20,12 @@ export class HomePageComponent implements OnInit{
 
   constructor(
     private router: Router,
-
+    private sharedService: SharedService,
   ) { }
 
   ngOnInit(): void {
     this.router.navigate(['/mobabuild/search_build']);
+    this.isLogged();
   }
 
   /**
@@ -31,6 +34,14 @@ export class HomePageComponent implements OnInit{
    * @returns {void}
    */
   logout(){
-    //this.sharedService.doLogout()
+    this.sharedService.doLogout()
+  }
+
+  login(){
+    this.router.navigate(['/auth/login']);
+  }
+
+  isLogged(){
+    this.isLogedIn = this.sharedService.isLoggedIn();
   }
 }

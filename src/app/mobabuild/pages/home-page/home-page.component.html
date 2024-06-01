@@ -23,7 +23,10 @@
       <mat-icon>add</mat-icon>
     </button>
     <span class="spacer"></span>
-    <button mat-button (click)="logout()">
+    <button *ngIf="!isLogedIn" mat-button (click)="login()">
+      <mat-icon>login</mat-icon>
+    </button>
+    <button *ngIf="isLogedIn" mat-button (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>
   </mat-toolbar>
