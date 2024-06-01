@@ -28,6 +28,16 @@ export class AddBuildPageComponent implements OnInit{
   objectSetForm: FormGroup = new FormGroup({});
   runeSetForm: FormGroup = new FormGroup({});
 
+  runaVacia: Rune = {
+    id: -1,
+    name: 'Ninguna',
+    rowType: '',
+    group_name: '',
+    description: '',
+    long_description: '',
+    image: new ArrayBuffer(0),
+  };
+
   objectSet: ObjectSet[] = [];
   spellSet: SpellSet[] = [];
   runeSet: RuneSet[] = [];
@@ -226,13 +236,40 @@ export class AddBuildPageComponent implements OnInit{
   }
 
   runeSetFormValid(): boolean {
-    if (!this.runeSetForm.valid) {
+    if (this.runeSetForm.valid) {
+      if(this.checkRunaVacia()){
+
+        return this.runeSetForm.valid;
+      }else {
+        this.snackBar.open('Hay que seleccionar dos runas secundarias y otra como Ninguna', CLOSE, {
+          duration: 3000
+        });
+        return false
+      }
+    } else {
       console.error('Form is not valid');
       this.snackBar.open('Las runas no pueden estar vacias.', CLOSE, {
         duration: 3000
       });
+      return this.runeSetForm.valid;
     }
-    return this.runeSetForm.valid;
+
+  }
+
+  checkRunaVacia(): boolean {
+    const secondarySubRune1 = this.runeSetForm.get('secondarySubRune1')?.value;
+    const secondarySubRune2 = this.runeSetForm.get('secondarySubRune2')?.value;
+    const secondarySubRune3 = this.runeSetForm.get('secondarySubRune3')?.value;
+
+    if (secondarySubRune1 === null || secondarySubRune2 === null || secondarySubRune3 === null) {
+      // Si alguno de los valores es nulo, devolvemos false
+      return false;
+    }
+
+    const runes = [secondarySubRune1, secondarySubRune2, secondarySubRune3];
+    const runaVaciaCount = runes.filter(rune => rune.id === this.runaVacia.id).length;
+
+    return runaVaciaCount === 1;
   }
 
   addObjectSet(){
@@ -315,8 +352,11 @@ export class AddBuildPageComponent implements OnInit{
 
   filterSubRunes(){
     this.filterSubRune1();
+    this.checkAndAddRunaVacia1();
     this.filterSubRune2();
+    this.checkAndAddRunaVacia2();
     this.filterSubRune3();
+    this.checkAndAddRunaVacia3();
   }
 
   filterMainSubRunes() {
@@ -381,8 +421,28 @@ export class AddBuildPageComponent implements OnInit{
     if (mainSubRuneControl !== null && mainSubRuneControl.value !== null) {
       const mainSubRuneValue: Rune = mainSubRuneControl.value;
       this.filteredSubRune3 = this.rune4.filter(rune => rune.rowType === "4" && rune.group_name === mainSubRuneValue.group_name);
+    }
+  }
 
+  checkAndAddRunaVacia1() {
+    debugger
+    const exists = this.filteredSubRune1.some(rune => rune.id === this.runaVacia.id);
+    if (!exists) {
+      this.filteredSubRune1.push(this.runaVacia);
+    }
+  }
 
+  checkAndAddRunaVacia2() {
+    const exists = this.filteredSubRune2.some(rune => rune.id === this.runaVacia.id);
+    if (!exists) {
+      this.filteredSubRune2.push(this.runaVacia);
+    }
+  }
+
+  checkAndAddRunaVacia3() {
+    const exists = this.filteredSubRune3.some(rune => rune.id === this.runaVacia.id);
+    if (!exists) {
+      this.filteredSubRune3.push(this.runaVacia);
     }
   }
 
