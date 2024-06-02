@@ -66,7 +66,7 @@ export class SharedService {
     const userString = localStorage.getItem('user');
     if (userString) {
       try {
-        const user: User = JSON.parse(userString);
+        const user = JSON.parse(userString);
         if(user && user.authorities[0].name === AuthorityName.ADMIN) {
           return true;
         }
