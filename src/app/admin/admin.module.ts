@@ -27,6 +27,7 @@ import { AddRuneComponent } from './components/add-rune/add-rune.component';
 import { AddSpellComponent } from './components/add-spell/add-spell.component';
 import { DeleteSpellComponent } from './components/delete-spell/delete-spell.component';
 import { EditSpellComponent } from './components/edit-spell/edit-spell.component';
+import { Base64ToImagePipe } from '../shared/pipe/base64ToImage.pipe';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { EditSpellComponent } from './components/edit-spell/edit-spell.component
     AddSpellComponent,
     DeleteSpellComponent,
     EditSpellComponent,
+    Base64ToImagePipe,
   ],
   imports: [
     CommonModule,
