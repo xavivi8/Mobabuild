@@ -14,6 +14,8 @@ import { CLOSE } from 'src/app/shared/interfaces/messages';
 export class AddChampionComponent implements OnInit{
 
   championForm: FormGroup = new FormGroup({});
+  selectedFile: File | null = null;
+  fileBase64: string | ArrayBuffer | null = null;
 
   /**
    * @xavivi8
@@ -35,7 +37,25 @@ export class AddChampionComponent implements OnInit{
   ngOnInit(): void {
     this.championForm = new FormGroup({
       name: new FormControl(null, [Validators.required]),
+      image: new FormControl(null),
     });
+  }
+
+  /**
+   * @xavivi8
+   * @description selecciona el archivo
+   * @param {any} event
+   */
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.fileBase64 = reader.result;
+        this.championForm.patchValue({ image: this.fileBase64 });
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
   }
 
   /**
@@ -47,6 +67,9 @@ export class AddChampionComponent implements OnInit{
       debugger
       if (this.championForm.valid) {
         const object = this.championForm.value;
+        if (this.fileBase64) {
+          object.image = this.fileBase64.toString().split(',')[1];
+        }
         const RESPONSE = await firstValueFrom(this.ChampionService.addChampion(object));
         if (RESPONSE) {
           this.snackBar.open('El objeto se añadio correctamente.', CLOSE, { duration: 5000 });
