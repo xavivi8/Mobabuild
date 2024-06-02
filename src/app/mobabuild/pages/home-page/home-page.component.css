@@ -1,0 +1,10 @@
+.footer{
+  grid-row: 2; /* Asegura que el footer esté en la segunda fila de la cuadrícula */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+body{
+  display: flex;
+  flex: 1;
+}
