@@ -31,6 +31,7 @@
       <mat-icon>logout</mat-icon>
       {{user.user_name}}
     </button>
+    <img *ngIf="isLogedIn" class="image" [src]="user.image | base64ToImage" alt="No Image">
   </mat-toolbar>
   <div class="container p-2">
     <router-outlet></router-outlet>
