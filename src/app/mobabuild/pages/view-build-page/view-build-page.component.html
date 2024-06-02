@@ -29,23 +29,23 @@
             <div class="row_runas1">
               <div class="main-rune">
 
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="mainRune.image | base64ToImage" alt="No Image" class="rune-image">
                 <p>{{ mainRune.name }}</p>
               </div>
               <div class="rune">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="rune2.image | base64ToImage" alt="No Image" class="rune-image">
                 <p>{{ rune1.name }}</p>
               </div>
               <div class="rune">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="rune2.image | base64ToImage" alt="No Image" class="rune-image">
                 <p>{{ rune2.name }}</p>
               </div>
               <div class="rune">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="rune3.image | base64ToImage" alt="No Image" class="rune-image">
                 <p>{{ rune3.name }}</p>
               </div>
               <div class="rune">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="rune4.image | base64ToImage" alt="No Image" class="rune-image">
                 <p>{{ rune4.name }}</p>
               </div>
             </div>
@@ -53,29 +53,29 @@
               <div class="arriba">
                 <div class="main-sub-rune">
 
-                  <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                  <img [src]="mainSubRune.image | base64ToImage" alt="No Image" class="rune-image">
                   <p>{{ mainSubRune.name }}</p>
                 </div>
                 <div class="sub-rune">
-                  <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                  <img [src]="subRune1.image | base64ToImage" alt="No Image" class="rune-image">
                   <p>{{ subRune1.name }}</p>
                 </div>
                 <div class="sub-rune">
-                  <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                  <img [src]="subRune2.image | base64ToImage" alt="No Image" class="rune-image">
                   <p>{{ subRune2.name }}</p>
                 </div>
               </div>
               <div class="abajo">
                 <div class="additional-advantages">
-                  <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                  <img [src]="additionalAdvantages1.image | base64ToImage"alt="No Image" class="rune-image">
                   <p>{{ additionalAdvantages1.name }}</p>
                 </div>
                 <div class="additional-advantages">
-                  <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                  <img [src]="additionalAdvantages2.image | base64ToImage" alt="No Image" class="rune-image">
                   <p>{{ additionalAdvantages2.name }}</p>
                 </div>
                 <div class="additional-advantages">
-                  <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                  <img [src]="additionalAdvantages3.image | base64ToImage" alt="No Image" class="rune-image">
                   <p>{{ additionalAdvantages3.name }}</p>
                 </div>
               </div>

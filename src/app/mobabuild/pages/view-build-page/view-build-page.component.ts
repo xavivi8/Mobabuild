@@ -67,7 +67,7 @@ export class ViewBuildPageComponent implements OnInit {
     group_name: "",
     description: "",
     long_description: "",
-    image: new ArrayBuffer(0),
+    image: "",
   };
 
   public rune1: Rune = {
@@ -77,7 +77,7 @@ export class ViewBuildPageComponent implements OnInit {
     group_name: "",
     description: "",
     long_description: "",
-    image: new ArrayBuffer(0),
+    image: "",
   };
 
   public rune2: Rune = {
@@ -87,7 +87,7 @@ export class ViewBuildPageComponent implements OnInit {
     group_name: "",
     description: "",
     long_description: "",
-    image: new ArrayBuffer(0),
+    image: "",
   };
 
   public rune3: Rune = {
@@ -97,7 +97,7 @@ export class ViewBuildPageComponent implements OnInit {
     group_name: "",
     description: "",
     long_description: "",
-    image: new ArrayBuffer(0),
+    image: "",
   };
 
   public rune4: Rune = {
@@ -107,7 +107,7 @@ export class ViewBuildPageComponent implements OnInit {
     group_name: "",
     description: "",
     long_description: "",
-    image: new ArrayBuffer(0),
+    image: "",
   };
 
   public mainSubRune: Rune = {
@@ -117,7 +117,7 @@ export class ViewBuildPageComponent implements OnInit {
     group_name: "",
     description: "",
     long_description: "",
-    image: new ArrayBuffer(0),
+    image: "",
   };
 
   public subRune1: Rune = {
@@ -127,7 +127,7 @@ export class ViewBuildPageComponent implements OnInit {
     group_name: "",
     description: "",
     long_description: "",
-    image: new ArrayBuffer(0),
+    image: "",
   };
 
   public subRune2: Rune = {
@@ -137,7 +137,7 @@ export class ViewBuildPageComponent implements OnInit {
     group_name: "",
     description: "",
     long_description: "",
-    image: new ArrayBuffer(0),
+    image: "",
   };
 
   public additionalAdvantages1: Rune = {
@@ -147,7 +147,7 @@ export class ViewBuildPageComponent implements OnInit {
     group_name: "",
     description: "",
     long_description: "",
-    image: new ArrayBuffer(0),
+    image: "",
   };
 
   public additionalAdvantages2: Rune = {
@@ -157,7 +157,7 @@ export class ViewBuildPageComponent implements OnInit {
     group_name: "",
     description: "",
     long_description: "",
-    image: new ArrayBuffer(0),
+    image: "",
   };
 
   public additionalAdvantages3: Rune = {
@@ -167,7 +167,7 @@ export class ViewBuildPageComponent implements OnInit {
     group_name: "",
     description: "",
     long_description: "",
-    image: new ArrayBuffer(0),
+    image: "",
   };
 
 

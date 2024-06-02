@@ -11,6 +11,7 @@ import { EditBuildPageComponent } from './pages/edit-build-page/edit-build-page.
 import { SearchBuildCardComponent } from './components/search-build-card/search-build-card.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ViewBuildPageComponent } from './pages/view-build-page/view-build-page.component';
+import { Base64ToImagePipe } from './pipe/base64ToImage.pipe';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ViewBuildPageComponent } from './pages/view-build-page/view-build-page.
     EditBuildPageComponent,
     SearchBuildCardComponent,
     ViewBuildPageComponent,
+    Base64ToImagePipe,
   ],
   imports: [
     CommonModule,

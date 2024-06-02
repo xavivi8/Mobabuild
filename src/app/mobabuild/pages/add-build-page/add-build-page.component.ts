@@ -36,7 +36,7 @@ export class AddBuildPageComponent implements OnInit {
     group_name: '',
     description: '',
     long_description: '',
-    image: new ArrayBuffer(0),
+    image: "",
   };
 
   objectSet: ObjectSet[] = [];
