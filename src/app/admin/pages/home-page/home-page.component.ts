@@ -8,8 +8,7 @@ import { firstValueFrom } from 'rxjs';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styles: [
-  ]
+  styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent {
   public menu = { label: 'Menú', icon: 'menu' }
@@ -45,6 +44,13 @@ export class HomePageComponent {
   public displayedAdminMenuItems: { label: string; icon: string; url: string }[] = [];
   currentUrl: string = '';
 
+  /**
+   * @xavivi8
+   * @description redirige al login
+   * @param {Router} router
+   * @param {SharedService} sharedService
+   * @param {UserService} userService
+   */
   constructor(
     private router: Router,
     private sharedService: SharedService,
@@ -53,6 +59,10 @@ export class HomePageComponent {
 
   }
 
+  /**
+   * @xavivi8
+   * @description inicializa el componente
+   */
   async ngOnInit() {
     this.displayedAdminMenuItems = this.adminMenuItems.slice(0, 3);
     this.isLogged();
@@ -125,6 +135,11 @@ export class HomePageComponent {
     this.isLogedIn = this.sharedService.isLoggedIn();
   }
 
+  /**
+   * @xavivi8
+   * @description verifica si hay un usuario
+   * @returns {boolean}
+   */
   isAuthenticated() {
     var isAuth = this.sharedService.isAuthenticated();
     return isAuth;
