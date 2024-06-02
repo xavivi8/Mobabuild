@@ -10,7 +10,7 @@
         </mat-card-header>
         <mat-card-content class="object-container">
           <div *ngFor="let object of firstObject.objects" class="object-item">
-            <img class="object-image" [src]="'/assets/no-image.jpg'" alt="No Image">
+            <img class="object-image" [src]="object.image | base64ToImage" alt="No Image">
             <p class="object-name">{{ object.name }}</p>
           </div>
         </mat-card-content>
@@ -95,11 +95,11 @@
           <mat-card-content class="custom-card-content-spell">
             <div class="row-spell">
               <div class="spell">
-                <img src="/assets/no-image.jpg" alt="No Image" class="spell-image">
+                <img [src]="usingSpellSet.spells[0].image | base64ToImage" alt="No Image" class="spell-image">
                 <p>{{ usingSpellSet.spells[0].name }}</p>
               </div>
               <div class="spell">
-                <img src="/assets/no-image.jpg" alt="No Image" class="spell-image">
+                <img [src]="usingSpellSet.spells[1].image | base64ToImage" alt="No Image" class="spell-image">
                 <p>{{ usingSpellSet.spells[1].name }}</p>
               </div>
             </div>
@@ -115,7 +115,7 @@
         </mat-card>
         <mat-card-content class="object-container">
           <div *ngFor="let object of objSet.objects" class="object-item">
-            <img class="object-image" [src]="'/assets/no-image.jpg'" alt="No Image">
+            <img class="object-image" [src]="object.image | base64ToImage" alt="No Image">
             <p class="object-name">{{ object.name }}</p>
           </div>
         </mat-card-content>
