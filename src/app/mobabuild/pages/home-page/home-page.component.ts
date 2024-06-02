@@ -8,8 +8,7 @@ import { UserService } from '../../service/user.service';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styles: [
-  ]
+  styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit{
   public menu = { label: 'Menú', icon: 'menu' }
@@ -32,12 +31,23 @@ export class HomePageComponent implements OnInit{
     /* { label: 'Login', icon: 'login', url: '/auth' } */
   ]
 
+  /**
+   * @xavivi8
+   * @description redirige al login
+   * @param {Router} router
+   * @param {SharedService} sharedService
+   * @param {UserService} userService
+   */
   constructor(
     private router: Router,
     private sharedService: SharedService,
     private userService: UserService,
   ) { }
 
+  /**
+   * @xavivi8
+   * @description inicializa el componente
+   */
   async ngOnInit(): Promise<void> {
     this.router.navigate(['/mobabuild/search_build']);
     this.isLogged();
@@ -76,10 +86,18 @@ export class HomePageComponent implements OnInit{
     this.sharedService.doLogout()
   }
 
+  /**
+   * @xavivi8
+   * @description redirige al login
+   */
   login(){
     this.router.navigate(['/auth/login']);
   }
 
+  /**
+   * @xavivi8
+   * @description redirige al login
+   */
   isLogged(){
     this.isLogedIn = this.sharedService.isLoggedIn();
   }
