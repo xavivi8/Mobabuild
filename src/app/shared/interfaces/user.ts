@@ -16,7 +16,7 @@ export interface User {
   email: string;
   user_name: string;
   pass: string;
-  image: ArrayBuffer | null;
+  image: string;
   builds: Build[];
   favoriteBuild: FavoriteBuild | null;
   authorities: Authority[];
@@ -27,5 +27,6 @@ export interface AddUserRequest {
   userName: string;
   pass: string;
   authorityNames: string[];
+  image: string;
 }
 
