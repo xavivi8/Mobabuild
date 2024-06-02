@@ -13,6 +13,8 @@ import { CLOSE } from 'src/app/shared/interfaces/messages';
 })
 export class AddRuneComponent implements OnInit{
   runeForm: FormGroup = new FormGroup({});
+  selectedFile: File | null = null;
+  fileBase64: string | ArrayBuffer | null = null;
 
   /**
    * @xavivi8
@@ -42,6 +44,18 @@ export class AddRuneComponent implements OnInit{
     });
   }
 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.fileBase64 = reader.result;
+        this.runeForm.patchValue({ image: this.fileBase64 });
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
   /**
    * @xavivi8
    * @description añade el objeto por la id
@@ -51,6 +65,9 @@ export class AddRuneComponent implements OnInit{
       debugger
       if (this.runeForm.valid) {
         const object = this.runeForm.value;
+        if (this.fileBase64) {
+          object.image = this.fileBase64.toString().split(',')[1];
+        }
         const RESPONSE = await firstValueFrom(this.runeService.create(object));
         if (RESPONSE) {
           this.snackBar.open('El objeto se añadio correctamente.', CLOSE, { duration: 5000 });

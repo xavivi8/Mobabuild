@@ -14,6 +14,8 @@ import { CLOSE } from 'src/app/shared/interfaces/messages';
 })
 export class EditRuneComponent implements OnInit{
   runeForm: FormGroup = new FormGroup({});
+  selectedFile: File | null = null;
+  fileBase64: string | ArrayBuffer | null = null;
 
   /**
    * @xavivi8
@@ -46,6 +48,18 @@ export class EditRuneComponent implements OnInit{
     });
   }
 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.fileBase64 = reader.result;
+        this.runeForm.patchValue({ image: this.fileBase64 });
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
   /**
    * @xavivi8
    * @description actualiza el objeto
@@ -54,9 +68,12 @@ export class EditRuneComponent implements OnInit{
     try {
       if (this.runeForm.valid) {
         const newRune = this.runeForm.value;
+        if (this.fileBase64) {
+          newRune.image = this.fileBase64.toString().split(',')[1]; // Solo la parte base64
+        }
         const RESPONSE = await firstValueFrom(this.runeService.update(newRune));
         if (RESPONSE && RESPONSE as Rune) {
-          this.snackBar.open('El objeto se actualizo correctamente.', CLOSE, { duration: 5000 });
+          this.snackBar.open('El objeto se actualizó correctamente.', CLOSE, { duration: 5000 });
           this.dialogRef.close({ ok: true, data: RESPONSE });
         } else {
           this.snackBar.open('No se pudo actualizar el objeto.', CLOSE, { duration: 5000 });
@@ -64,7 +81,7 @@ export class EditRuneComponent implements OnInit{
       }
     } catch (error) {
       console.error('Error al actualizar el objeto:', error);
-      this.snackBar.open('Ocurre un error al actualizar el objeto.', CLOSE, { duration: 5000 });
+      this.snackBar.open('Ocurrió un error al actualizar el objeto.', CLOSE, { duration: 5000 });
     }
   }
 

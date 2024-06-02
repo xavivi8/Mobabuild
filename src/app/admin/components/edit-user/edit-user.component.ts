@@ -16,6 +16,7 @@ import { CLOSE } from 'src/app/shared/interfaces/messages';
 export class EditUserComponent implements OnInit{
   userForm: FormGroup = new FormGroup({});
   authorityOptions: Authority[] = []
+  selectedFile: File | null = null;
 
   /**
    * @xavivi8
