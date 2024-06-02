@@ -5,6 +5,7 @@ import { AddBuildPageComponent } from './pages/add-build-page/add-build-page.com
 import { EditBuildPageComponent } from './pages/edit-build-page/edit-build-page.component';
 import { SearchBuildComponent } from './pages/search-build/search-build.component';
 import { ViewBuildPageComponent } from './pages/view-build-page/view-build-page.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: 'add_build', component: AddBuildPageComponent },
       { path: 'edit_build', component: EditBuildPageComponent },
       { path: 'search_build', component: SearchBuildComponent },
+      { path: 'profiel', component: ProfilePageComponent },
       { path: 'view_build/:id', component: ViewBuildPageComponent }
     ]
   }
