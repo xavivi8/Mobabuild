@@ -14,6 +14,6 @@ export interface Spell {
   game_mode: string;
   description: string;
   cooldown: string;
-  image: ArrayBuffer;
+  image: string;
   //spellSets: SpellSet[];
 }

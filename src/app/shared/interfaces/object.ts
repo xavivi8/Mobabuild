@@ -10,6 +10,6 @@ export interface ObjectSet {
 export interface ObjectD {
   id: number;
   name: string;
-  image: ArrayBuffer;
+  image: string;
   objectSets: ObjectSet[];
 }
