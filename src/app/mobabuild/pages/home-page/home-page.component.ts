@@ -26,9 +26,9 @@ export class HomePageComponent implements OnInit{
   }
 
   public sidebarItems = [
+    { label: 'Perfil', icon: 'account_circle', url: '/mobabuild/profiel' },
     { label: 'Admin', icon: 'admin_panel_settings', url: '/admin' },
     { label: 'Mobabuild', icon: 'movie', url: '/mobabuild/search_build' },
-    { label: 'Perfil', icon: 'account_circle', url: '/mobabuild/profiel' },
     /* { label: 'Login', icon: 'login', url: '/auth' } */
   ]
 
