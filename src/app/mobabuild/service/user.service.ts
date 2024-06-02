@@ -19,6 +19,16 @@ export class UserService {
 
   }
 
+  /**
+   * @xavivi8
+   * @description update user
+   * @param {User} user
+   * @returns {Observable<User>}
+   */
+  updateUser(user: User): Observable<User> {
+    return this.httpClient.put<User>(`${this.urlMobabuild}/update`, JSON.stringify(user), this.sharedService.getAuthHeaderWithJson() );
+  }
+
   findById(id: number): Observable<User> {
     return this.httpClient.get<User>(`${this.urlMobabuild}/find/${id}`, this.sharedService.getAuthHeaderWithJson());
   }
