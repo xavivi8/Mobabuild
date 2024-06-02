@@ -133,6 +133,7 @@
 
 .abajo {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .runas {
@@ -161,4 +162,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.object-header{
+  display: flex;
+  justify-content: space-around;
 }
