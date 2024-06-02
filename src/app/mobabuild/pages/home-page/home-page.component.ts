@@ -20,7 +20,7 @@ export class HomePageComponent implements OnInit{
     email: '',
     user_name: '',
     pass: '',
-    image: null,
+    image: "",
     builds: [],
     favoriteBuild: null,
     authorities: [],

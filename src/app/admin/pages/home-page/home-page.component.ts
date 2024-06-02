@@ -22,7 +22,7 @@ export class HomePageComponent {
     email: '',
     user_name: '',
     pass: '',
-    image: null,
+    image: "",
     builds: [],
     favoriteBuild: null,
     authorities: [],
