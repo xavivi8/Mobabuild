@@ -1,1 +1,39 @@
-<p>profile-page works!</p>
+<div class="container">
+  <mat-card class="card">
+    <!-- Cabecera -->
+    <mat-card-header class="header-profile">
+      <div class="header-content">
+        <mat-card-title>Perfil</mat-card-title>
+        <img class="image" [src]="user.image | base64ToImage" alt="No Image">
+      </div>
+    </mat-card-header>
+    <!-- Cuerpo -->
+    <mat-card-content>
+      <form class="form" [formGroup]="userForm">
+
+        <div class="form-field">
+          <mat-form-field color="accent" appearance="fill" class="full-width">
+            <input matInput placeholder="Nombre del usuario" formControlName="user_name" name="user_name" required>
+          </mat-form-field>
+        </div>
+
+        <div class="form-field">
+          <mat-form-field color="accent" appearance="fill" class="full-width">
+            <input matInput placeholder="Email" formControlName="email" name="email" type="email" required>
+          </mat-form-field>
+        </div>
+
+        <div class="form-field">
+          <input type="file" (change)="onFileSelected($event)">
+        </div>
+
+      </form>
+    </mat-card-content>
+
+    <!-- Acciones -->
+    <mat-card-actions class="actions-profile">
+      <button id="onSubmit" mat-button type="submit" [disabled]="!userForm.valid" (click)="confirmEdit()">Guardar</button>
+      <button id="onNoClick" mat-button (click)="onNoClick()" tabindex="-1">Volver</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
