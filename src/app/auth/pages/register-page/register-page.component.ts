@@ -46,7 +46,14 @@ export class RegisterPageComponent implements OnInit{
         const RESPONSE = await firstValueFrom(this.userService.create(addUserRequest));
         if (RESPONSE && RESPONSE as User) {
           const USER: User = RESPONSE;
-          localStorage.setItem('user', JSON.stringify(USER));
+          var userStorage = {
+            id: USER.id,
+            email: USER.email,
+            user_name: USER.user_name,
+            pass: USER.pass,
+            authorities: USER.authorities
+          }
+          localStorage.setItem('user', JSON.stringify(userStorage));
           this.router.navigate(['/mobabuild/search_build']);
           this.snackBar.open('El usuario se añadio correctamente.', CLOSE, { duration: 5000 });
         } else {

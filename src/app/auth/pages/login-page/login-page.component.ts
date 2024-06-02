@@ -31,7 +31,6 @@ export class LoginPageComponent implements OnInit{
   }
 
   async login() {
-    debugger
     if (this.userForm.valid) {
       const userLogin: UserLogin = {
         email: this.userForm.get('email')?.value,
@@ -40,10 +39,16 @@ export class LoginPageComponent implements OnInit{
 
       try {
         const RESPONSE = await this.userService.login(userLogin);
-        debugger
         if (RESPONSE) {
           const USER: User = RESPONSE;
-          localStorage.setItem('user', JSON.stringify(USER));
+          var userStorage = {
+            id: USER.id,
+            email: USER.email,
+            user_name: USER.user_name,
+            pass: USER.pass,
+            authorities: USER.authorities
+          }
+          localStorage.setItem('user', JSON.stringify(userStorage));
           this.router.navigate(['/mobabuild/search_build']);
         } else {
           this.snackBar.open('Credenciales incorrectas', CLOSE, {
