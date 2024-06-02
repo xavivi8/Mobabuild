@@ -11,7 +11,7 @@ import { EditBuildPageComponent } from './pages/edit-build-page/edit-build-page.
 import { SearchBuildCardComponent } from './components/search-build-card/search-build-card.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ViewBuildPageComponent } from './pages/view-build-page/view-build-page.component';
-import { Base64ToImagePipe } from './pipe/base64ToImage.pipe';
+import { Base64ToImagePipe } from '../shared/pipe/base64ToImage.pipe';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { FavBuildPageComponent } from './pages/fav-build-page/fav-build-page.component';
 import { UserBuildPageComponent } from './pages/user-build-page/user-build-page.component';
