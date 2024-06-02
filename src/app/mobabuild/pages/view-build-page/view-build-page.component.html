@@ -33,7 +33,7 @@
                 <p>{{ mainRune.name }}</p>
               </div>
               <div class="rune">
-                <img [src]="rune2.image | base64ToImage" alt="No Image" class="rune-image">
+                <img [src]="rune1.image | base64ToImage" alt="No Image" class="rune-image">
                 <p>{{ rune1.name }}</p>
               </div>
               <div class="rune">
@@ -108,6 +108,9 @@
       </div>
 
       <div class="objects" *ngFor="let objSet of objectSet">
+        <mat-card-header>
+          <mat-card-title>Conjuntos de Objetos: </mat-card-title>
+        </mat-card-header>
         <mat-card>
           <mat-card-header>
             <mat-card-title>{{ objSet.name }}</mat-card-title>
