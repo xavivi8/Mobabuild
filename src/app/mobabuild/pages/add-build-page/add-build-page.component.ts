@@ -39,6 +39,126 @@ export class AddBuildPageComponent implements OnInit {
     image: "",
   };
 
+  public mainRuneSelect: Rune = {
+    id: -1,
+    name: "",
+    rowType: "",
+    group_name: "",
+    description: "",
+    long_description: "",
+    image: "",
+  };
+
+  public rune1Select: Rune = {
+    id: -1,
+    name: "",
+    rowType: "",
+    group_name: "",
+    description: "",
+    long_description: "",
+    image: "",
+  };
+
+  public rune2Select: Rune = {
+    id: -1,
+    name: "",
+    rowType: "",
+    group_name: "",
+    description: "",
+    long_description: "",
+    image: "",
+  };
+
+  public rune3Select: Rune = {
+    id: -1,
+    name: "",
+    rowType: "",
+    group_name: "",
+    description: "",
+    long_description: "",
+    image: "",
+  };
+
+  public rune4Select: Rune = {
+    id: -1,
+    name: "",
+    rowType: "",
+    group_name: "",
+    description: "",
+    long_description: "",
+    image: "",
+  };
+
+  public mainSubRuneSelect: Rune = {
+    id: -1,
+    name: "",
+    rowType: "",
+    group_name: "",
+    description: "",
+    long_description: "",
+    image: "",
+  };
+
+  public subRune1Select: Rune = {
+    id: -1,
+    name: "",
+    rowType: "",
+    group_name: "",
+    description: "",
+    long_description: "",
+    image: "",
+  };
+
+  public subRune2Select: Rune = {
+    id: -1,
+    name: "",
+    rowType: "",
+    group_name: "",
+    description: "",
+    long_description: "",
+    image: "",
+  };
+
+  public subRune3Select: Rune = {
+    id: -1,
+    name: "",
+    rowType: "",
+    group_name: "",
+    description: "",
+    long_description: "",
+    image: "",
+  };
+
+  public additionalAdvantages1Select: Rune = {
+    id: -1,
+    name: "",
+    rowType: "",
+    group_name: "",
+    description: "",
+    long_description: "",
+    image: "",
+  };
+
+  public additionalAdvantages2Select: Rune = {
+    id: -1,
+    name: "",
+    rowType: "",
+    group_name: "",
+    description: "",
+    long_description: "",
+    image: "",
+  };
+
+  public additionalAdvantages3Select: Rune = {
+    id: -1,
+    name: "",
+    rowType: "",
+    group_name: "",
+    description: "",
+    long_description: "",
+    image: "",
+  };
+
   objectSet: ObjectSet[] = [];
   spellSet: SpellSet[] = [];
   runeSet: RuneSet[] = [];
@@ -397,6 +517,7 @@ export class AddBuildPageComponent implements OnInit {
    * @description Filtra las runas principales haciendo que cuando seleccione el usuario una runa principal, las demás runas princupales sean del mismo grupo y la mainSubRune haga que no puede elegir el mismo tipo de runa
    */
   filterMainRunes() {
+    this.mainRuneSelect = this.runeSetForm.get('mainRune')?.value;
     this.filterMainSubRunes();
     this.filterRune1();
     this.filterRune2();
@@ -404,17 +525,58 @@ export class AddBuildPageComponent implements OnInit {
     this.filterRune4();
   }
 
+  takeRune1() {
+    this.rune1Select = this.runeSetForm.get('secondaryRune1')?.value;
+  }
+
+  takeRune2() {
+    this.rune2Select = this.runeSetForm.get('secondaryRune2')?.value;
+  }
+
+  takeRune3() {
+    this.rune3Select = this.runeSetForm.get('secondaryRune3')?.value;
+  }
+
+  takeRune4() {
+    this.rune4Select = this.runeSetForm.get('secondaryRune4')?.value;
+  }
+
+  takeAditionalAdvantages1() {
+    this.additionalAdvantages1Select = this.runeSetForm.get('additionalAdvantages1')?.value;
+  }
+
+  takeAditionalAdvantages2() {
+    this.additionalAdvantages2Select = this.runeSetForm.get('additionalAdvantages2')?.value;
+  }
+
+  takeAditionalAdvantages3() {
+    this.additionalAdvantages3Select = this.runeSetForm.get('additionalAdvantages3')?.value;
+  }
+
   /**
    * @xavivi8
    * @description Filtra las runas secundarias para que el usuario tenga que eleguir dos de las runas del mismo tipo y la otra marcarla como ninguno
    */
   filterSubRunes() {
+    this.mainSubRuneSelect = this.runeSetForm.get('mainSubRune')?.value;
     this.filterSubRune1();
     this.checkAndAddRunaVacia1();
     this.filterSubRune2();
     this.checkAndAddRunaVacia2();
     this.filterSubRune3();
     this.checkAndAddRunaVacia3();
+  }
+
+  takeSubRune1() {
+    this.subRune1Select = this.runeSetForm.get('secondarySubRune1')?.value;
+  }
+
+  takeSubRune2() {
+    this.subRune2Select = this.runeSetForm.get('secondarySubRune2')?.value;
+  }
+
+  takeSubRune3() {
+    this.subRune3Select = this.runeSetForm.get('secondarySubRune3')?.value;
   }
 
   filterMainSubRunes() {

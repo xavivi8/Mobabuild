@@ -121,7 +121,7 @@
           <div class="abajo_runa">
             <div class="colum">
               <div class="rune-field">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="mainRuneSelect.image | base64ToImage" alt="No Image" class="rune-image">
                 <mat-form-field>
                   <mat-label>Runa principal</mat-label>
                   <mat-select formControlName="mainRune" placeholder="Seleccionar" (selectionChange)="filterMainRunes()">
@@ -131,40 +131,40 @@
                 </mat-form-field>
               </div>
               <div class="rune-field">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="rune1Select.image | base64ToImage" alt="No Image" class="rune-image">
                 <mat-form-field>
                   <mat-label>Runa sub principal 1</mat-label>
-                  <mat-select formControlName="secondaryRune1" placeholder="Seleccionar">
+                  <mat-select formControlName="secondaryRune1" placeholder="Seleccionar" (selectionChange)="takeRune1()">
                     <mat-option *ngFor="let rune of filteredRune1" [value]="rune">{{ rune?.name }}</mat-option>
                   </mat-select>
                   <mat-error *ngIf="runeSetForm.get('secondaryRune1')?.invalid">La runa secundaria 1 es requerida</mat-error>
                 </mat-form-field>
               </div>
               <div class="rune-field">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="rune2Select.image | base64ToImage" alt="No Image" class="rune-image">
                 <mat-form-field>
                   <mat-label>Runa sub principal 2</mat-label>
-                  <mat-select formControlName="secondaryRune2" placeholder="Seleccionar">
+                  <mat-select formControlName="secondaryRune2" placeholder="Seleccionar" (selectionChange)="takeRune2()">
                     <mat-option *ngFor="let rune of filteredRune2" [value]="rune">{{ rune?.name }}</mat-option>
                   </mat-select>
                   <mat-error *ngIf="runeSetForm.get('secondaryRune2')?.invalid">La runa secundaria 2 es requerida</mat-error>
                 </mat-form-field>
               </div>
               <div class="rune-field">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="rune3Select.image | base64ToImage" alt="No Image" class="rune-image">
                 <mat-form-field>
                   <mat-label>Runa sub principal 3</mat-label>
-                  <mat-select formControlName="secondaryRune3" placeholder="Seleccionar">
+                  <mat-select formControlName="secondaryRune3" placeholder="Seleccionar" (selectionChange)="takeRune3()">
                     <mat-option *ngFor="let rune of filteredRune3" [value]="rune">{{ rune?.name }}</mat-option>
                   </mat-select>
                   <mat-error *ngIf="runeSetForm.get('secondaryRune3')?.invalid">La runa secundaria 3 es requerida</mat-error>
                 </mat-form-field>
               </div>
               <div class="rune-field">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="rune4Select.image | base64ToImage" alt="No Image" class="rune-image">
                 <mat-form-field>
                   <mat-label>Runa sub principal 4</mat-label>
-                  <mat-select formControlName="secondaryRune4" placeholder="Seleccionar">
+                  <mat-select formControlName="secondaryRune4" placeholder="Seleccionar" (selectionChange)="takeRune4()">
                     <mat-option *ngFor="let rune of filteredRune4" [value]="rune">{{ rune?.name }}</mat-option>
                   </mat-select>
                   <mat-error *ngIf="runeSetForm.get('secondaryRune4')?.invalid">La runa secundaria 4 es requerida</mat-error>
@@ -173,7 +173,7 @@
             </div>
             <div class="colum">
               <div class="rune-field">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="mainSubRuneSelect.image | base64ToImage" alt="No Image" class="rune-image">
                 <mat-form-field>
                   <mat-label>Runa secundaria</mat-label>
                   <mat-select formControlName="mainSubRune" placeholder="Seleccionar" (selectionChange)="filterSubRunes()">
@@ -183,30 +183,30 @@
                 </mat-form-field>
               </div>
               <div class="rune-field">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="subRune1Select.image | base64ToImage" alt="No Image" class="rune-image">
                 <mat-form-field>
                   <mat-label>Runa sub secundaria 1</mat-label>
-                  <mat-select formControlName="secondarySubRune1" placeholder="Seleccionar">
+                  <mat-select formControlName="secondarySubRune1" placeholder="Seleccionar" (selectionChange)="takeSubRune1()">
                     <mat-option *ngFor="let rune of filteredSubRune1" [value]="rune">{{ rune?.name }}</mat-option>
                   </mat-select>
                   <mat-error *ngIf="runeSetForm.get('secondarySubRune1')?.invalid">La runa secundaria 1 es requerida</mat-error>
                 </mat-form-field>
               </div>
               <div class="rune-field">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="subRune2Select.image | base64ToImage" alt="No Image" class="rune-image">
                 <mat-form-field>
                   <mat-label>Runa sub secundaria 2</mat-label>
-                  <mat-select formControlName="secondarySubRune2" placeholder="Seleccionar">
+                  <mat-select formControlName="secondarySubRune2" placeholder="Seleccionar" (selectionChange)="takeSubRune2()">
                     <mat-option *ngFor="let rune of filteredSubRune2" [value]="rune">{{ rune?.name }}</mat-option>
                   </mat-select>
                   <mat-error *ngIf="runeSetForm.get('secondarySubRune2')?.invalid">La runa secundaria 2 es requerida</mat-error>
                 </mat-form-field>
               </div>
               <div class="rune-field">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="subRune3Select.image | base64ToImage" alt="No Image" class="rune-image">
                 <mat-form-field>
                   <mat-label>Runa sub secundaria 3</mat-label>
-                  <mat-select formControlName="secondarySubRune3" placeholder="Seleccionar">
+                  <mat-select formControlName="secondarySubRune3" placeholder="Seleccionar" (selectionChange)="takeSubRune3()">
                     <mat-option *ngFor="let rune of filteredSubRune3" [value]="rune">{{ rune?.name }}</mat-option>
                   </mat-select>
                   <mat-error *ngIf="runeSetForm.get('secondarySubRune3')?.invalid">La runa secundaria 3 es requerida</mat-error>
@@ -215,30 +215,30 @@
             </div>
             <div class="colum">
               <div class="rune-field">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="additionalAdvantages1Select.image | base64ToImage" alt="No Image" class="rune-image">
                 <mat-form-field>
                   <mat-label>Ventajas adicionales 1</mat-label>
-                  <mat-select formControlName="additionalAdvantages1" placeholder="Seleccionar">
+                  <mat-select formControlName="additionalAdvantages1" placeholder="Seleccionar" (selectionChange)="takeAditionalAdvantages1()">
                     <mat-option *ngFor="let rune of additionalAdvantages1" [value]="rune">{{ rune?.name }}</mat-option>
                   </mat-select>
                   <mat-error *ngIf="runeSetForm.get('additionalAdvantages1')?.invalid">La ventaja adicional 1 es requerida</mat-error>
                 </mat-form-field>
               </div>
               <div class="rune-field">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="additionalAdvantages2Select.image | base64ToImage" alt="No Image" class="rune-image">
                 <mat-form-field>
                   <mat-label>Ventajas adicionales 2</mat-label>
-                  <mat-select formControlName="additionalAdvantages2" placeholder="Seleccionar">
+                  <mat-select formControlName="additionalAdvantages2" placeholder="Seleccionar" (selectionChange)="takeAditionalAdvantages2()">
                     <mat-option *ngFor="let rune of additionalAdvantages2" [value]="rune">{{ rune?.name }}</mat-option>
                   </mat-select>
                   <mat-error *ngIf="runeSetForm.get('additionalAdvantages2')?.invalid">La ventaja adicional 2 es requerida</mat-error>
                 </mat-form-field>
               </div>
               <div class="rune-field">
-                <img src="/assets/no-image.jpg" alt="No Image" class="rune-image">
+                <img [src]="additionalAdvantages3Select.image | base64ToImage" alt="No Image" class="rune-image">
                 <mat-form-field>
                   <mat-label>Ventajas adicionales 3</mat-label>
-                  <mat-select formControlName="additionalAdvantages3" placeholder="Seleccionar">
+                  <mat-select formControlName="additionalAdvantages3" placeholder="Seleccionar" (selectionChange)="takeAditionalAdvantages3()">
                     <mat-option *ngFor="let rune of additionalAdvantages3" [value]="rune">{{ rune?.name }}</mat-option>
                   </mat-select>
                   <mat-error *ngIf="runeSetForm.get('additionalAdvantages3')?.invalid">La ventaja adicional 3 es requerida</mat-error>
