@@ -14,6 +14,10 @@
           </mat-form-field>
         </div>
 
+        <div class="form">
+          <input type="file" (change)="onFileSelected($event)">
+        </div>
+
         <!-- <div class="form habilitado">
           <mat-checkbox formControlName="habilitado">Object habilitado</mat-checkbox>
         </div>

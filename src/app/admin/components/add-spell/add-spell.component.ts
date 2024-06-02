@@ -13,6 +13,8 @@ import { SpellService } from '../../services/spell.service';
 })
 export class AddSpellComponent implements OnInit{
   spellForm: FormGroup = new FormGroup({});
+  selectedFile: File | null = null;
+  fileBase64: string | ArrayBuffer | null = null;
 
   /**
    * @xavivi8
@@ -44,6 +46,23 @@ export class AddSpellComponent implements OnInit{
 
   /**
    * @xavivi8
+   * @description selecciona el archivo
+   * @param {any} event
+   */
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.fileBase64 = reader.result;
+        this.spellForm.patchValue({ image: this.fileBase64 });
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
+  /**
+   * @xavivi8
    * @description añade el objeto
    */
   async confirmAdd() {
@@ -51,6 +70,9 @@ export class AddSpellComponent implements OnInit{
       debugger
       if (this.spellForm.valid) {
         const SPELL = this.spellForm.value;
+        if (this.fileBase64) {
+          SPELL.image = this.fileBase64.toString().split(',')[1];
+        }
         const RESPONSE = await firstValueFrom(this.spellService.create(SPELL));
         if (RESPONSE) {
           this.snackBar.open('El objeto se añadio correctamente.', CLOSE, { duration: 5000 });

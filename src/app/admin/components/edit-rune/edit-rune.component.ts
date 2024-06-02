@@ -48,6 +48,11 @@ export class EditRuneComponent implements OnInit{
     });
   }
 
+   /**
+   * @xavivi8
+   * @description selecciona el archivo
+   * @param {any} event
+   */
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
     if (this.selectedFile) {

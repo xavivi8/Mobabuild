@@ -17,6 +17,7 @@ export class EditUserComponent implements OnInit{
   userForm: FormGroup = new FormGroup({});
   authorityOptions: Authority[] = []
   selectedFile: File | null = null;
+  fileBase64: string | ArrayBuffer | null = null;
 
   /**
    * @xavivi8
@@ -51,8 +52,23 @@ export class EditUserComponent implements OnInit{
       builds: new FormControl(this.user.builds),
       authorities: new FormControl(this.user.authorities.map(auth => auth.name), [Validators.required]),
     })
+  }
 
-
+  /**
+   * @xavivi8
+   * @description selecciona el archivo
+   * @param {any} event
+   */
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.fileBase64 = reader.result;
+        this.userForm.patchValue({ image: this.fileBase64 });
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
   }
 
   /**
@@ -73,6 +89,9 @@ export class EditUserComponent implements OnInit{
     try {
       if (this.userForm.valid) {
         const newUser = this.userForm.value;
+        if (this.fileBase64) {
+          newUser.image = this.fileBase64.toString().split(',')[1]; // Solo la parte base64
+        }
         const RESPONSE = await firstValueFrom(this.userService.updateUser(newUser));
         if (RESPONSE && RESPONSE as User) {
           this.snackBar.open('El objeto se actualizo correctamente.', CLOSE, { duration: 5000 });

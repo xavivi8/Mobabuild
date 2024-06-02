@@ -14,6 +14,9 @@ import { AddUserRequest, AuthorityName, User } from 'src/app/shared/interfaces/u
 })
 export class AddUserComponent implements OnInit {
   userForm: FormGroup = new FormGroup({});
+  selectedFile: File | null = null;
+  fileBase64: string | ArrayBuffer | null = null;
+
   authorityOptions = [
     { value: [AuthorityName.ADMIN], viewValue: 'Admin' },
     { value: [AuthorityName.READ], viewValue: 'Read' },
@@ -22,12 +25,23 @@ export class AddUserComponent implements OnInit {
   ];
   hidePass: boolean = true;
 
+  /**
+   * @xavivi8
+   * @description inicializa el componente
+   * @param {MatDialogRef<AddUserComponent>} dialogRef
+   * @param {UserService} userService
+   * @param {MatSnackBar} snackBar
+   */
   constructor(
     public dialogRef: MatDialogRef<AddUserComponent>,
     private userService: UserService,
     private snackBar: MatSnackBar,
   ) { }
 
+  /**
+   * @xavivi8
+   * @description inicializa el formulario
+   */
   ngOnInit(): void {
     this.userForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
@@ -38,6 +52,27 @@ export class AddUserComponent implements OnInit {
     })
   }
 
+  /**
+   * @xavivi8
+   * @description selecciona el archivo
+   * @param {any} event
+   */
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.fileBase64 = reader.result;
+        this.userForm.patchValue({ image: this.fileBase64 });
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
+  /**
+   * @xavivi8
+   * @description añade el objeto
+   */
   async confirmAdd() {
     try {
       if (this.userForm.valid) {
@@ -46,9 +81,12 @@ export class AddUserComponent implements OnInit {
           email: user.email,
           userName: user.user_name,
           pass: user.pass,
-          authorityNames: user.authority
+          authorityNames: user.authority,
+          image: ""
         }
-
+        if (this.fileBase64) {
+          addUserRequest.image = this.fileBase64.toString().split(',')[1];
+        }
         const RESPONSE = await firstValueFrom(this.userService.addUserWithoutImage(addUserRequest));
         if (RESPONSE && RESPONSE as User) {
           this.snackBar.open('El usuario se añadio correctamente.', CLOSE, { duration: 5000 });

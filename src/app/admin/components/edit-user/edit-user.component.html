@@ -30,6 +30,11 @@
             </mat-select>
           </mat-form-field>
         </div>
+
+        <div class="form">
+          <input type="file" (change)="onFileSelected($event)">
+        </div>
+
       </form>
     </mat-card-content>
 

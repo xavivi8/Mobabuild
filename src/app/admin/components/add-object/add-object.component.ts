@@ -15,13 +15,26 @@ import { ObjectD } from 'src/app/shared/interfaces/object';
 })
 export class AddObjectComponent implements OnInit {
   objectForm: FormGroup = new FormGroup({});
+  selectedFile: File | null = null;
+  fileBase64: string | ArrayBuffer | null = null;
 
+  /**
+   * @xavivi8
+   * @description inicializa el componente
+   * @param {MatDialogRef<AddObjectComponent>} dialogRef
+   * @param {ObjectService} objectService
+   * @param {MatSnackBar} snackBar
+   */
   constructor(
     public dialogRef: MatDialogRef<AddObjectComponent>,
     private objectService: ObjectService,
     private snackBar: MatSnackBar,
   ) { }
 
+  /**
+   * @xavivi8
+   * @description inicializa el formulario
+   */
   ngOnInit(): void {
     this.objectForm = new FormGroup({
       id: new FormControl(null),
@@ -31,11 +44,35 @@ export class AddObjectComponent implements OnInit {
     });
   }
 
+  /**
+   * @xavivi8
+   * @description selecciona el archivo
+   * @param {any} event
+   */
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.fileBase64 = reader.result;
+        this.objectForm.patchValue({ image: this.fileBase64 });
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
+  /**
+   * @xavivi8
+   * @description añade el objeto
+   */
   async confirmAdd() {
     try {
       debugger
       if (this.objectForm.valid) {
         const object = this.objectForm.value;
+        if (this.fileBase64) {
+          object.image = this.fileBase64.toString().split(',')[1];
+        }
         const RESPONSE = await firstValueFrom(this.objectService.setObject(object));
         if (RESPONSE && RESPONSE as ObjectD) {
           this.snackBar.open('El objeto se añadio correctamente.', CLOSE, { duration: 5000 });
@@ -50,6 +87,10 @@ export class AddObjectComponent implements OnInit {
     }
   };
 
+  /**
+   * @xavivi8
+   * @description cierra el dialog
+   */
   onNoClick(): void {
     this.dialogRef.close({ ok: false });
   }

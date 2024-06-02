@@ -14,6 +14,8 @@ import { CLOSE } from 'src/app/shared/interfaces/messages';
 })
 export class EditChampionComponent implements OnInit{
   championForm: FormGroup = new FormGroup({});
+  selectedFile: File | null = null;
+  fileBase64: string | ArrayBuffer | null = null;
 
   /**
    * @xavivi8
@@ -38,7 +40,25 @@ export class EditChampionComponent implements OnInit{
     this.championForm = new FormGroup({
       id: new FormControl(this.champion.id, [Validators.required]),
       name: new FormControl(this.champion.name, [Validators.required]),
+      image: new FormControl(this.champion.image),
     })
+  }
+
+  /**
+   * @xavivi8
+   * @description selecciona el archivo
+   * @param {any} event
+   */
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.fileBase64 = reader.result;
+        this.championForm.patchValue({ image: this.fileBase64 });
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
   }
 
   /**
@@ -49,6 +69,9 @@ export class EditChampionComponent implements OnInit{
     try {
       if (this.championForm.valid) {
         const newChampion = this.championForm.value;
+        if (this.fileBase64) {
+          newChampion.image = this.fileBase64.toString().split(',')[1]; // Solo la parte base64
+        }
         const RESPONSE = await firstValueFrom(this.ChampionService.editChampion(newChampion));
         if (RESPONSE && RESPONSE as Champions) {
           this.snackBar.open('El objeto se actualizo correctamente.', CLOSE, { duration: 5000 });

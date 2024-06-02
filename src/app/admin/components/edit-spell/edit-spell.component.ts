@@ -14,6 +14,8 @@ import { SpellService } from '../../services/spell.service';
 })
 export class EditSpellComponent implements OnInit{
   spellForm: FormGroup = new FormGroup({});
+  selectedFile: File | null = null;
+  fileBase64: string | ArrayBuffer | null = null;
 
   /**
    * @xavivi8
@@ -30,6 +32,10 @@ export class EditSpellComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) public spell: Spell,
   ) { }
 
+  /**
+   * @xavivi8
+   * @description inicializa el formulario
+   */
   ngOnInit(): void {
     this.spellForm = new FormGroup({
       id: new FormControl(this.spell.id, [Validators.required]),
@@ -44,12 +50,32 @@ export class EditSpellComponent implements OnInit{
 
   /**
    * @xavivi8
+   * @description selecciona el archivo
+   * @param {any} event
+   */
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.fileBase64 = reader.result;
+        this.spellForm.patchValue({ image: this.fileBase64 });
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
+  /**
+   * @xavivi8
    * @description actualiza el objeto
    */
   async confirmEdit() {
     try {
       if (this.spellForm.valid) {
         const newSpell = this.spellForm.value;
+        if (this.fileBase64) {
+          newSpell.image = this.fileBase64.toString().split(',')[1]; // Solo la parte base64
+        }
         const RESPONSE = await firstValueFrom(this.spellService.update(newSpell));
         if (RESPONSE && RESPONSE as Spell) {
           this.snackBar.open('El objeto se actualizo correctamente.', CLOSE, { duration: 5000 });
