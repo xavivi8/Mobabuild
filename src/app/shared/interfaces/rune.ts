@@ -18,5 +18,5 @@ export interface Rune {
   group_name: string;
   description: string;
   long_description: string;
-  image: ArrayBuffer;
+  image: string;
 }
