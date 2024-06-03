@@ -1,1 +1,18 @@
-<p>delete-build works!</p>
+<mat-card class="card">
+  <!-- Cabecera -->
+  <mat-card-header style="margin: 0 auto;">
+    <mat-card-title>Borrar build</mat-card-title>
+  </mat-card-header>
+  <!-- Contenido -->
+  <mat-card-content style="margin: 0 auto;">
+    <p><strong style="color: red;">¡Atención! Se eliminará la build:</strong> {{build.buildName}} </p>
+
+    <p> Esto sirve para eliminar builds creadas por error.</p>
+  </mat-card-content>
+  <!-- Acciones -->
+  <mat-card-actions style="margin: 0 auto;">
+    <button id="deleteUser" mat-button type="submit" (click)="deleteBuild()">Eliminar</button>
+    <span class="spacer"></span>
+    <button id="onNoClick" mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+  </mat-card-actions>
+</mat-card>
