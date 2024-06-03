@@ -19,10 +19,21 @@ export class UserService {
 
   }
 
+  /**
+   * @xavivi8
+   * @description find all users
+   * @returns {Observable<User[]>}
+   */
   findAll(): Observable<User[]> {
     return this.httpClient.get<User[]>(`${this.urlMobabuild}/findAll`, this.sharedService.getAuthHeaderWithJson());
   }
 
+  /**
+   * @xavivi8
+   * @description find user
+   * @param {number} id
+   * @returns {Observable<User>}
+   */
   findById(id: number): Observable<User> {
     return this.httpClient.get<User>(`${this.urlMobabuild}/find/${id}`, this.sharedService.getAuthHeaderWithJson());
   }
