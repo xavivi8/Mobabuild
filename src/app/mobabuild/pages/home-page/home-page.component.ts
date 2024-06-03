@@ -29,6 +29,7 @@ export class HomePageComponent implements OnInit{
     { label: 'Perfil', icon: 'account_circle', url: '/mobabuild/profiel' },
     { label: 'Admin', icon: 'admin_panel_settings', url: '/admin' },
     { label: 'Mobabuild', icon: 'movie', url: '/mobabuild/search_build' },
+    { label: 'User builds', icon: 'list', url: '/mobabuild/user_builds' },
     /* { label: 'Login', icon: 'login', url: '/auth' } */
   ]
 
