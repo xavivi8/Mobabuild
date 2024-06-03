@@ -15,6 +15,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { FavBuildPageComponent } from './pages/fav-build-page/fav-build-page.component';
 import { UserBuildPageComponent } from './pages/user-build-page/user-build-page.component';
 import { Base64ToImagePipe } from './pipe/base64ToImage.pipe';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { Base64ToImagePipe } from './pipe/base64ToImage.pipe';
     CommonModule,
     MobabuildRoutingModule,
     MaterialModule,
+    MatTableModule,
     MatPaginatorModule
   ]
 })
