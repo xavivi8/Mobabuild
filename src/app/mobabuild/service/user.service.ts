@@ -12,6 +12,12 @@ export class UserService {
 
   private urlMobabuild: string = `${URL_API}/user`;
 
+  /**
+   * @xavivi8
+   * @description constructor
+   * @param {HttpClient} httpClient
+   * @param {SharedService} sharedService
+   */
   constructor(
     private httpClient: HttpClient,
     private sharedService: SharedService
@@ -29,6 +35,12 @@ export class UserService {
     return this.httpClient.put<User>(`${this.urlMobabuild}/update`, JSON.stringify(user), this.sharedService.getAuthHeaderWithJson() );
   }
 
+  /**
+   * @xavivi8
+   * @description find user
+   * @param {number} id
+   * @returns {Observable<User>}
+   */
   findById(id: number): Observable<User> {
     return this.httpClient.get<User>(`${this.urlMobabuild}/find/${id}`, this.sharedService.getAuthHeaderWithJson());
   }
