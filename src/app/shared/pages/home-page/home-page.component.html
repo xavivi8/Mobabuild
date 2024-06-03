@@ -26,17 +26,21 @@
       <mat-icon>{{menu.icon}}</mat-icon>
     </button>
     <span class="spacer"></span>
-    <button mat-button (click)="logout()">
-      <mat-icon>logout</mat-icon>
+    <button *ngIf="!isLogedIn" mat-button (click)="login()">
+      <mat-icon>login</mat-icon>
+      Login
     </button>
+    <button *ngIf="isLogedIn" mat-button (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      {{user.user_name}}
+    </button>
+    <img *ngIf="isLogedIn" class="image" [src]="user.image | base64ToImage" alt="No Image">
   </mat-toolbar>
-
   <div class="container p-2">
     <router-outlet></router-outlet>
   </div>
-
   <!-- Footer -->
-  <mat-toolbar class="footer" color="primary" style="margin-top: 65%;">
+  <mat-toolbar class="footer" color="primary">
     <p>© Francisco Javier Martín-Lunas Escobar</p>
     <span class="spacer"></span>
     <a mat-button href="https://github.com/xavivi8/ApiTFG" target="_blank">Api</a>
