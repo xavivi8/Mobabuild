@@ -37,7 +37,6 @@ export class DeleteUserComponent implements OnInit{
   async deleteUser() {
     try {
       const success = await this.userService.deleteUserById(this.user.id).toPromise();
-      debugger
 
       if (success) {
         this.snackBar.open('El objeto se eliminó correctamente.', CLOSE, { duration: 5000 });
