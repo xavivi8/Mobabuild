@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, catchError, map, of } from "rxjs";
 import { Build } from "src/app/shared/interfaces/build";
 import { Champions } from "src/app/shared/interfaces/champions";
 import { User } from "src/app/shared/interfaces/user";
@@ -23,6 +23,30 @@ export class BuildService {
     private sharedService: SharedService,
     private httpClient: HttpClient
   ) { }
+
+  /**
+   * @xavivi8
+   * @description elimina un build
+   * @param {number} id
+   * @returns {Observable<boolean>}
+   */
+  delete(id: number): Observable<boolean> {
+    return this.httpClient.delete<any>(`${this.urlMobabuild}/${id}`, { ...this.sharedService.getAuthHeaderWithJson(), observe: 'response' }).pipe(
+      map(response => {
+        if (response.status === 200) {
+          console.log('User deleted successfully');
+          return true;
+        } else {
+          console.log('Failed to delete user');
+          return false;
+        }
+      }),
+      catchError(error => {
+        console.error('Error deleting user:', error);
+        return of(false);
+      })
+    );
+  }
 
   /**
    * @xavivi8
