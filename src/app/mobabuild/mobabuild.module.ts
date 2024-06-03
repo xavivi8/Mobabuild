@@ -15,6 +15,7 @@ import { FavBuildPageComponent } from './pages/fav-build-page/fav-build-page.com
 import { UserBuildPageComponent } from './pages/user-build-page/user-build-page.component';
 import { Base64ToImagePipe } from './pipe/base64ToImage.pipe';
 import { MatTableModule } from '@angular/material/table';
+import { EditBuildComponent } from './components/edit-build/edit-build.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { MatTableModule } from '@angular/material/table';
     ProfilePageComponent,
     FavBuildPageComponent,
     UserBuildPageComponent,
+    EditBuildComponent,
   ],
   imports: [
     CommonModule,
