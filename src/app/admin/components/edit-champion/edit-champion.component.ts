@@ -41,6 +41,7 @@ export class EditChampionComponent implements OnInit{
       id: new FormControl(this.champion.id, [Validators.required]),
       name: new FormControl(this.champion.name, [Validators.required]),
       image: new FormControl(this.champion.image),
+      builds: new FormControl(this.champion.builds),
     })
   }
 
@@ -72,6 +73,7 @@ export class EditChampionComponent implements OnInit{
         if (this.fileBase64) {
           newChampion.image = this.fileBase64.toString().split(',')[1]; // Solo la parte base64
         }
+        debugger
         const RESPONSE = await firstValueFrom(this.ChampionService.editChampion(newChampion));
         if (RESPONSE && RESPONSE as Champions) {
           this.snackBar.open('El objeto se actualizo correctamente.', CLOSE, { duration: 5000 });

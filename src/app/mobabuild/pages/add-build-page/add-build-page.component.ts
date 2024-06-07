@@ -267,10 +267,10 @@ export class AddBuildPageComponent implements OnInit {
    * @description envia el formulario y si todo esta correcto crea la build
    */
   onSubmit(): void {
-    console.log(this.buildForm.value);
-    console.log(this.spellSetForm.value);
-    console.log(this.objectSetForm.value);
-    console.log(this.runeSetForm.value);
+
+    this.snackBar.open('Guardando...', CLOSE, {
+      duration: -1, // Duración infinita, hasta que se cierre manualmente
+    });
 
     if (this.buildFormValid() && this.spellSetFormValid() && this.objectSetFormValid() && this.runeSetFormValid()) {
       this.addRuneSet();
@@ -291,20 +291,29 @@ export class AddBuildPageComponent implements OnInit {
 
         if (newBuild as unknown as Build) {
           console.log(newBuild);
-          this.buildService.create(newBuild).pipe(
-            tap((build) => {
-              console.log(build);
-              // Aquí rediriges a la URL deseada después de que se complete la creación
-              this.router.navigate(['/mobabuild/search_build']);
-            })
-          ).subscribe({
-            error: (error) => {
-              console.error('Error creating build', error);
-            }
-          });
-          this.snackBar.open('Bien', CLOSE, {
-            duration: 3000
-          });
+        this.buildService.create(newBuild).pipe(
+          tap((build) => {
+            console.log(build);
+            // Cierre del mensaje de guardado
+            this.snackBar.dismiss();
+            // Mensaje de éxito
+            this.snackBar.open('¡Guardado exitoso!', CLOSE, {
+              duration: 3000
+            });
+            // Redireccionar después de completar la creación
+            this.router.navigate(['/mobabuild/search_build']);
+          })
+        ).subscribe({
+          error: (error) => {
+            console.error('Error creating build', error);
+            // Cierre del mensaje de guardado
+            this.snackBar.dismiss();
+            // Mensaje de error
+            this.snackBar.open('Error al guardar la construcción', 'Cerrar', {
+              duration: 3000
+            });
+          }
+        });
         }
 
       }

@@ -18,7 +18,7 @@
 
       <mat-card class="build-card" (click)="goViewBuild(item.id)">
         <div class="image">
-          <img src="/assets/no-image.jpg" alt="No Image">
+          <img [src]="item.champions.image| base64ToImage" alt="No Image">
         </div>
         <div class="text">
           <!-- Cabecera de la build -->

@@ -69,7 +69,7 @@ export class ListChampionPageComponent implements OnInit {
 
     if (RESPONSE && RESPONSE.length > 0) {
       this.displayedColumns = ['id', 'name', 'actions'];
-      this.dataSource = new MatTableDataSource(RESPONSE);
+      this.dataSource = new MatTableDataSource(RESPONSE as Champions[]);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.dataSource.filterPredicate = this.createFilter();
