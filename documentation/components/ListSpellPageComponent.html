@@ -1,0 +1,1563 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>mobabuild documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">mobabuild documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ListSpellPageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/admin/pages/list-spell-page/list-spell-page.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-list-spell-page</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./list-spell-page.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./list-spell-page.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#champion_levelFilter" >champion_levelFilter</a>
+                            </li>
+                            <li>
+                                <a href="#cooldownFilter" >cooldownFilter</a>
+                            </li>
+                            <li>
+                                <a href="#dataSource" >dataSource</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dialog" >dialog</a>
+                            </li>
+                            <li>
+                                <a href="#displayedColumns" >displayedColumns</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#filterValues" >filterValues</a>
+                            </li>
+                            <li>
+                                <a href="#game_modeFilter" >game_modeFilter</a>
+                            </li>
+                            <li>
+                                <a href="#hasData" >hasData</a>
+                            </li>
+                            <li>
+                                <a href="#idFilter" >idFilter</a>
+                            </li>
+                            <li>
+                                <a href="#nameFilter" >nameFilter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#paginator" >paginator</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#sort" >sort</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addSpell" >addSpell</a>
+                            </li>
+                            <li>
+                                <a href="#createFilter" >createFilter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteSpell" >deleteSpell</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#editSpell" >editSpell</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllSpells" >getAllSpells</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onChanges" >onChanges</a>
+                            </li>
+                            <li>
+                                <a href="#reloadPage" >reloadPage</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(dialog: MatDialog, spellService: <a href="../injectables/SpellService.html" target="_self">SpellService</a>, overlay: Overlay, router: Router, matPaginatorIntl: MatPaginatorIntl)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:37</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>spellService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SpellService.html" target="_self" >SpellService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>overlay</td>
+                                                  
+                                                        <td>
+                                                                    <code>Overlay</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>matPaginatorIntl</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatPaginatorIntl</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addSpell"></a>
+                    <span class="name">
+                        <span ><b>addSpell</b></span>
+                        <a href="#addSpell"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addSpell()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="131"
+                                    class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:131</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createFilter"></a>
+                    <span class="name">
+                        <span ><b>createFilter</b></span>
+                        <a href="#createFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createFilter()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteSpell"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>deleteSpell</b></span>
+                        <a href="#deleteSpell"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteSpell(spell: <a href="../interfaces/Spell.html" target="_self">Spell</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="155"
+                                    class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:155</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>spell</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Spell.html" target="_self" >Spell</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editSpell"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>editSpell</b></span>
+                        <a href="#editSpell"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>editSpell(spell: <a href="../interfaces/Spell.html" target="_self">Spell</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>spell</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Spell.html" target="_self" >Spell</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllSpells"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getAllSpells</b></span>
+                        <a href="#getAllSpells"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllSpells()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onChanges"></a>
+                    <span class="name">
+                        <span ><b>onChanges</b></span>
+                        <a href="#onChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onChanges()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="109"
+                                    class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:109</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reloadPage"></a>
+                    <span class="name">
+                        <span ><b>reloadPage</b></span>
+                        <a href="#reloadPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>reloadPage()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="193"
+                                    class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:193</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="champion_levelFilter"></a>
+                    <span class="name">
+                        <span ><b>champion_levelFilter</b></span>
+                        <a href="#champion_levelFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormControl()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cooldownFilter"></a>
+                    <span class="name">
+                        <span ><b>cooldownFilter</b></span>
+                        <a href="#cooldownFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormControl()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataSource"></a>
+                    <span class="name">
+                        <span ><b>dataSource</b></span>
+                        <a href="#dataSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Spell.html" target="_self" >MatTableDataSource&lt;Spell&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatTableDataSource()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialog"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>dialog</b></span>
+                        <a href="#dialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatDialog</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayedColumns"></a>
+                    <span class="name">
+                        <span ><b>displayedColumns</b></span>
+                        <a href="#displayedColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterValues"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>filterValues</b></span>
+                        <a href="#filterValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{ id: 0, name: &#x27;&#x27;, champion_level: 0, game_mode: &#x27;&#x27;, cooldown: &#x27;&#x27;}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="game_modeFilter"></a>
+                    <span class="name">
+                        <span ><b>game_modeFilter</b></span>
+                        <a href="#game_modeFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormControl()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasData"></a>
+                    <span class="name">
+                        <span ><b>hasData</b></span>
+                        <a href="#hasData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="idFilter"></a>
+                    <span class="name">
+                        <span ><b>idFilter</b></span>
+                        <a href="#idFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormControl()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nameFilter"></a>
+                    <span class="name">
+                        <span ><b>nameFilter</b></span>
+                        <a href="#nameFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormControl()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="paginator"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>paginator</b></span>
+                        <a href="#paginator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatPaginator</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(MatPaginator, {static: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sort"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>sort</b></span>
+                        <a href="#sort"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatSort</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MatSort()</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(MatSort, {static: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/admin/pages/list-spell-page/list-spell-page.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
+import { FormControl } from &#x27;@angular/forms&#x27;;
+import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { MatPaginator, MatPaginatorIntl } from &#x27;@angular/material/paginator&#x27;;
+import { MatSort } from &#x27;@angular/material/sort&#x27;;
+import { MatTableDataSource } from &#x27;@angular/material/table&#x27;;
+import { Spell } from &#x27;src/app/shared/interfaces/spell&#x27;;
+import { SpellService } from &#x27;../../../mobabuild/service/spell.service&#x27;;
+import { Overlay } from &#x27;@angular/cdk/overlay&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { firstValueFrom } from &#x27;rxjs&#x27;;
+import { AddSpellComponent } from &#x27;../../components/add-spell/add-spell.component&#x27;;
+import { DeleteSpellComponent } from &#x27;../../components/delete-spell/delete-spell.component&#x27;;
+import { EditSpellComponent } from &#x27;../../components/edit-spell/edit-spell.component&#x27;;
+
+@Component({
+  selector: &#x27;app-list-spell-page&#x27;,
+  templateUrl: &#x27;./list-spell-page.component.html&#x27;,
+  styleUrls: [&#x27;./list-spell-page.component.css&#x27;]
+})
+export class ListSpellPageComponent implements OnInit{
+
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort &#x3D; new MatSort();
+
+  dataSource: MatTableDataSource&lt;Spell&gt; &#x3D; new MatTableDataSource();
+
+  idFilter &#x3D; new FormControl();
+  nameFilter &#x3D; new FormControl();
+  champion_levelFilter &#x3D; new FormControl();
+  game_modeFilter &#x3D; new FormControl();
+  cooldownFilter &#x3D; new FormControl();
+
+  hasData: boolean &#x3D; false;
+
+  displayedColumns: string[] &#x3D; [];
+  private filterValues &#x3D; { id: 0, name: &#x27;&#x27;, champion_level: 0, game_mode: &#x27;&#x27;, cooldown: &#x27;&#x27;};
+
+  /**
+   * @xavivi8
+   * @description crea el constructor
+   * @param {MatDialog} dialog
+   * @param {SpellService} spellService
+   * @param {Overlay} overlay
+   * @param {Router} router
+   * @param {MatPaginatorIntl} matPaginatorIntl
+   */
+  constructor(
+    public dialog: MatDialog,
+    private spellService: SpellService,
+    private overlay: Overlay,
+    private router: Router,
+    private matPaginatorIntl: MatPaginatorIntl
+  ) { }
+
+  /**
+   * @xavivi8
+   * @description inicializa el componente
+   */
+  ngOnInit(): void {
+    this.getAllSpells();
+  }
+
+  /**
+   * @xavivi8
+   * @description obtiene todos los hechizos
+   */
+  async getAllSpells() {
+    const RESPONSE &#x3D;  await firstValueFrom(this.spellService.findAll());
+    console.log(RESPONSE);
+
+    if (RESPONSE &amp;&amp; RESPONSE.length &gt; 0) {
+      this.displayedColumns &#x3D; [&#x27;id&#x27;, &#x27;name&#x27;,&#x27;champion_level&#x27;,&#x27;game_mode&#x27;,&#x27;cooldown&#x27;,&#x27;actions&#x27;];
+      this.dataSource &#x3D; new MatTableDataSource(RESPONSE);
+      this.dataSource.sort &#x3D; this.sort;
+      this.dataSource.paginator &#x3D; this.paginator;
+      this.dataSource.filterPredicate &#x3D; this.createFilter();
+      this.onChanges();
+      this.hasData &#x3D; true;
+    } else {
+      this.hasData &#x3D; false;
+    }
+
+  }
+
+  /**
+   * @xavivi8
+   * @description crea el filtro de busqueda
+   * @returns {boolean}
+   */
+  createFilter(): (data: Spell, filter: string) &#x3D;&gt; boolean {
+    const filterFunction &#x3D; (data: Spell, filter: string): boolean &#x3D;&gt; {
+      const searchTerms &#x3D; JSON.parse(filter);
+      return (
+        data.id.toString().toLowerCase().includes(searchTerms.id.toString().toLowerCase()) &amp;&amp;
+        data.name.toString().toLowerCase().includes(searchTerms.name.toString().toLowerCase()) &amp;&amp;
+        data.champion_level.toString().toLowerCase().includes(searchTerms.champion_level.toString().toLowerCase()) &amp;&amp;
+        data.game_mode.toString().toLowerCase().includes(searchTerms.game_mode.toString().toLowerCase()) &amp;&amp;
+        data.cooldown.toString().toLowerCase().includes(searchTerms.cooldown.toString().toLowerCase())
+      );
+    };
+    return filterFunction;
+  }
+
+  /**
+   * @xavivi8
+   * @description crea el filtro de busqueda
+   */
+  onChanges(): void {
+    this.idFilter.valueChanges.subscribe((value) &#x3D;&gt; {
+      this.dataSource.filter &#x3D; value;
+    });
+    this.nameFilter.valueChanges.subscribe((value) &#x3D;&gt; {
+      this.dataSource.filter &#x3D; value;
+    });
+    this.champion_levelFilter.valueChanges.subscribe((value) &#x3D;&gt; {
+      this.dataSource.filter &#x3D; value;
+    });
+    this.game_modeFilter.valueChanges.subscribe((value) &#x3D;&gt; {
+      this.dataSource.filter &#x3D; value;
+    });
+    this.cooldownFilter.valueChanges.subscribe((value) &#x3D;&gt; {
+      this.dataSource.filter &#x3D; value;
+    });
+  }
+
+  /**
+   * @xavivi8
+   * @description abre el dialogo para anadir un hechizo
+   */
+  addSpell(){
+    const dialogRef &#x3D; this.dialog.open(AddSpellComponent, {
+      scrollStrategy: this.overlay.scrollStrategies.noop()
+    });
+    dialogRef.afterClosed().subscribe(async (result: Spell) &#x3D;&gt; {
+      if (result) {
+        // Comprueba que la respuesta es del tipo User
+        if (result as Spell) {
+          // Añade el nuevo usuario a la lista y actualiza la tabla
+          this.dataSource.data.push(result);
+          this.dataSource.data &#x3D; [...this.dataSource.data]; // Trigger change detection
+          this.getAllSpells();
+        } else {
+          console.error(&#x27;La respuesta no es del tipo Champions&#x27;, result);
+        }
+      }
+    });
+  }
+
+  /**
+   * @xavivi8
+   * @description abre el dialogo para eliminar un hechizo
+   * @param {Spell} spell
+   */
+  async deleteSpell(spell: Spell) {
+    const dialogRef &#x3D; this.dialog.open(DeleteSpellComponent, {
+      data: spell,
+      scrollStrategy: this.overlay.scrollStrategies.noop()
+    });
+
+    // Esperar hasta que se cierre el diálogo y obtener la respuesta
+    dialogRef.afterClosed().subscribe(async (result) &#x3D;&gt; {
+      if (result &amp;&amp; result.ok) {
+        // Si la eliminación fue exitosa, recargar los datos
+        await this.getAllSpells();
+      }
+    });
+  }
+
+  /**
+   * @xavivi8
+   * @description abre el dialogo para editar un hechizo
+   * @param {Spell} spell
+   */
+  async editSpell(spell: Spell) {
+    const dialogRef &#x3D; this.dialog.open(EditSpellComponent, {
+      data: spell,
+      scrollStrategy: this.overlay.scrollStrategies.noop()
+    });
+
+    dialogRef.afterClosed().subscribe(async (result) &#x3D;&gt; {
+      if (result &amp;&amp; result.ok) {
+        // Si la eliminación fue exitosa, recargar los datos
+        await this.getAllSpells();
+      }
+    });
+  }
+
+  /**
+   * @xavivi8
+   * @description recarga la pagina
+   */
+  reloadPage(): void {
+    location.reload();
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;example-container mat-elevation-z8&quot;&gt;
+  &lt;mat-card *ngIf&#x3D;&quot;hasData; else noDataTemplate&quot;&gt;
+    &lt;table mat-table id&#x3D;&quot;table&quot; [dataSource]&#x3D;&quot;dataSource&quot; class&#x3D;&quot;mat-elevation-z8&quot; matSort&gt;
+
+      &lt;!-- Cabecera --&gt;
+      &lt;mat-card-header&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;id&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;
+            &lt;p&gt;&lt;strong style&#x3D;&quot;color: rgb(239, 243, 243);&quot;&gt;ID&lt;/strong&gt;&lt;/p&gt;
+          &lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let spell&quot;&gt; {{ spell.id }} &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;ng-container matColumnDef&#x3D;&quot;name&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;
+            &lt;p&gt;&lt;strong style&#x3D;&quot;color: rgb(239, 243, 243);&quot;&gt;Nombre&lt;/strong&gt;&lt;/p&gt;
+          &lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let spell&quot;&gt; {{ spell.name }} &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;ng-container matColumnDef&#x3D;&quot;champion_level&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;
+            &lt;p&gt;&lt;strong style&#x3D;&quot;color: rgb(239, 243, 243);&quot;&gt;Nivel de campeon&lt;/strong&gt;&lt;/p&gt;
+          &lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let spell&quot;&gt; {{ spell.champion_level }} &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;ng-container matColumnDef&#x3D;&quot;game_mode&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;
+            &lt;p&gt;&lt;strong style&#x3D;&quot;color: rgb(239, 243, 243);&quot;&gt;Modo de juego&lt;/strong&gt;&lt;/p&gt;
+          &lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let spell&quot;&gt; {{ spell.game_mode }} &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+        &lt;ng-container matColumnDef&#x3D;&quot;cooldown&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;
+            &lt;p&gt;&lt;strong style&#x3D;&quot;color: rgb(239, 243, 243);&quot;&gt;Cooldown&lt;/strong&gt;&lt;/p&gt;
+          &lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let spell&quot;&gt; {{ spell.cooldown }} &lt;/td&gt;
+        &lt;/ng-container&gt;
+
+      &lt;/mat-card-header&gt;
+
+      &lt;mat-card-content&gt;
+        &lt;ng-container matColumnDef&#x3D;&quot;actions&quot;&gt;
+          &lt;th mat-header-cell *matHeaderCellDef&gt;
+            &lt;button id&#x3D;&quot;adObject&quot; mat-icon-button (click)&#x3D;&quot;addSpell()&quot;&gt;
+              &lt;mat-icon&gt;
+                add_circle
+              &lt;/mat-icon&gt;
+            &lt;/button&gt;
+          &lt;/th&gt;
+          &lt;td mat-cell *matCellDef&#x3D;&quot;let spell&quot;&gt;
+            &lt;button id&#x3D;&quot;editObject&quot; mat-icon-button (click)&#x3D;&quot;editSpell(spell)&quot;&gt;
+              &lt;mat-icon&gt;
+                mode_edit
+              &lt;/mat-icon&gt;
+            &lt;/button&gt;
+            &lt;button id&#x3D;&quot;deleteUsuario&quot; mat-icon-button (click)&#x3D;&quot;deleteSpell(spell)&quot;&gt;
+              &lt;mat-icon&gt;
+                delete
+              &lt;/mat-icon&gt;
+            &lt;/button&gt;
+          &lt;/td&gt;
+        &lt;/ng-container&gt;
+        &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumns&quot;&gt;&lt;/tr&gt;
+        &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumns;&quot;&gt;&lt;/tr&gt;
+
+      &lt;/mat-card-content&gt;
+
+    &lt;/table&gt;
+    &lt;!-- Footer --&gt;
+    &lt;mat-card-footer&gt;
+      &lt;mat-paginator #paginator [pageSize]&#x3D;&quot;10&quot; [pageSizeOptions]&#x3D;&quot;[5, 10, 25]&quot;&gt;&lt;/mat-paginator&gt;
+    &lt;/mat-card-footer&gt;
+  &lt;/mat-card&gt;
+  &lt;ng-template #noDataTemplate&gt;
+    &lt;mat-card&gt;
+
+    &lt;/mat-card&gt;
+    &lt;!-- Cabecera --&gt;
+    &lt;mat-card-header&gt;
+      &lt;p&gt;No hay campeones&lt;/p&gt;
+    &lt;/mat-card-header&gt;
+    &lt;!-- Acciones --&gt;
+    &lt;mat-card-actions&gt;
+      &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;addSpell()&quot;&gt;Agregar campeones&lt;/button&gt;
+    &lt;/mat-card-actions&gt;
+  &lt;/ng-template&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./list-spell-page.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Esto asegurará que la tarjeta esté centrada verticalmente en la pantalla */
+}
+
+.custom-card {
+  width: 90%; /* Ancho deseado para la tarjeta */
+  max-width: 600px; /* Ancho máximo para la tarjeta */
+}
+
+.horizontal-list {
+  display: flex;
+  list-style-type: none;
+}
+
+.horizontal-list li {
+  margin-right: 10px; /* Ajusta el espaciado entre elementos */
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="example-container mat-elevation-z8">  <mat-card *ngIf="hasData; else noDataTemplate">    <table mat-table id="table" [dataSource]="dataSource" class="mat-elevation-z8" matSort>      <!-- Cabecera -->      <mat-card-header>        <ng-container matColumnDef="id">          <th mat-header-cell *matHeaderCellDef mat-sort-header>            <p><strong style="color: rgb(239, 243, 243);">ID</strong></p>          </th>          <td mat-cell *matCellDef="let spell"> {{ spell.id }} </td>        </ng-container>        <ng-container matColumnDef="name">          <th mat-header-cell *matHeaderCellDef mat-sort-header>            <p><strong style="color: rgb(239, 243, 243);">Nombre</strong></p>          </th>          <td mat-cell *matCellDef="let spell"> {{ spell.name }} </td>        </ng-container>        <ng-container matColumnDef="champion_level">          <th mat-header-cell *matHeaderCellDef mat-sort-header>            <p><strong style="color: rgb(239, 243, 243);">Nivel de campeon</strong></p>          </th>          <td mat-cell *matCellDef="let spell"> {{ spell.champion_level }} </td>        </ng-container>        <ng-container matColumnDef="game_mode">          <th mat-header-cell *matHeaderCellDef mat-sort-header>            <p><strong style="color: rgb(239, 243, 243);">Modo de juego</strong></p>          </th>          <td mat-cell *matCellDef="let spell"> {{ spell.game_mode }} </td>        </ng-container>        <ng-container matColumnDef="cooldown">          <th mat-header-cell *matHeaderCellDef mat-sort-header>            <p><strong style="color: rgb(239, 243, 243);">Cooldown</strong></p>          </th>          <td mat-cell *matCellDef="let spell"> {{ spell.cooldown }} </td>        </ng-container>      </mat-card-header>      <mat-card-content>        <ng-container matColumnDef="actions">          <th mat-header-cell *matHeaderCellDef>            <button id="adObject" mat-icon-button (click)="addSpell()">              <mat-icon>                add_circle              </mat-icon>            </button>          </th>          <td mat-cell *matCellDef="let spell">            <button id="editObject" mat-icon-button (click)="editSpell(spell)">              <mat-icon>                mode_edit              </mat-icon>            </button>            <button id="deleteUsuario" mat-icon-button (click)="deleteSpell(spell)">              <mat-icon>                delete              </mat-icon>            </button>          </td>        </ng-container>        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>      </mat-card-content>    </table>    <!-- Footer -->    <mat-card-footer>      <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25]"></mat-paginator>    </mat-card-footer>  </mat-card>  <ng-template #noDataTemplate>    <mat-card>    </mat-card>    <!-- Cabecera -->    <mat-card-header>      <p>No hay campeones</p>    </mat-card-header>    <!-- Acciones -->    <mat-card-actions>      <button mat-raised-button color="primary" (click)="addSpell()">Agregar campeones</button>    </mat-card-actions>  </ng-template></div></div>'
+    var COMPONENTS = [{'name': 'AddBuildPageComponent', 'selector': 'app-add-build-page'},{'name': 'AddChampionComponent', 'selector': 'app-add-champion'},{'name': 'AddObjectComponent', 'selector': 'app-add-object'},{'name': 'AddRuneComponent', 'selector': 'app-add-rune'},{'name': 'AddSpellComponent', 'selector': 'app-add-spell'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DeleteBuildComponent', 'selector': 'app-delete-build'},{'name': 'DeleteChampionComponent', 'selector': 'app-delete-champion'},{'name': 'DeleteObjectComponent', 'selector': 'app-delete-object'},{'name': 'DeleteRuneComponent', 'selector': 'app-delete-rune'},{'name': 'DeleteSpellComponent', 'selector': 'app-delete-spell'},{'name': 'DeleteUserComponent', 'selector': 'app-delete-user'},{'name': 'EditBuildComponent', 'selector': 'app-edit-build'},{'name': 'EditChampionComponent', 'selector': 'app-edit-champion'},{'name': 'EditObjectComponent', 'selector': 'app-edit-object'},{'name': 'EditRuneComponent', 'selector': 'app-edit-rune'},{'name': 'EditSpellComponent', 'selector': 'app-edit-spell'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'Error404PageComponent', 'selector': 'app-error404-page'},{'name': 'FavBuildPageComponent', 'selector': 'app-fav-build-page'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'ListChampionPageComponent', 'selector': 'app-list-champion-page'},{'name': 'ListObjectPageComponent', 'selector': 'app-list-object-page'},{'name': 'ListRunePageComponent', 'selector': 'app-list-rune-page'},{'name': 'ListSpellPageComponent', 'selector': 'app-list-spell-page'},{'name': 'ListUserPageComponent', 'selector': 'app-list-user-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'ProfilePageComponent', 'selector': 'app-profile-page'},{'name': 'RegisterPageComponent', 'selector': 'app-register-page'},{'name': 'SearchBuildCardComponent', 'selector': 'app-search-build-card'},{'name': 'SearchBuildComponent', 'selector': 'app-search-build'},{'name': 'UserBuildPageComponent', 'selector': 'app-user-build-page'},{'name': 'ViewBuildPageComponent', 'selector': 'app-view-build-page'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ListSpellPageComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ListSpellPageComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
