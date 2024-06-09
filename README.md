@@ -55,3 +55,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Licencia
 
 Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE.md) para más detalles.
+
+compodoc -p tsconfig.json -o
