@@ -312,6 +312,7 @@ export class AddBuildPageComponent implements OnInit {
             this.snackBar.open('Error al guardar la construcción', 'Cerrar', {
               duration: 3000
             });
+            this.ngOnInit();
           }
         });
         }

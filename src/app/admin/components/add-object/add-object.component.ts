@@ -67,7 +67,6 @@ export class AddObjectComponent implements OnInit {
    */
   async confirmAdd() {
     try {
-      debugger
       if (this.objectForm.valid) {
         const object = this.objectForm.value;
         if (this.fileBase64) {
