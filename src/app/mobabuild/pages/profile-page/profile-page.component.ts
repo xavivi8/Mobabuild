@@ -117,6 +117,7 @@ export class ProfilePageComponent implements OnInit {
    */
   async confirmEdit() {
     try {
+      debugger
       if (this.userForm.valid) {
         const newUser = this.userForm.value;
         if (this.fileBase64) {
@@ -129,7 +130,7 @@ export class ProfilePageComponent implements OnInit {
 
           if (mayUser) {
             this.user = mayUser;
-            this.userForm.patchValue(this.user);
+            this.router.navigate(['/mobabuild/search_build']);
           }
           this.snackBar.open('El objeto se actualizo correctamente.', CLOSE, { duration: 5000 });
         } else {
